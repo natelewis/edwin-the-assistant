@@ -15,6 +15,12 @@ module.exports = {
     run: function (state, callback, debug) {
         debug && console.log('twilio: ' + state.statement);
 
+        // bail if we don't have the configuration defined
+        if (typeof (config.twilio) === 'undefined' || typeof (config.twilio.account) === 'undefined' || typeof (config.twilio.secret) === 'undefined') {
+            state.final = 'Text messaging service is not installed.';
+            return callback(state);
+        }
+
         // check for inserted fields
         if (typeof (state.query) === 'undefined') {
             const words = new Words(state.statement);

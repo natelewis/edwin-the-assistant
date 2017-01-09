@@ -21,6 +21,7 @@
     "express": "^4.13.4",
     "hangouts-bot": "^0.2.1",
     "nodemailer": "^2.7.0",
+    "pos": "^0.4.2",
     "promise": "^7.1.1",
     "request": "^2.79.0",
     "slackbots": "^1.0.2",
