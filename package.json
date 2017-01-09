@@ -1,0 +1,36 @@
+{
+  "name": "edwin",
+  "description": "Edwin The Assistant",
+  "version": "0.0.1",
+  "private": true,
+  "license": "Apache-2.0",
+  "author": "Nate Lewis",
+  "engines": {
+    "node": "~4.2"
+  },
+  "scripts": {
+    "lint": "eslint \"**/*.js\" --fix; true",
+    "start": "nodejs app.js",
+    "monitor": "nodemon app.js",
+    "sim": "/bin/bash ./gactions simulate",
+    "test": "vows \"**/test-*.js\""
+  },
+  "dependencies": {
+    "actions-on-google": "^1.0.0",
+    "body-parser": "^1.15.2",
+    "express": "^4.13.4",
+    "hangouts-bot": "^0.2.1",
+    "nodemailer": "^2.7.0",
+    "promise": "^7.1.1",
+    "request": "^2.79.0",
+    "slackbots": "^1.0.2",
+    "twilio": "^2.11.1",
+    "vows": "^0.8.1"
+  },
+  "devDependencies": {
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-promise": "^3.4.0",
+    "eslint-plugin-standard": "^2.0.1",
+    "semistandard": "^9.1.0"
+  }
+}

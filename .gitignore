@@ -1,0 +1,6 @@
+node_modules
+creds.data
+*.DS_Store
+actions.json
+config.js
+*.log

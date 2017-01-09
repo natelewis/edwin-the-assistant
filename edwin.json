@@ -1,0 +1,26 @@
+{
+  "versionLabel": "Edwin v0.0.1",
+  "agentInfo": {
+    "languageCode": "en-US",
+    "projectId": "edwin",
+    "invocationNames": [
+      "edwin"
+    ],
+    "voiceName": "female_1"
+  },
+  "actions": [
+    {
+      "description": "Have an Edwin conversation",
+      "initialTrigger": {
+        "intent": "assistant.intent.action.MAIN"
+      },
+      "httpExecution": {
+        "url": "https://[YOUR HOSTED URL HERE]"
+      }
+    }
+  ],
+  "deploymentStatus": {
+    "state": "NEW"
+  },
+  "versionId": "1"
+}
