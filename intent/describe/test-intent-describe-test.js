@@ -10,7 +10,7 @@ vows.describe('text'
         context: 'sentence',
         action: 'describe',
         payload: 'yo momma',
-        debug: false
+        debug: true
     })
 ).addBatch(
     test.assertStatement({

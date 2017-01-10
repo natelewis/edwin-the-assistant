@@ -76,9 +76,9 @@ module.exports = {
 
         if (state.fulfillmentType !== 'dry-run') {
         // if we are here, that means we are gtg to send the message!
-        var client = require('twilio')(config.twilio.account, config.twilio.secret);
+            var client = require('twilio')(config.twilio.account, config.twilio.secret);
 
-        debug && console.log('text: Texting number ' + state.textNumber + ' from ' + config.twilio.fromNumber + ' ' + state.payload);
+            debug && console.log('text: Texting number ' + state.textNumber + ' from ' + config.twilio.fromNumber + ' ' + state.payload);
 
         // if we are not in a testPlan, do the actual text
             client.messages.create({

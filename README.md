@@ -1,5 +1,6 @@
 # Edwin The Assistant v0.0.1 Alpha
 [![Build Status](https://travis-ci.org/natelewis/edwin-the-assistant.svg?branch=master)](https://travis-ci.org/natelewis/edwin-the-assistant)
+
 Edwin is an Artificial Intelligence robot designed to be flexible, and extensible platform to create unique, interesting and useful experiences to interact with.  Edwin can be used as a generic all purpose assistant bot, or for a specific single use action. The projectss current state is under alpha development while experimenting with AI core concpets and module organizational patterns.
 
 ##### Conversation Handlers:

@@ -5,6 +5,17 @@ module.exports = {
         debug && console.log('intent stop:');
         debug && console.log(state);
 
+/*
+
+    reduceContext: {
+        "song": "music",
+        "track": "music"
+    }
+    action: {
+        "music": "sonos"
+    }
+*/
+
         // check for inserted fields
         if (typeof (state.query) === 'undefined') {
             // find the next word after describe to know what we are describing

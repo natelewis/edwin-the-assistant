@@ -3,7 +3,17 @@ const Statement = require('../../../lib/statement');
 module.exports = {
     run: function (state, callback, debug) {
         debug && console.log('sentence: ' + state.sentence);
-        debug && console.log('sentence: payload: ' + state.payload);
+
+        if (state.query === 'payload') {
+            state.payload = state.statement;
+        }
+
+        // I don't have something to describe
+        if (typeof (state.payload) === 'undefined') {
+            state.query = 'payload';
+            state.reply = 'What sentence do you want me to describe?';
+            return callback(state);
+        }
 
         var confirmation = 'Sure thing!';
         var numberOfWords = state.payload.split(' ').length;
