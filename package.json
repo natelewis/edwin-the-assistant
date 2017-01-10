@@ -10,7 +10,7 @@
   },
   "scripts": {
     "lint": "eslint \"**/*.js\" --fix; true",
-    "start": "nodejs app.js",
+    "start": "node app.js",
     "monitor": "nodemon app.js",
     "sim": "/bin/bash ./gactions simulate",
     "test": "vows \"**/test-*.js\""
