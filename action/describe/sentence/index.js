@@ -1,17 +1,23 @@
+const ActionHandler = require('../../../lib/actionHandler');
 const Statement = require('../../../lib/statement');
 
 module.exports = {
     run: function (state, callback, debug) {
         debug && console.log('sentence: ' + state.sentence);
 
-        if (state.query === 'payload') {
-            state.payload = state.statement;
-        }
+        const handler = {
+            fields: [
+                {
+                    field: 'payload',
+                    reply: [ 'What sentence do you want me to describe?' ],
+                    validate: 'none'
+                }
+            ]
+        };
 
-        // I don't have something to describe
-        if (typeof (state.payload) === 'undefined') {
-            state.query = 'payload';
-            state.reply = 'What sentence do you want me to describe?';
+        state = new ActionHandler(state, callback, handler);
+
+        if (typeof (state.reply) !== 'undefined') {
             return callback(state);
         }
 

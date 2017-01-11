@@ -1,6 +1,7 @@
 const config = require('../../config');
 const Words = require('../../lib/words');
 const Groom = require('../../lib/groom');
+const ActionHandler = require('../../lib/actionHandler');
 
 function lookupTextNumber (name) {
     // make sure we have some stuff, just bail if not
@@ -14,6 +15,27 @@ function lookupTextNumber (name) {
 module.exports = {
     run: function (state, callback, debug) {
         debug && console.log('twilio: ' + state.statement);
+
+        const handler = {
+            fields: [
+//                {
+//                    field: 'contact',
+//                    reply: [ 'Who do you want to send it to?' ],
+//                    validate: 'contactCell'
+//                },
+                {
+                    field: 'payload',
+                    reply: [ 'What do you want it to say?' ],
+                    type: 'payload',
+                    validate: 'none'
+//                },
+//                {
+//                    field: 'confirm',
+//                    reply: [ 'Text \'[payload]\' to \'[contact]\'. Is that correct?\'' ],
+//                    validate: 'confirm'
+                }
+            ]
+        };
 
         // check for inserted fields
         if (typeof (state.query) === 'undefined') {
@@ -32,18 +54,6 @@ module.exports = {
         if (state.query === 'contact') {
             state.contact = state.statement.toLowerCase();
         }
-        if (state.query === 'payload') {
-            var payloadFromQuery = new Groom(state.statement);
-            state.payload = payloadFromQuery.messagePayload();
-        }
-        if (state.query === 'confirm') {
-            state.confirm = state.statement;
-            if (!state.confirm.match(/(guess|sure|yea|do it|yes|correct|yup|go for it|ok|o k)/i)) {
-                state.contact = undefined;
-                state.payload = undefined;
-                state.confirm = undefined;
-            }
-        }
 
         // send back more questions if we don't have everything
         if (typeof (state.contact) === 'undefined') {
@@ -61,11 +71,19 @@ module.exports = {
             return callback(state);
         }
 
-        // I don't have something to send
-        if (typeof (state.payload) === 'undefined') {
-            state.query = 'payload';
-            state.reply = 'What do you want it to say?';
+        // Process query replies
+        state = new ActionHandler(state, callback, handler);
+        if (typeof (state.reply) !== 'undefined') {
             return callback(state);
+        }
+
+        if (state.query === 'confirm') {
+            state.confirm = state.statement;
+            if (!state.confirm.match(/(guess|sure|yea|do it|yes|correct|yup|go for it|ok|o k)/i)) {
+                state.contact = undefined;
+                state.payload = undefined;
+                state.confirm = undefined;
+            }
         }
 
         if (typeof (state.confirm) === 'undefined') {
@@ -75,12 +93,12 @@ module.exports = {
         }
 
         if (state.fulfillmentType !== 'dry-run') {
-        // if we are here, that means we are gtg to send the message!
+            // if we are here, that means we are gtg to send the message!
             var client = require('twilio')(config.twilio.account, config.twilio.secret);
 
             debug && console.log('text: Texting number ' + state.textNumber + ' from ' + config.twilio.fromNumber + ' ' + state.payload);
 
-        // if we are not in a testPlan, do the actual text
+            // if we are not in a testPlan, do the actual text
             client.messages.create({
                 to: state.textNumber,
                 from: config.twilio.fromNumber,

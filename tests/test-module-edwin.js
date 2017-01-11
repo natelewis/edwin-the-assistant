@@ -8,7 +8,7 @@ vows.describe('edwin').addBatch({
 
         'Gives reply when nothing is passed': function (edwin) {
             var state = edwin.converse(undefined, undefined, function (state) { return state; });
-            assert.notEqual(state.reply, undefined);
+            assert.notEqual(state.final, undefined);
         }
     }
 }).export(module);

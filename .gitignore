@@ -1,6 +1,6 @@
 node_modules
 creds.data
 *.DS_Store
-actions.json
+action.json
 config.js
 *.log
