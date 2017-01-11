@@ -63,8 +63,34 @@ Google Assistant is a much larger task than Slack or Hangouts.  I suggest settin
 ### Single Use Action With Google Assistant
 If you only want to use Edwin for a specific function on your Google Home, you can do this with a simple change.  An example of this would be to have him control a Sonos device with an invocation name of 'Sonos'.   In this case you can change the invocation_name while generating a preview to 'Sonos'.  Then address your Google Home in the context of "Ok Google, tell Sonos to turn down the music".   He is full featured Edwin, but it will feel like he is designed just for your Sonos.
 
-### Building Custom Actions
-TODO
-
 ### Extending Intent And Context Discovery Logic
+Under the intent directory you can have custom intent scripts to determine the processing module and the context, or you can define it with a JSON file.   These are called either 'intent/actionname/index.js', or'intent/actionname.json'. If both are present the JSON file will override the custom intent script.
+
+##### JSON Intent Format Example 'pause.json'
+````json
+{
+    "forceContext": undefined,
+    "contextReduce": {
+        "song": "music",
+        "track": "music"
+    },
+    "module": {
+        "music": "sonos"
+    },
+    "failReply": "I don't know how to do that yet"
+}
+````
+* force context
+    If this is defined any context will be overwriten with its value.
+    
+* reduce context 
+    You can alias different context to reduce them to a common name.  The has will map each context to a new context.
+    
+* module
+    A hash to map a context to what module will process the actionable intent
+
+* failReply
+    If something goes wrong and we can't figure it out say this as the state.final.
+
+### Building Custom Actions
 TODO

@@ -1,0 +1,7 @@
+{
+    "forceContext": "text",
+    "module": {
+        "text": "twilio"
+    },
+    "failReply": "I don't know how to text that yet."
+}

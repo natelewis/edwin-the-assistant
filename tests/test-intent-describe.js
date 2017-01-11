@@ -1,4 +1,4 @@
-var test = require('../../lib/test');
+var test = require('../lib/test');
 var vows = require('vows');
 
 vows.describe('text'
@@ -10,7 +10,7 @@ vows.describe('text'
         context: 'sentence',
         action: 'describe',
         payload: 'yo momma',
-        debug: true
+        debug: false
     })
 ).addBatch(
     test.assertStatement({

@@ -1,4 +1,4 @@
-var test = require('../../lib/test');
+var test = require('../lib/test');
 var vows = require('vows');
 
 vows.describe('text'

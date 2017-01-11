@@ -1,0 +1,10 @@
+{
+    "contextReduce": {
+        "song": "music",
+        "track": "music",
+        "sonos": "music"
+    },
+    "module": {
+        "music": "sonos"
+    }
+}

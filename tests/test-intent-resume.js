@@ -1,15 +1,14 @@
-/*
 var test = require('../lib/test');
 var vows = require('vows');
-vows.describe('generic intent'
+
+vows.describe('resume intent'
 ).addBatch(
     test.assertStatement({
         flow: [
-            'pause music'
+            'resume music'
         ],
-        action: 'pause',
+        action: 'resume',
         context: 'music',
-        debug: true
+        debug: false
     })
 ).export(module);
-*/

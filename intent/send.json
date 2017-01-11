@@ -1,0 +1,8 @@
+{
+    "contextReduce": {
+    },
+    "module": {
+        "text": "twilio"
+    },
+    "failReply": "I don't know how to send that yet."
+}

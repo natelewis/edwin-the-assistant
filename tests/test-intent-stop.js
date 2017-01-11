@@ -1,23 +1,23 @@
-var test = require('../../lib/test');
+var test = require('../lib/test');
 var vows = require('vows');
 
 vows.describe('text'
 ).addBatch(
     test.assertStatement({
         flow: [
-            'skip to the next song'
+            'stop the music'
         ],
-        context: 'song',
-        action: 'skip',
+        context: 'music',
+        action: 'stop',
         debug: false
     })
 ).addBatch(
     test.assertStatement({
         flow: [
-            'skip track in the kitchen'
+            'stop playin this song'
         ],
-        context: 'track',
-        action: 'skip',
+        context: 'music',
+        action: 'stop',
         debug: false
     })
 ).export(module);

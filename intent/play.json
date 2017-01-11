@@ -1,0 +1,6 @@
+{
+    "module": {
+        "music": "sonos"
+    },
+    "failReply": "I don't know how to play that yet."
+}

@@ -1,17 +1,15 @@
-var test = require('../../../lib/test');
+var test = require('../lib/test');
 var vows = require('vows');
 
-vows.describe('text'
+vows.describe('send'
 ).addBatch(
     test.assertStatement({
         flow: [
-            'Can you text Nate I\'m on my way home',
-            'yes'
+            'Send text to Nate', 'quit'
         ],
         action: 'send',
         context: 'text',
-        contact: 'nate',
-        payload: 'I\'m on my way home',
+        payload: 'quit',
         debug: false
     })
 ).addBatch(
@@ -40,18 +38,6 @@ vows.describe('text'
         context: 'text',
         contact: 'nate',
         payload: 'I\'m on my way home',
-        debug: false
-    })
-).addBatch(
-    test.assertStatement({
-        flow: [
-            'Text to Nate pick up milk on your way home',
-            'yes'
-        ],
-        action: 'send',
-        context: 'text',
-        contact: 'nate',
-        payload: 'pick up milk on your way home',
         debug: false
     })
 ).addBatch(
