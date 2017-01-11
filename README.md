@@ -80,17 +80,21 @@ Under the intent directory you can have custom intent scripts to determine the p
     "failReply": "I don't know how to do that yet"
 }
 ````
-* force context
+* forceContext:
+
     If this is defined any context will be overwriten with its value.
     
-* reduce context 
-    You can alias different context to reduce them to a common name.  The has will map each context to a new context.
+* contextReduce:
+
+    You can alias different contexts to reduce them to a common name.  The hash will map each context to a new context.
     
-* module
+* module:
+
     A hash to map a context to what module will process the actionable intent
 
-* failReply
-    If something goes wrong and we can't figure it out say this as the state.final.
+* failReply:
+
+    If something goes wrong and we can't figure it out, respond with this as the state.final.
 
 ### Building Custom Actions
 TODO
