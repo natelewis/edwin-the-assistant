@@ -1,23 +1,23 @@
 var test = require('../lib/test');
 var vows = require('vows');
 
-vows.describe('intent-skip'
+vows.describe('intent-next'
 ).addBatch(
     test.assertStatement({
         flow: [
-            'skip the song'
+            'next song please'
         ],
         context: 'music',
-        action: 'skip',
+        action: 'next',
         debug: false
     })
 ).addBatch(
     test.assertStatement({
         flow: [
-            'skip to the next track'
+            'play the next song'
         ],
         context: 'music',
-        action: 'skip',
+        action: 'play',
         debug: false
     })
 ).export(module);

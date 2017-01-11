@@ -1,6 +1,10 @@
 {
+    "contextReduce": {
+        "track": "music",
+        "song": "music"
+    },
     "module": {
-        "music": "sonos"
+        "music": "music"
     },
     "failReply": "I don't know how to play that yet."
 }

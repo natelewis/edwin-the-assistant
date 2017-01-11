@@ -5,6 +5,6 @@
         "sonos": "music"
     },
     "module": {
-        "music": "sonos"
+        "music": "music"
     }
 }
