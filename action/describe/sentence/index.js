@@ -1,5 +1,6 @@
 const ActionHandler = require('../../../lib/actionHandler');
 const Statement = require('../../../lib/statement');
+const Words = require('../../../lib/words');
 
 module.exports = {
     run: function (state, callback, debug) {
@@ -14,6 +15,12 @@ module.exports = {
                 }
             ]
         };
+
+        // try to guess the payload ( anything after the context is payloadd
+        if (typeof (state.query) === 'undefined') {
+            const words = new Words(state.statement);
+            state.payload = words.getEverythingAfterWord(state.originalContext, debug);
+        }
 
         state = new ActionHandler(state, callback, handler);
 

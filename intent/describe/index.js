@@ -8,11 +8,12 @@ module.exports = {
 
         var intent =
             {
-                setContext: {
+/*                setContext: {
                     nextWord: {
                         'type': 'NN'
                     }
                 },
+*/
                 contextReduce: {
                     'statement': 'sentence'
                 },
@@ -22,15 +23,14 @@ module.exports = {
                 failReply: 'I don\'t know how to describe that yet.'
             };
 
+        // set the context to the next noun
         if (typeof (state.query) === 'undefined') {
-            // find the next word after describe to know what we are describing
+            
+            // find the next word after describe and set it as context
             const words = new Words(state.statement);
             var wordAfterDecscribe = words.getNextWordOfTypeAfterWord('describe', 'NN', debug);
             if (typeof (wordAfterDecscribe) !== 'undefined') {
-                if (wordAfterDecscribe.match(/(statement|sentence)/)) {
-                    state.payload = words.getEverythingAfterWord(wordAfterDecscribe, debug);
-                    state.context = 'sentence';
-                }
+                    state.context = wordAfterDecscribe;
             }
         }
 

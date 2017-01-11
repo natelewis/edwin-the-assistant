@@ -70,12 +70,13 @@ Under the intent directory you can have custom intent scripts to determine the p
 ````json
 {
     "forceContext": undefined,
+    "originalContext": "song",
     "contextReduce": {
         "song": "music",
         "track": "music"
     },
     "module": {
-        "music": "sonos"
+        "music": "music"
     },
     "failReply": "I don't know how to do that yet"
 }
@@ -83,6 +84,10 @@ Under the intent directory you can have custom intent scripts to determine the p
 * forceContext:
 
     If this is defined any context will be overwriten with its value.
+    
+* originalContext:
+
+    In case the context changes with the reduce, you can still access what it was before it was altered.
     
 * contextReduce:
 
