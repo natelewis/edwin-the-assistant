@@ -25,12 +25,11 @@ module.exports = {
 
         // set the context to the next noun
         if (typeof (state.query) === 'undefined') {
-            
             // find the next word after describe and set it as context
             const words = new Words(state.statement);
             var wordAfterDecscribe = words.getNextWordOfTypeAfterWord('describe', 'NN', debug);
             if (typeof (wordAfterDecscribe) !== 'undefined') {
-                    state.context = wordAfterDecscribe;
+                state.context = wordAfterDecscribe;
             }
         }
 
