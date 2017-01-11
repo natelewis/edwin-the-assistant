@@ -18,11 +18,11 @@ module.exports = {
 
         const handler = {
             fields: [
-//                {
-//                    field: 'contact',
-//                    reply: [ 'Who do you want to send it to?' ],
-//                    validate: 'contactCell'
-//                },
+                {
+                    field: 'contact',
+                    reply: [ 'Who do you want to send it to?' ],
+                    validate: 'textNumber'
+                },
                 {
                     field: 'payload',
                     reply: [ 'What do you want it to say?' ],
@@ -37,7 +37,7 @@ module.exports = {
             ]
         };
 
-        // check for inserted fields
+        // Try to pull in fields from initial statement
         if (typeof (state.query) === 'undefined') {
             const words = new Words(state.statement);
 
@@ -49,11 +49,10 @@ module.exports = {
                 state.payload = payloadFromIntent.messagePayload();
             }
         }
-
+/*
         // process an ongoing response
         if (state.query === 'contact') {
             state.contact = state.statement.toLowerCase();
-        }
 
         // send back more questions if we don't have everything
         if (typeof (state.contact) === 'undefined') {
@@ -62,17 +61,20 @@ module.exports = {
             return callback(state);
         }
 
-        // try to send to what we thing the sending to is
+        }
+        // validate
         state.textNumber = lookupTextNumber(state.contact);
-        if (typeof (state.textNumber) === 'undefined') {
+        if (typeof (state.contact) !== 'undefined' && typeof (state.textNumber) === 'undefined') {
             state.query = 'contact';
             state.reply = 'Not sure who that is, who do you want me to send a text to?';
             state.contact = undefined;
             return callback(state);
         }
+*/
 
         // Process query replies
         state = new ActionHandler(state, callback, handler);
+
         if (typeof (state.reply) !== 'undefined') {
             return callback(state);
         }
