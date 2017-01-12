@@ -14,7 +14,8 @@ function lookupTextNumber (name) {
 
 module.exports = {
     run: function (state, callback, debug) {
-        debug && console.log('twilio: ' + state.statement);
+debug = true;
+        debug && console.log('texting: ' + state.statement);
 
         const handler = {
             fields: [
@@ -28,11 +29,11 @@ module.exports = {
                     reply: [ 'What do you want it to say?' ],
                     type: 'payload',
                     validate: 'none'
-//                },
-//                {
-//                    field: 'confirm',
-//                    reply: [ 'Text \'[payload]\' to \'[contact]\'. Is that correct?\'' ],
-//                    validate: 'confirm'
+                },
+                {
+                    field: 'confirm',
+                    reply: [ 'Text \'[payload]\' to \'[contact]\'. Is that correct?\'' ],
+                    validate: 'confirm'
                 }
             ]
         };
@@ -44,41 +45,27 @@ module.exports = {
             // if we don't have the contact see if we can guess it
             state.contact = words.getNextWordOfTypeAfterWord('text', 'NNP', debug);
 
-            if (typeof (lookupTextNumber(state.contact)) !== 'undefined') {
+            // check for NN if we didn't get an NNP
+            if (typeof (state.contact) === 'undefined') {
+                state.contact = words.getNextWordOfTypeAfterWord('text', 'NN', debug);
+            }
+
+            state.textNumber = lookupTextNumber(state.contact);
+
+            // if we have context see if there is payload after it
+            if (typeof (state.textNumber) !== 'undefined') {
                 var payloadFromIntent = new Groom(words.getEverythingAfterWord(state.contact));
                 state.payload = payloadFromIntent.messagePayload();
             }
         }
-/*
-        // process an ongoing response
-        if (state.query === 'contact') {
-            state.contact = state.statement.toLowerCase();
-
-        // send back more questions if we don't have everything
-        if (typeof (state.contact) === 'undefined') {
-            state.query = 'contact';
-            state.reply = 'Who would you like to send a text to?';
-            return callback(state);
-        }
-
-        }
-        // validate
-        state.textNumber = lookupTextNumber(state.contact);
-        if (typeof (state.contact) !== 'undefined' && typeof (state.textNumber) === 'undefined') {
-            state.query = 'contact';
-            state.reply = 'Not sure who that is, who do you want me to send a text to?';
-            state.contact = undefined;
-            return callback(state);
-        }
-*/
 
         // Process query replies
         state = new ActionHandler(state, callback, handler);
 
-        if (typeof (state.reply) !== 'undefined') {
+        if (typeof (state.reply) !== 'undefined' || typeof (state.final) !== 'undefined') {
             return callback(state);
         }
-
+/*
         if (state.query === 'confirm') {
             state.confirm = state.statement;
             if (!state.confirm.match(/(guess|sure|yea|do it|yes|correct|yup|go for it|ok|o k)/i)) {
@@ -93,7 +80,7 @@ module.exports = {
             state.reply = 'Text "' + state.payload + '" to ' + state.contact + '. Is that correct?';
             return callback(state);
         }
-
+*/
         if (state.fulfillmentType !== 'dry-run') {
             // if we are here, that means we are gtg to send the message!
             var client = require('twilio')(config.twilio.account, config.twilio.secret);
@@ -107,7 +94,8 @@ module.exports = {
                 body: state.payload
             }, function (err) {
                 if (err) { // 'err' is an error received during the request, if any
-                    debug && console.log('text: sending error: ' + err);
+                    console.log('text: sending error');
+                    console.log(err);
                 } else {
                     debug && console.log('text: sent text');
                 }

@@ -2,7 +2,7 @@
     "contextReduce": {
     },
     "module": {
-        "text": "twilio"
+        "text": "texting"
     },
     "failReply": "I don't know how to send that yet."
 }

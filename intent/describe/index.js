@@ -1,6 +1,9 @@
 const Words = require('../../lib/words');
 const IntentHandler = require('../../lib/intentHandler');
 
+// LEAVING THIS AS A CUSTOM INTENT AS A WORKING EXAMPLE
+// UNTIL IT IS MORE DOCUMENTED
+
 module.exports = {
     process: function (state, callback, debug) {
         debug = false;
