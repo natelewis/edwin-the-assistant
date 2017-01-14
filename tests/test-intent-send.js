@@ -9,7 +9,7 @@ vows.describe('send'
         ],
         action: 'send',
         context: 'text',
-        payload: 'quit',
+        payload: undefined,
         debug: false
     })
 ).addBatch(

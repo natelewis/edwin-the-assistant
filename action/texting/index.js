@@ -1,39 +1,106 @@
-const config = require('../../config');
 const Words = require('../../lib/words');
 const Groom = require('../../lib/groom');
 const ActionHandler = require('../../lib/actionHandler');
 
-function lookupTextNumber (name) {
-    // make sure we have some stuff, just bail if not
-    if (typeof (name) === 'undefined') {
-        return undefined;
-    }
-    // return if we have a config match
-    return config.twilio.contacts[name];
-}
-
 module.exports = {
     run: function (state, callback, debug) {
-debug = true;
+        debug = false;
         debug && console.log('texting: ' + state.statement);
 
         const handler = {
-            fields: [
+
+            annotation: [
                 {
+                    requirement: [],
+                    type: 'nextWordOfType',
                     field: 'contact',
-                    reply: [ 'Who do you want to send it to?' ],
-                    validate: 'textNumber'
+                    startWord: 'text',
+                    wordType: 'NNP'
                 },
                 {
+                    requirement: [],
+                    type: 'nextWordOfType',
+                    field: 'contact',
+                    startWord: 'text',
+                    wordType: 'NN'
+                },
+                {
+                    requirement: [
+                        {
+                            type: 'typeof',
+                            field: 'contact',
+                            operator: '!==',
+                            value: 'undefined'
+                        }
+                    ],
+                    type: 'everythingAfterWord',
                     field: 'payload',
-                    reply: [ 'What do you want it to say?' ],
-                    type: 'payload',
-                    validate: 'none'
+                    word: 'text',
+                    groom: 'messagePayload'
+                }
+            ],
+            steps: [
+                {
+                    requirement: [
+                        {
+                            type: 'typeof',
+                            field: 'contact',
+                            operator: '!==',
+                            value: 'undefined'
+                        },
+                        {
+                            type: 'typeof',
+                            field: 'textNumber',
+                            operator: '===',
+                            value: 'undefined'
+                        }
+                    ],
+                    module: 'textNumberLookup',
+                    config: {
+                        field: 'contact'
+                    }
                 },
                 {
-                    field: 'confirm',
+                    requirement: [
+                        {
+                            type: 'typeof',
+                            field: 'contact',
+                            operator: '===',
+                            value: 'undefined'
+                        }
+                    ],
+                    reply: [ 'Who do you want to send it to?' ],
+                    query: 'contact'
+                },
+                {
+                    requirement: [
+                        {
+                            type: 'typeof',
+                            field: 'payload',
+                            operator: '===',
+                            value: 'undefined'
+                        }
+                    ],
+                    reply: [ 'What do you want it to say to [contact]?' ],
+                    query: 'payload',
+                    groom: 'messagePayload'
+                },
+                {
+                    requirement: [
+                        {
+                            type: 'typeof',
+                            field: 'confirm',
+                            operator: '===',
+                            value: 'undefined'
+                        }
+                    ],
                     reply: [ 'Text \'[payload]\' to \'[contact]\'. Is that correct?\'' ],
+                    query: 'confirm',
                     validate: 'confirm'
+                },
+                {
+                    requirement: [],
+                    module: 'texting'
                 }
             ]
         };
@@ -50,59 +117,19 @@ debug = true;
                 state.contact = words.getNextWordOfTypeAfterWord('text', 'NN', debug);
             }
 
-            state.textNumber = lookupTextNumber(state.contact);
-
             // if we have context see if there is payload after it
-            if (typeof (state.textNumber) !== 'undefined') {
+            // if (typeof (state.textNumber) !== 'undefined') {
+            if (typeof (state.contact) !== 'undefined') {
                 var payloadFromIntent = new Groom(words.getEverythingAfterWord(state.contact));
                 state.payload = payloadFromIntent.messagePayload();
             }
         }
-
         // Process query replies
         state = new ActionHandler(state, callback, handler);
 
         if (typeof (state.reply) !== 'undefined' || typeof (state.final) !== 'undefined') {
             return callback(state);
         }
-/*
-        if (state.query === 'confirm') {
-            state.confirm = state.statement;
-            if (!state.confirm.match(/(guess|sure|yea|do it|yes|correct|yup|go for it|ok|o k)/i)) {
-                state.contact = undefined;
-                state.payload = undefined;
-                state.confirm = undefined;
-            }
-        }
-
-        if (typeof (state.confirm) === 'undefined') {
-            state.query = 'confirm';
-            state.reply = 'Text "' + state.payload + '" to ' + state.contact + '. Is that correct?';
-            return callback(state);
-        }
-*/
-        if (state.fulfillmentType !== 'dry-run') {
-            // if we are here, that means we are gtg to send the message!
-            var client = require('twilio')(config.twilio.account, config.twilio.secret);
-
-            debug && console.log('text: Texting number ' + state.textNumber + ' from ' + config.twilio.fromNumber + ' ' + state.payload);
-
-            // if we are not in a testPlan, do the actual text
-            client.messages.create({
-                to: state.textNumber,
-                from: config.twilio.fromNumber,
-                body: state.payload
-            }, function (err) {
-                if (err) { // 'err' is an error received during the request, if any
-                    console.log('text: sending error');
-                    console.log(err);
-                } else {
-                    debug && console.log('text: sent text');
-                }
-            });
-        }
-
-        state.final = 'Message was sent';
 
         return callback(state);
     }

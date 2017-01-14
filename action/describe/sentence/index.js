@@ -7,11 +7,18 @@ module.exports = {
         debug && console.log('sentence: ' + state.sentence);
 
         const handler = {
-            fields: [
+            steps: [
                 {
-                    field: 'payload',
+                    requirement: [
+                        {
+                            type: 'typeof',
+                            field: 'payload',
+                            operator: '===',
+                            value: 'undefined'
+                        }
+                    ],
                     reply: [ 'What sentence do you want me to describe?' ],
-                    validate: 'none'
+                    query: 'payload'
                 }
             ]
         };
