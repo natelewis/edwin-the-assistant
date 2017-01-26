@@ -17,7 +17,9 @@
   },
   "dependencies": {
     "actions-on-google": "^1.0.0",
+    "basic-auth": "^1.1.0",
     "body-parser": "^1.15.2",
+    "cors": "^2.8.1",
     "express": "^4.13.4",
     "hangouts-bot": "^0.2.1",
     "jsonfile": "^2.4.0",
@@ -33,6 +35,7 @@
     "eslint-config-standard": "^6.2.1",
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-standard": "^2.0.1",
+    "nodemon": "^1.11.0",
     "semistandard": "^9.1.0"
   }
 }

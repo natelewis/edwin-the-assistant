@@ -19,21 +19,41 @@
  */
 
 'use strict';
+
 var fs = require('fs');
+
+const express = require('express');
+const basicAuth = require('basic-auth');
+const bodyParser = require('body-parser');
+const Api = require('./lib/api');
+const cors = require('cors')
+
+const GoogleAssistant = require('./lib/googleAssistant');
+require('./lib/hangouts');
+require('./lib/slack');
 
 // template for new config in case one isn't present
 const configTemplate = `// omit sections to disable them 
 var config = {
 
+    edwin: {
+        port: 8080 
+    },
+
     // handlers
 
     googleAssistant: {
-        port: undefined
+        enabled: false
     },
 
     slack: {
         token: undefined,       //'get one from https://my.slack.com/services/new/bot'
         name: undefined
+    },
+
+    api: {
+        username: undefined,    //'someemail@gmail.com',
+        password: undefined     //'sompassword''
     },
 
     hangouts: {
@@ -80,20 +100,66 @@ try {
     config = {};
 }
 
+// web server for Google Assistant and api
+const app = express();
+app.set('port', config.edwin.port);
+app.use(bodyParser.json({type: 'application/json'}));
+app.use(cors())
+
+// edwin via hangouts
 if (typeof (config.hangouts) !== 'undefined' && typeof (config.hangouts.username) !== 'undefined' && typeof (config.hangouts.password) !== 'undefined') {
-    require('./lib/hangouts');
 } else {
     console.log('hangouts: to use Google Hangouts add a hangouts entry to ./config.js with username and password defined');
 }
 
+// edwin via Slack
 if (typeof (config.slack) !== 'undefined' && typeof (config.slack.token) !== 'undefined' && typeof (config.slack.name) !== 'undefined') {
-    require('./lib/slack');
 } else {
     console.log('slack: to use Slack add a slack entry to ./config.js with token and name defined');
 }
 
-if (typeof (config.googleAssistant) !== 'undefined' && typeof (config.googleAssistant.port) !== 'undefined') {
-    require('./lib/googleAssistant');
+if (typeof (config.googleAssistant) !== 'undefined' && config.googleAssistant.enabled === true) {
+    console.log('googleAssistant: online');
+    const googleAssistant = new GoogleAssistant(app);
+    googleAssistant.addHandler();
 } else {
     console.log('googleAssistant: to use Google Assistant add a googleAssistant entry to ./config.js with port defined');
 }
+
+// api handler
+if (typeof (config.api) !== 'undefined' && typeof (config.api.username) !== 'undefined' && typeof (config.api.password) !== 'undefined') {
+    console.log('api: online');
+
+    const api = new Api();
+
+    // Synchronous auth
+
+    var auth = function (req, res, next) {
+        var user = basicAuth(req);
+        if (!user || !user.name || !user.pass) {
+            res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
+            res.sendStatus(401);
+            return;
+        }
+        if (user.name === config.api.username && user.pass === config.api.password) {
+            next();
+        } else {
+            res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
+            res.sendStatus(401);
+            return;
+        }
+    };
+
+    app.get('/api/*', auth, function (req, res) {
+        api.handler(req, res);
+    });
+
+} else {
+    console.log('api: to use remote API adminstration add api entry to ./config.js with  username and password');
+}
+
+// Start the server for Google Actions
+const server = app.listen(app.get('port'), () => {
+    console.log('edwin: listening on port %s', server.address().port);
+});
+
