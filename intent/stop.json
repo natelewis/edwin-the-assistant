@@ -1,11 +1,27 @@
 {
-    "contextReduce": {
-        "song": "music",
-        "track": "music",
-        "sonos": "music"
-    },
-    "module": {
-        "music": "music"
-    },
-    "failReply": "I don't know how to stop that yet."
+    "intent": "stop",
+    "failReply": "I don't know how to stop that yet.",
+    "contextModifiers": [
+        {
+            "context": "song",
+            "type": "map",
+            "target": "music"
+        },
+        {
+            "context": "track",
+            "type": "map",
+            "target": "music"
+        },
+        {
+            "context": "sonos",
+            "type": "map",
+            "target": "music"
+        }
+    ],
+    "moduleMap": [
+        {
+            "context": "music",
+            "module": "music"
+        }
+    ]
 }

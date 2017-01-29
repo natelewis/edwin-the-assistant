@@ -13,7 +13,7 @@
     "start": "node app.js",
     "monitor": "nodemon app.js",
     "sim": "/bin/bash ./gactions simulate",
-    "test": "vows \"**/test-*.js\""
+    "test": "vows \"tests/test-*.js\""
   },
   "dependencies": {
     "actions-on-google": "^1.0.0",

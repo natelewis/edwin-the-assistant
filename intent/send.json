@@ -1,8 +1,11 @@
 {
-    "contextReduce": {
-    },
-    "module": {
-        "text": "texting"
-    },
-    "failReply": "I don't know how to send that yet."
+    "intent": "send",
+    "failReply": "I don't know how to do that.",
+    "contextModifiers": [],
+    "moduleMap": [
+        {
+            "context": "text",
+            "module": "texting"
+        }
+    ]
 }

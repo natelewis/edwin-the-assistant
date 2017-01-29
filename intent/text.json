@@ -1,7 +1,17 @@
 {
-    "forceContext": "text",
-    "module": {
-        "text": "texting"
-    },
-    "failReply": "I don't know how to text that yet."
+    "intent": "text",
+    "failReply": "I don't know how to do that.",
+    "contextModifiers": [
+        {
+            "context": "*",
+            "type": "map",
+            "target": "text"
+        }
+    ],
+    "moduleMap": [
+        {
+            "context": "text",
+            "module": "texting"
+        }
+    ]
 }

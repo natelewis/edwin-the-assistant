@@ -1,10 +1,27 @@
 {
-    "contextReduce": {
-        "song": "music",
-        "track": "music",
-        "sonos": "music"
-    },
-    "module": {
-        "music": "music"
-    }
+    "intent": "skip",
+    "failReply": "I don't know how to skip that yet.",
+    "contextModifiers": [
+        {
+            "context": "song",
+            "type": "map",
+            "target": "music"
+        },
+        {
+            "context": "track",
+            "type": "map",
+            "target": "music"
+        },
+        {
+            "context": "sonos",
+            "type": "map",
+            "target": "music"
+        }
+    ],
+    "moduleMap": [
+        {
+            "context": "music",
+            "module": "music"
+        }
+    ]
 }

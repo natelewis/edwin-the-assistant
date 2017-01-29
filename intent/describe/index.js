@@ -11,19 +11,28 @@ module.exports = {
 
         var intent =
             {
-/*                setContext: {
-                    nextWord: {
-                        'type': 'NN'
-                    }
-                },
+                intent: 'text',
+                failReply: 'I don\'t know how to do that.',
+                contextModifiers: [
+/*
+                    {
+                        context: 'statement',
+                        type: 'nextWordOfType',
+                        target: 'NN'
+                    },
 */
-                contextReduce: {
-                    'statement': 'sentence'
-                },
-                module: {
-                    'sentence': 'describe/sentence'
-                },
-                failReply: 'I don\'t know how to describe that yet.'
+                    {
+                        context: 'statement',
+                        type: 'map',
+                        target: 'sentence'
+                    }
+                ],
+                moduleMap: [
+                    {
+                        context: 'sentence',
+                        module: 'describe/sentence'
+                    }
+                ]
             };
 
         // set the context to the next noun

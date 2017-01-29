@@ -26,7 +26,7 @@ const express = require('express');
 const basicAuth = require('basic-auth');
 const bodyParser = require('body-parser');
 const Api = require('./lib/api');
-const cors = require('cors')
+const cors = require('cors');
 
 const GoogleAssistant = require('./lib/googleAssistant');
 require('./lib/hangouts');
@@ -104,7 +104,7 @@ try {
 const app = express();
 app.set('port', config.edwin.port);
 app.use(bodyParser.json({type: 'application/json'}));
-app.use(cors())
+app.use(cors());
 
 // edwin via hangouts
 if (typeof (config.hangouts) !== 'undefined' && typeof (config.hangouts.username) !== 'undefined' && typeof (config.hangouts.password) !== 'undefined') {
@@ -154,6 +154,9 @@ if (typeof (config.api) !== 'undefined' && typeof (config.api.username) !== 'und
         api.handler(req, res);
     });
 
+    app.post('/api/*', auth, function (req, res) {
+        api.handler(req, res);
+    });
 } else {
     console.log('api: to use remote API adminstration add api entry to ./config.js with  username and password');
 }
