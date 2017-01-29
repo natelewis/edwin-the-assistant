@@ -25,14 +25,8 @@ var fs = require('fs');
 const express = require('express');
 const basicAuth = require('basic-auth');
 const bodyParser = require('body-parser');
-const Api = require('./lib/api');
 const cors = require('cors');
 
-const GoogleAssistant = require('./lib/googleAssistant');
-require('./lib/hangouts');
-require('./lib/slack');
-
-// template for new config in case one isn't present
 const configTemplate = `// omit sections to disable them 
 var config = {
 
@@ -100,6 +94,13 @@ try {
     config = {};
 }
 
+// bring in all our interfaces
+const Api = require('./lib/api');
+const GoogleAssistant = require('./lib/googleAssistant');
+require('./lib/hangouts');
+require('./lib/slack');
+
+// template for new config in case one isn't present
 // web server for Google Assistant and api
 const app = express();
 app.set('port', config.edwin.port);
