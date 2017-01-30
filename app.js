@@ -89,16 +89,18 @@ try {
         throw e;
     }
 
-    // loading the config didn't work out, make it blank so we can move on and tell
-    // the console.log what to do
     config = {};
+}
+
+// if we don't have a config, then set a simple one up
+if (typeof(config.edwin) === 'undefined') {
+    config.edwin = {};
+    config.edwin.port = 8080;
 }
 
 // bring in all our interfaces
 const Api = require('./lib/api');
 const GoogleAssistant = require('./lib/googleAssistant');
-require('./lib/hangouts');
-require('./lib/slack');
 
 // template for new config in case one isn't present
 // web server for Google Assistant and api
@@ -109,12 +111,14 @@ app.use(cors());
 
 // edwin via hangouts
 if (typeof (config.hangouts) !== 'undefined' && typeof (config.hangouts.username) !== 'undefined' && typeof (config.hangouts.password) !== 'undefined') {
+    require('./lib/hangouts');
 } else {
     console.log('hangouts: to use Google Hangouts add a hangouts entry to ./config.js with username and password defined');
 }
 
 // edwin via Slack
 if (typeof (config.slack) !== 'undefined' && typeof (config.slack.token) !== 'undefined' && typeof (config.slack.name) !== 'undefined') {
+    require('./lib/slack');
 } else {
     console.log('slack: to use Slack add a slack entry to ./config.js with token and name defined');
 }
@@ -159,7 +163,7 @@ if (typeof (config.api) !== 'undefined' && typeof (config.api.username) !== 'und
         api.handler(req, res);
     });
 } else {
-    console.log('api: to use remote API adminstration add api entry to ./config.js with  username and password');
+    console.log('api: to use remote API adminstration add api entry to ./config.js with a username and password');
 }
 
 // Start the server for Google Actions
