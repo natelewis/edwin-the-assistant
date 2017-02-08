@@ -1,14 +1,5 @@
-const Words = require('../../lib/words');
-const Groom = require('../../lib/groom');
-const ActionHandler = require('../../lib/actionHandler');
-
-module.exports = {
-    run: function (state, callback, debug) {
-        debug = false;
-        debug && console.log('texting: ' + state.statement);
-
-        const handler = {
-
+{
+    conversation: 'texting',
             annotation: [
                 {
                     requirement: [],
@@ -103,34 +94,4 @@ module.exports = {
                     module: 'texting'
                 }
             ]
-        };
-
-        // Try to pull in fields from initial statement
-        if (typeof (state.query) === 'undefined') {
-            const words = new Words(state.statement);
-
-            // if we don't have the contact see if we can guess it
-            state.contact = words.getNextWordOfTypeAfterWord('text', 'NNP', debug);
-
-            // check for NN if we didn't get an NNP
-            if (typeof (state.contact) === 'undefined') {
-                state.contact = words.getNextWordOfTypeAfterWord('text', 'NN', debug);
-            }
-
-            // if we have context see if there is payload after it
-            // if (typeof (state.textNumber) !== 'undefined') {
-            if (typeof (state.contact) !== 'undefined') {
-                var payloadFromIntent = new Groom(words.getEverythingAfterWord(state.contact));
-                state.payload = payloadFromIntent.messagePayload();
-            }
         }
-        // Process query replies
-        state = new ActionHandler(state, callback, handler);
-
-        if (typeof (state.reply) !== 'undefined' || typeof (state.final) !== 'undefined') {
-            return callback(state);
-        }
-
-        return callback(state);
-    }
-};

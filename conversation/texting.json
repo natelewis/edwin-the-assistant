@@ -1,0 +1,106 @@
+{
+    "conversation": "texting",
+    "annotation": [
+        {
+            "requirement": [],
+            "type": "nextWordOfType",
+            "field": "contact",
+            "startWord": "text",
+            "wordType": "NNP"
+        },
+        {
+            "field": "contact",
+            "type": "nextWordOfType",
+            "startWord": "text",
+            "wordType": "NN",
+            "groom": "",
+            "requirement": []
+        },
+        {
+            "field": "payload",
+            "type": "everythingAfterWord",
+            "startWord": "[contact]",
+            "wordType": "NN",
+            "groom": "messagePayload",
+            "requirement": [
+                {
+                    "type": "typeof",
+                    "field": "contact",
+                    "operator": "!==",
+                    "value": "undefined"
+                }
+            ],
+            "word": "text"
+        }
+    ],
+    "steps": [
+        {
+            "requirement": [
+                {
+                    "type": "typeof",
+                    "field": "contact",
+                    "operator": "!==",
+                    "value": "undefined"
+                },
+                {
+                    "type": "typeof",
+                    "field": "textNumber",
+                    "operator": "===",
+                    "value": "undefined"
+                }
+            ],
+            "module": "textNumberLookup",
+            "config": {
+                "field": "contact"
+            }
+        },
+        {
+            "requirement": [
+                {
+                    "type": "typeof",
+                    "field": "contact",
+                    "operator": "===",
+                    "value": "undefined"
+                }
+            ],
+            "reply": [
+                "Who do you want to send it to?"
+            ],
+            "query": "contact"
+        },
+        {
+            "requirement": [
+                {
+                    "type": "typeof",
+                    "field": "payload",
+                    "operator": "===",
+                    "value": "undefined"
+                }
+            ],
+            "reply": [
+                "What do you want it to say to [contact]?"
+            ],
+            "query": "payload",
+            "groom": "messagePayload"
+        },
+        {
+            "requirement": [
+                {
+                    "type": "typeof",
+                    "field": "confirm",
+                    "operator": "===",
+                    "value": "undefined"
+                }
+            ],
+            "reply": [
+                "Text '[payload]' to '[contact]'. Is that correct?"
+            ],
+            "query": "confirm",
+            "validate": "confirm"
+        },
+        {
+            "requirement": [],
+            "module": "texting"
+        }
+    ]
+}

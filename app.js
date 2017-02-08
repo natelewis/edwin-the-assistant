@@ -85,7 +85,7 @@ try {
                 console.log('edwin: could not create config file ' + err);
                 process.exit(1);
             }
-            
+
             // stop here now that we have a config file
             console.log('edwin: new ./config.js file created in this directory, edit the config file and restart the server');
             process.exit();
@@ -97,7 +97,7 @@ try {
 }
 
 // if we don't have a config, then set a simple one up
-if (typeof(config.edwin) === 'undefined') {
+if (typeof (config.edwin) === 'undefined') {
     config.edwin = {};
     config.edwin.port = 8080;
 }

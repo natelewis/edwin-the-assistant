@@ -1,10 +1,10 @@
-const ActionHandler = require('../../../lib/actionHandler');
-const Statement = require('../../../lib/statement');
-const Words = require('../../../lib/words');
+const ConversationHandler = require('../../lib/conversationHandler');
+const Statement = require('../../lib/statement');
+const Words = require('../../lib/words');
 
 module.exports = {
     run: function (state, callback, debug) {
-        debug && console.log('sentence: ' + state.sentence);
+        debug && console.log('describe-sentence: ' + state.sentence);
 
         const handler = {
             steps: [
@@ -29,7 +29,7 @@ module.exports = {
             state.payload = words.getEverythingAfterWord(state.originalContext, debug);
         }
 
-        state = new ActionHandler(state, callback, handler);
+        state = new ConversationHandler(state, callback, handler);
 
         if (typeof (state.reply) !== 'undefined') {
             return callback(state);

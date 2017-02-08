@@ -1,0 +1,77 @@
+{
+    "conversation": "texting",
+    "annotation": [{
+        "requirement": [],
+        "type": "nextWordOfType",
+        "field": "contact",
+        "startWord": "text",
+        "wordType": "NNP"
+    }, {
+        "requirement": [],
+        "type": "nextWordOfType",
+        "field": "contact",
+        "startWord": "text",
+        "groom": "messagePayload",
+        "wordType": "NN"
+    }, {
+        "requirement": [{
+            "type": "typeof",
+            "field": "contact",
+            "operator": "!==",
+            "value": "undefined"
+        }],
+        "type": "everythingAfterWord",
+        "field": "payload",
+        "word": "text",
+        "groom": "messagePayload"
+    }],
+    "steps": [{
+        "requirement": [{
+            "type": "typeof",
+            "field": "contact",
+            "operator": "!==",
+            "value": "undefined"
+        }, {
+            "type": "typeof",
+            "field": "textNumber",
+            "operator": "===",
+            "value": "undefined"
+        }],
+        "module": "textNumberLookup",
+        "config": {
+            "field": "contact"
+        }
+    }, {
+        "requirement": [{
+            "type": "typeof",
+            "field": "contact",
+            "operator": "===",
+            "value": "undefined"
+        }],
+        "reply": ["Who do you want to send it to?"],
+        "query": "contact"
+    }, {
+        "requirement": [{
+            "type": "typeof",
+            "field": "payload",
+            "operator": "===",
+            "value": "undefined"
+        }],
+        "reply": ["What do you want it to say to [contact]?"],
+        "query": "payload",
+        "groom": "messagePayload"
+    }, {
+        "requirement": [{
+            "type": "typeof",
+            "field": "confirm",
+            "operator": "===",
+            "value": "undefined"
+        }],
+        "reply": ["Text '[payload]' to '[contact]'. Is that correct?"],
+        "query": "confirm",
+        "validate": "confirm"
+    }, {
+        "requirement": [],
+        "module": "texting"
+    }]
+}

@@ -30,7 +30,7 @@ module.exports = {
                 moduleMap: [
                     {
                         context: 'sentence',
-                        module: 'describe/sentence'
+                        module: 'describe-sentence'
                     }
                 ]
             };
