@@ -2,10 +2,10 @@
     "intent": "send",
     "failReply": "I don't know how to do that.",
     "contextModifiers": [],
-    "moduleMap": [
+    "conversationMap": [
         {
             "context": "text",
-            "module": "texting"
+            "conversation": "texting"
         }
     ]
 }

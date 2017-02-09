@@ -27,10 +27,10 @@ module.exports = {
                         target: 'sentence'
                     }
                 ],
-                moduleMap: [
+                conversationMap: [
                     {
                         context: 'sentence',
-                        module: 'describe-sentence'
+                        conversation: 'describe-sentence'
                     }
                 ]
             };

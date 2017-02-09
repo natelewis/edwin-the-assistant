@@ -18,10 +18,10 @@
             "target": "music"
         }
     ],
-    "moduleMap": [
+    "conversationMap": [
         {
             "context": "music",
-            "module": "music"
+            "conversation": "music"
         }
     ]
 }
