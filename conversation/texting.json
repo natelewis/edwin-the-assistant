@@ -1,40 +1,10 @@
 {
     "conversation": "texting",
-    "annotation": [
-        {
-            "requirement": [],
-            "type": "nextWordOfType",
-            "field": "contact",
-            "startWord": "text",
-            "wordType": "NNP"
-        },
-        {
-            "field": "contact",
-            "type": "nextWordOfType",
-            "startWord": "text",
-            "wordType": "NN",
-            "groom": "",
-            "requirement": []
-        },
-        {
-            "field": "payload",
-            "type": "everythingAfterWord",
-            "startWord": "[contact]",
-            "wordType": "NN",
-            "groom": "messagePayload",
-            "requirement": [
-                {
-                    "type": "typeof",
-                    "field": "contact",
-                    "operator": "!==",
-                    "value": "undefined"
-                }
-            ],
-            "word": "text"
-        }
-    ],
     "steps": [
         {
+            "query": "",
+            "module": "textNumberLookup",
+            "groom": "",
             "requirement": [
                 {
                     "type": "typeof",
@@ -49,7 +19,6 @@
                     "value": "undefined"
                 }
             ],
-            "module": "textNumberLookup",
             "config": {
                 "field": "contact"
             }
