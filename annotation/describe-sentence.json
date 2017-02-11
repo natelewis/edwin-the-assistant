@@ -1,0 +1,20 @@
+{
+    "conversation": "describe-sentence",
+    "annotation": [
+        {
+            "field": "payload",
+            "type": "everythingAfterWord",
+            "startWord": "[originalContext]",
+            "wordType": "",
+            "groom": "messagePayload",
+            "requirement": [
+                {
+                    "type": "typeof",
+                    "field": "payload",
+                    "operator": "===",
+                    "value": "undefined"
+                }
+            ]
+        }
+    ]
+}
