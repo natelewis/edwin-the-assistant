@@ -1,0 +1,17 @@
+{
+    "intent": "describe",
+    "failReply": "Not sure how to describe that yet.",
+    "contextModifiers": [
+        {
+            "context": "statement",
+            "type": "map",
+            "target": "sentence"
+        }
+    ],
+    "conversationMap": [
+        {
+            "context": "sentence",
+            "conversation": "describe-sentence"
+        }
+    ]
+}
