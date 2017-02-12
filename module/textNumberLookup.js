@@ -1,4 +1,4 @@
-const edwinConfig = require('../../config');
+const edwinConfig = require('../config');
 
 //
 // populates textNumber with a number that is found
@@ -15,7 +15,7 @@ function lookupTextNumber (name) {
 }
 
 module.exports = {
-    run: function (state, config, debug) {
+    run: function (state, config, callback, debug) {
         debug && console.log('textNumberLookup: ' + state.statement);
 
         if (typeof (config) === 'undefined') {
@@ -35,6 +35,7 @@ module.exports = {
                 state[config.field] = undefined;
             }
         }
+
         return state;
     }
 };

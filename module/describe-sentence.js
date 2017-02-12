@@ -1,7 +1,7 @@
 const Statement = require('../lib/statement');
 
 module.exports = {
-    run: function (state, callback, debug) {
+    run: function (state, config, callback, debug) {
         debug && console.log('describe-sentence: ' + state.sentence);
         
         var confirmation = 'Sure thing!';
@@ -40,6 +40,6 @@ module.exports = {
 
         state.final = confirmation + ' There is ' + numberOfWords + ' words in the sentence.\n' + actionStatement + contextStatement + wordTypes;
 
-        return state;
+        return callback(state);
     }
 };

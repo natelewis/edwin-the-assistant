@@ -1,9 +1,10 @@
-const config = require('../../config');
+const edwinConfig = require('../config');
 var Promise = require('promise');
 var request = require('request');
 
 module.exports = {
-    run: function (state, callback, debug) {
+    run: function (state, config, callback, debug) {
+
         debug && console.log('music: ' + state.statement);
         var sonosCommand;
         var sonosFinal;
@@ -53,19 +54,19 @@ module.exports = {
             debug && console.log('sonos: zone: ' + zone);
 
             if (state.statement.match(/pause/i) && zone === '') {
-                debug && console.log('sonos : pausing all');
+                debug && console.log('sonos: pausing all');
                 sonosCommand = '/pauseall';
                 sonosFinal = 'done';
             } else if (state.statement.match(/resume/i) && zone === '') {
-                debug && console.log('sonos : resume paused');
+                debug && console.log('sonos: resume paused');
                 sonosCommand = '/resumeall';
                 sonosFinal = 'done';
             } else if (state.statement.match(/resume/i)) {
-                debug && console.log('sonos : playing in ' + zone);
+                debug && console.log('sonos: playing in ' + zone);
                 sonosCommand = '/' + zone + '/play';
                 sonosFinal = 'done';
             } else if (state.statement.match(/pause/i)) {
-                debug && console.log('sonos : pausing in ' + zone);
+                debug && console.log('sonos: pausing in ' + zone);
                 sonosCommand = '/' + zone + '/pause';
                 sonosFinal = 'done';
             } else if (state.action.match(/(skip|next)/i)) {
@@ -83,7 +84,7 @@ module.exports = {
                     state.query = 'room';
                     return callback(state);
                 } else {
-                    debug && console.log('sonos : up/down');
+                    debug && console.log('sonos: up/down');
                     var volumeDirection = '-';
                     if (state.statement.match(/(up)/i)) {
                         volumeDirection = '+';
@@ -98,11 +99,11 @@ module.exports = {
             // we have a command lets do it!
             if (typeof (sonosCommand) !== 'undefined') {
                 if (state.fulfillmentType !== 'dry-run') {
-                    debug && console.log('sonos: Sending ' + config.sonos.URI + sonosCommand);
+                    debug && console.log('sonos: Sending ' + edwinConfig.sonos.URI + sonosCommand);
                     var options = {
                         rejectUnauthorized: false,
                         method: 'GET',
-                        uri: config.sonos.URI + sonosCommand,
+                        uri: edwinConfig.sonos.URI + sonosCommand,
                         headers: {
                             'Authorization': 'Basic ' + new Buffer('admin:password').toString('base64')
                         }
@@ -119,6 +120,7 @@ module.exports = {
             return callback(state);
         });
 
+
         // bail if we are doing dry-run
         if (state.fulfillmentType === 'dry-run') {
             state.final = 'No sonos commands sent, dry run only';
@@ -129,7 +131,7 @@ module.exports = {
         var options = {
             rejectUnauthorized: false,
             method: 'GET',
-            uri: config.sonos.URI + '/zones',
+            uri: edwinConfig.sonos.URI + '/zones',
             headers: {
                 'Authorization': 'Basic ' + new Buffer('admin:password').toString('base64')
             }

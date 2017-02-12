@@ -1,7 +1,7 @@
 const edwinConfig = require('../config');
 
 module.exports = {
-    run: function (state, config, debug) {
+    run: function (state, config, callback, debug) {
         debug && console.log('texting: ' + state.statement);
 
         if (state.fulfillmentType !== 'dry-run') {
@@ -27,6 +27,6 @@ module.exports = {
 
         state.final = 'Message was sent';
 
-        return state;
+        return callback(state);
     }
 };
