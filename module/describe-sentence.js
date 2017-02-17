@@ -3,7 +3,7 @@ const Statement = require('../lib/statement');
 module.exports = {
     run: function (state, config, callback, debug) {
         debug && console.log('describe-sentence: ' + state.sentence);
-        
+
         var confirmation = 'Sure thing!';
         var numberOfWords = state.payload.split(' ').length;
 
@@ -15,7 +15,7 @@ module.exports = {
         if (typeof (statement.action) === 'undefined') {
             actionStatement = 'The sentence has no actionable intent.\n';
         }
-        
+
         debug && console.log('describe-sentence: actionStatement (' + actionStatement + ')');
 
         // get the context

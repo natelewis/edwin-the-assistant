@@ -6,6 +6,10 @@
         {
             "context": "text",
             "conversation": "texting"
+        },
+        {
+            "context": "message",
+            "conversation": "send-message"
         }
     ]
 }

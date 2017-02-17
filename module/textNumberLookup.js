@@ -29,11 +29,6 @@ module.exports = {
         // textNumber
         if (typeof (state.textNumber) === 'undefined') {
             state.textNumber = lookupTextNumber(state[config.field]);
-            if (typeof (state.textNumber) === 'undefined') {
-                state.query = config.field;
-                state.reply = 'Not sure who that is, who do you want me to send a text to?';
-                state[config.field] = undefined;
-            }
         }
 
         return state;

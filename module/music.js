@@ -4,7 +4,6 @@ var request = require('request');
 
 module.exports = {
     run: function (state, config, callback, debug) {
-
         debug && console.log('music: ' + state.statement);
         var sonosCommand;
         var sonosFinal;
@@ -22,7 +21,7 @@ module.exports = {
         if (typeof (state.sonosAction) === 'undefined') {
             state.sonosAction = state.statement;
         }
-
+        debug && console.log('music: getting zones');
         // get the zones and run command logic
         this.getZones(debug).then(function (json) {
             var roomsPlaying = [];
@@ -118,14 +117,21 @@ module.exports = {
                 state.reply = 'I don\'t know how to have sonos do that yet, try another way of saying it?';
             }
             return callback(state);
+        }).catch(function (err) {
+            console.log(err);
+            state.final = 'Something is wrong, sorry have to try again later';
+            return callback(state);
         });
-
 
         // bail if we are doing dry-run
         if (state.fulfillmentType === 'dry-run') {
             state.final = 'No sonos commands sent, dry run only';
             return callback(state);
         }
+
+        // final will be handled in the callback, but we are done here
+        state.final = '';
+        return state;
     },
     getZones: function (debug) {
         var options = {
@@ -140,13 +146,15 @@ module.exports = {
         return new Promise(function (resolve, reject) {
             request(options, function (err, res, body) {
                 if (err) {
+                    console.log(err);
                     return reject(err);
                 } else if (res.statusCode !== 200) {
+                    console.log(res);
                     err = new Error('Unexpected status code: ' + res.statusCode);
                     err.res = res;
                     return reject(err);
                 }
-                resolve(body);
+                return resolve(body);
             });
         });
     },

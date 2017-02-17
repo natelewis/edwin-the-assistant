@@ -38,6 +38,27 @@
             "query": "contact"
         },
         {
+            "query": "contact",
+            "groom": "",
+            "reply": [
+                "Not sure who [contact] is, try another name?"
+            ],
+            "requirement": [
+                {
+                    "type": "typeof",
+                    "field": "textNumber",
+                    "operator": "===",
+                    "value": "undefined"
+                },
+                {
+                    "type": "typeof",
+                    "field": "contact",
+                    "operator": "!==",
+                    "value": "undefined"
+                }
+            ]
+        },
+        {
             "requirement": [
                 {
                     "type": "typeof",
