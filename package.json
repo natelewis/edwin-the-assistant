@@ -16,7 +16,7 @@
     "test": "vows \"tests/test-*.js\""
   },
   "dependencies": {
-    "actions-on-google": "^1.0.0",
+    "actions-on-google": "1.0.4",
     "basic-auth": "^1.1.0",
     "body-parser": "^1.15.2",
     "cors": "^2.8.1",
