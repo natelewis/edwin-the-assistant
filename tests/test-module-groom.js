@@ -20,5 +20,23 @@ vows.describe('groom').addBatch({
         'Gives reply "You\'re awesome"': function (groom) {
             assert.equal(groom.messagePayload(), 'You\'re awesome');
         }
+    },
+    'a confirmToTrue with "yes"': {
+        topic: new Groom('yep'),
+        'Gives reply "true"': function (groom) {
+            assert.equal(groom.confirmToTrue(), 'true');
+        }
+    },
+    'a confirmToTrue with "yep"': {
+        topic: new Groom('yep'),
+        'Gives reply "true"': function (groom) {
+            assert.equal(groom.confirmToTrue(), 'true');
+        }
+    },
+    'a confirmToTrue with "heck no"': {
+        topic: new Groom('heck no'),
+        'Gives reply "false"': function (groom) {
+            assert.equal(groom.confirmToTrue(), 'false');
+        }
     }
 }).export(module);

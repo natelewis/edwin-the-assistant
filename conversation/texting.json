@@ -74,6 +74,11 @@
             "groom": "messagePayload"
         },
         {
+            "query": "confirm",
+            "groom": "confirm",
+            "reply": [
+                "Text '[payload]' to '[contact]'. Is that correct?"
+            ],
             "requirement": [
                 {
                     "type": "typeof",
@@ -82,15 +87,13 @@
                     "value": "undefined"
                 }
             ],
-            "reply": [
-                "Text '[payload]' to '[contact]'. Is that correct?"
-            ],
-            "query": "confirm",
             "validate": "confirm"
         },
         {
-            "requirement": [],
-            "module": "texting"
+            "module": "texting",
+            "groom": "confirm",
+            "reply": [],
+            "requirement": []
         }
     ]
 }
