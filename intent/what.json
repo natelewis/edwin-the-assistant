@@ -1,0 +1,27 @@
+{
+    "intent": "what",
+    "failReply": "Not sure about that one yet.",
+    "contextModifiers": [
+        {
+            "context": "going on",
+            "type": "phrase",
+            "target": "response"
+        },
+        {
+            "context": "happening",
+            "type": "phrase",
+            "target": "response"
+        },
+        {
+            "context": "up",
+            "type": "phrase",
+            "target": "response"
+        }
+    ],
+    "conversationMap": [
+        {
+            "context": "response",
+            "conversation": "response"
+        }
+    ]
+}

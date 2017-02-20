@@ -1,0 +1,25 @@
+{
+    "intent": "how",
+    "failReply": "Not sure how to answer that yet.",
+    "contextModifiers": [
+        {
+            "context": "are you",
+            "type": "phrase",
+            "target": "mood"
+        },
+        {
+            "context": "you doing",
+            "type": "map",
+            "target": "mood"
+        },
+        {
+            "type": "map"
+        }
+    ],
+    "conversationMap": [
+        {
+            "context": "mood",
+            "conversation": "mood"
+        }
+    ]
+}
