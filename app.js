@@ -45,6 +45,11 @@ var config = {
         name: undefined
     },
 
+    listener: {
+        username: undefined,    //'someeuser',
+        password: undefined     //'sompassword''
+    },
+
     api: {
         username: undefined,    //'someemail@gmail.com',
         password: undefined     //'sompassword''
@@ -105,6 +110,7 @@ if (typeof (config.edwin) === 'undefined') {
 // bring in all our interfaces
 const Api = require('./lib/api');
 const GoogleAssistant = require('./lib/googleAssistant');
+const Listener = require('./lib/listener');
 
 // template for new config in case one isn't present
 // web server for Google Assistant and api
@@ -133,6 +139,14 @@ if (typeof (config.googleAssistant) !== 'undefined' && config.googleAssistant.en
     googleAssistant.addHandler();
 } else {
     console.log('googleAssistant: to use Google Assistant add a googleAssistant entry to ./config.js with port defined');
+}
+
+if (typeof (config.listener) !== 'undefined' && typeof (config.listener.username) !== 'undefined' && typeof (config.listener.password) !== 'undefined') {
+    console.log('listener: online');
+    const listener = new Listener(app);
+    listener.addHandler();
+} else {
+    console.log('listener: to use Remote Listner add a listener entry to ./config.js with username and password defined');
 }
 
 // api handler
