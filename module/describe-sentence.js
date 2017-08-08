@@ -8,7 +8,7 @@ module.exports = {
         var numberOfWords = state.payload.split(' ').length;
 
         // process the statement
-        var statement = new Statement(state.payload, true);
+        var statement = new Statement(state.payload, false);
 
         // get the action
         var actionStatement = 'The actionable intent word is ' + statement.action + '.\n';

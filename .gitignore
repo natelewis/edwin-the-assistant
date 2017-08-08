@@ -4,3 +4,4 @@ creds.data
 action.json
 config.js
 *.log
+package-lock.json

@@ -134,6 +134,7 @@ module.exports = {
         return state;
     },
     getZones: function (debug) {
+
         var options = {
             rejectUnauthorized: false,
             method: 'GET',
@@ -144,6 +145,11 @@ module.exports = {
         };
 
         return new Promise(function (resolve, reject) {
+
+            if (edwinConfig.sonos.URI === undefined) {
+                return resolve( '{}' ); 
+            }
+
             request(options, function (err, res, body) {
                 if (err) {
                     console.log(err);
