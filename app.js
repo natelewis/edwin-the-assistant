@@ -47,7 +47,7 @@ var config = {
 
     listener: {
         username: undefined,    //'someeuser',
-        password: undefined     //'sompassword''
+        password: undefined     //'somepassword'
     },
 
     api: {
