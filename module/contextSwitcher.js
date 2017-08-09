@@ -1,24 +1,26 @@
-const jsonfile = require('jsonfile');
 const path = require('path');
 const fs = require('fs');
-const IntentHandler = require('../lib/intentHandler');
+const Intent = require('../lib/intent');
 
 module.exports = {
-    run: function (state, config, callback, debug) {
+    run: function(state, config, callback, debug) {
         debug && console.log('contextSwitcherModule: ' + state.statement);
 
-        var intentJSONFile = path.join(__dirname, '..', 'intent', state.action + '.json');
+        let intentJSONFile = path.join(__dirname, '..', 'intent', state.action + '.json');
 
         // check if json version is present
         if (fs.existsSync(intentJSONFile)) {
             // deep clone state using JSON parse
-            var testState = {};
+            let testState = {};
             testState.context = state.contextSwitcher;
             if (typeof (state.contextSwitcherRetry) !== 'undefined') {
                 testState.context = state.contextSwitcherRetry;
             }
 
-            testState = new IntentHandler(testState, function () {}, jsonfile.readFileSync(intentJSONFile));
+            // update the context & conversation based on intent
+            const intent = new Intent(testState.action);
+            testState.context = intent.updateContext(testState.context, testState.statement);
+            testState.conversation = intent.updateConversation(testState.context);
 
             console.log(testState);
             if (typeof (testState.conversation) !== 'undefined') {
@@ -35,6 +37,5 @@ module.exports = {
         state.contextSwitcherRetry = undefined;
 
         return state;
-    }
+    },
 };
-
