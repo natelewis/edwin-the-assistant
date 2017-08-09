@@ -20,7 +20,7 @@
 
 'use strict';
 
-var fs = require('fs');
+let fs = require('fs');
 
 const express = require('express');
 const basicAuth = require('basic-auth');
@@ -81,30 +81,30 @@ module.exports = config;`;
 
 // try to load the config, if we can't make one
 try {
-    var config = require('./config');
+  var config = require('./config');
 } catch (e) {
-    if (e instanceof Error && e.code === 'MODULE_NOT_FOUND') {
-        // config not foune, make one
-        fs.writeFile('./config.js', configTemplate, function (err) {
-            if (err) {
-                console.log('edwin: could not create config file ' + err);
-                process.exit(1);
-            }
+  if (e instanceof Error && e.code === 'MODULE_NOT_FOUND') {
+    // config not foune, make one
+    fs.writeFile('./config.js', configTemplate, function(err) {
+      if (err) {
+        console.log('edwin: could not create config file ' + err);
+        process.exit(1);
+      }
 
-            // stop here now that we have a config file
-            console.log('edwin: new ./config.js file created in this directory, edit the config file and restart the server');
-            process.exit();
-        });
-    } else {
-        throw e;
-    }
-    config = {};
+      // stop here now that we have a config file
+      console.log('edwin: new ./config.js file created in this directory, edit the config file and restart the server');
+      process.exit();
+    });
+  } else {
+    throw e;
+  }
+  config = {};
 }
 
 // if we don't have a config, then set a simple one up
 if (typeof (config.edwin) === 'undefined') {
-    config.edwin = {};
-    config.edwin.port = 8080;
+  config.edwin = {};
+  config.edwin.port = 8080;
 }
 
 // bring in all our interfaces
@@ -121,70 +121,70 @@ app.use(cors());
 
 // edwin via hangouts
 if (typeof (config.hangouts) !== 'undefined' && typeof (config.hangouts.username) !== 'undefined' && typeof (config.hangouts.password) !== 'undefined') {
-    require('./lib/client/hangouts');
+  require('./lib/client/hangouts');
 } else {
-    console.log('hangouts: to use Google Hangouts add a hangouts entry to ./config.js with username and password defined');
+  console.log('hangouts: to use Google Hangouts add a hangouts entry to ./config.js with username and password defined');
 }
 
 // edwin via Slack
 if (typeof (config.slack) !== 'undefined' && typeof (config.slack.token) !== 'undefined' && typeof (config.slack.name) !== 'undefined') {
-    require('./lib/client/slack');
+  require('./lib/client/slack');
 } else {
-    console.log('slack: to use Slack add a slack entry to ./config.js with token and name defined');
+  console.log('slack: to use Slack add a slack entry to ./config.js with token and name defined');
 }
 
 if (typeof (config.googleAssistant) !== 'undefined' && config.googleAssistant.enabled === true) {
-    console.log('googleAssistant: online');
-    const googleAssistant = new GoogleAssistant(app);
-    googleAssistant.addHandler();
+  console.log('googleAssistant: online');
+  const googleAssistant = new GoogleAssistant(app);
+  googleAssistant.addHandler();
 } else {
-    console.log('googleAssistant: to use Google Assistant add a googleAssistant entry to ./config.js with port defined');
+  console.log('googleAssistant: to use Google Assistant add a googleAssistant entry to ./config.js with port defined');
 }
 
 if (typeof (config.listener) !== 'undefined' && typeof (config.listener.username) !== 'undefined' && typeof (config.listener.password) !== 'undefined') {
-    console.log('listener: online');
-    const listener = new Listener(app);
-    listener.addHandler();
+  console.log('listener: online');
+  const listener = new Listener(app);
+  listener.addHandler();
 } else {
-    console.log('listener: to use Remote Listner add a listener entry to ./config.js with username and password defined');
+  console.log('listener: to use Remote Listner add a listener entry to ./config.js with username and password defined');
 }
 
 // api handler
 if (typeof (config.api) !== 'undefined' && typeof (config.api.username) !== 'undefined' && typeof (config.api.password) !== 'undefined') {
-    console.log('api: online');
+  console.log('api: online');
 
-    const api = new Api();
+  const api = new Api();
 
-    // Synchronous auth
+  // Synchronous auth
 
-    var auth = function (req, res, next) {
-        var user = basicAuth(req);
-        if (!user || !user.name || !user.pass) {
-            res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
-            res.sendStatus(401);
-            return;
-        }
-        if (user.name === config.api.username && user.pass === config.api.password) {
-            next();
-        } else {
-            res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
-            res.sendStatus(401);
-            return;
-        }
-    };
+  let auth = function(req, res, next) {
+    let user = basicAuth(req);
+    if (!user || !user.name || !user.pass) {
+      res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
+      res.sendStatus(401);
+      return;
+    }
+    if (user.name === config.api.username && user.pass === config.api.password) {
+      next();
+    } else {
+      res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
+      res.sendStatus(401);
+      return;
+    }
+  };
 
-    app.get('/api/*', auth, function (req, res) {
-        api.handler(req, res);
-    });
+  app.get('/api/*', auth, function(req, res) {
+    api.handler(req, res);
+  });
 
-    app.post('/api/*', auth, function (req, res) {
-        api.handler(req, res);
-    });
+  app.post('/api/*', auth, function(req, res) {
+    api.handler(req, res);
+  });
 } else {
-    console.log('api: to use remote API adminstration add api entry to ./config.js with a username and password');
+  console.log('api: to use remote API adminstration add api entry to ./config.js with a username and password');
 }
 
 // Start the server for Google Actions
 const server = app.listen(app.get('port'), () => {
-    console.log('edwin: listening on port %s', server.address().port);
+  console.log('edwin: listening on port %s', server.address().port);
 });
