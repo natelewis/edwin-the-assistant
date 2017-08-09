@@ -3,5 +3,6 @@ creds.data
 *.DS_Store
 action.json
 config.js
+coverage
 *.log
 package-lock.json
