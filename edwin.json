@@ -22,8 +22,7 @@
     "conversations": {
       "edwinTheAssistant": {
         "name": "edwinTheAssistant",
-        "url": "https://edwin.localtunnel.me"
+        "url": "<your edwin url https://something.something.com"
       }
     }
-
 }
