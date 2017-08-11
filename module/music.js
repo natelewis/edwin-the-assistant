@@ -6,7 +6,6 @@ let request = require('request');
 
 module.exports = {
   run: function(state, config, callback, debug) {
-
     debug && console.log('music: ' + state.statement);
     let sonosCommand;
     let sonosFinal;
