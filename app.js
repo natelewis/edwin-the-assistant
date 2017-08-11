@@ -28,7 +28,7 @@ const cors = require('cors');
 const config = require('./lib/config');
 
 // bring in all our interfaces
-const Api = require('./lib/client/api');
+
 const GoogleAssistant = require('./lib/client/googleAssistant');
 const Listener = require('./lib/client/listener');
 
@@ -61,8 +61,9 @@ if (typeof (config.listener) !== 'undefined' && typeof (config.listener.username
   console.log('listener: to use Remote Listner add a listener entry to ./config.js with username and password defined');
 }
 
+const Api = require('./lib/client/api');
 // api handler
-if (typeof (config.api) !== 'undefined' && typeof (config.api.username) !== 'undefined' && typeof (config.api.password) !== 'undefined') {
+if (config.get('api').enabled) {
   console.log('api: online');
 
   const api = new Api();
@@ -76,7 +77,8 @@ if (typeof (config.api) !== 'undefined' && typeof (config.api.username) !== 'und
       res.sendStatus(401);
       return;
     }
-    if (user.name === config.api.username && user.pass === config.api.password) {
+    let configAPI = config.get('api');
+    if (user.name === configAPI.username && user.pass === configAPI.password) {
       next();
     } else {
       res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
