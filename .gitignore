@@ -1,8 +1,10 @@
 node_modules
+gactions
 creds.data
 *.DS_Store
 action.json
-config.js
+config.json
 coverage
 *.log
+.nyc_output
 package-lock.json

@@ -20,92 +20,12 @@
 
 'use strict';
 
-let fs = require('fs');
-
 const express = require('express');
 const basicAuth = require('basic-auth');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-const configTemplate = `// omit sections to disable them
-var config = {
-
-    edwin: {
-        port: 8080
-    },
-
-    // handlers
-
-    googleAssistant: {
-        enabled: false
-    },
-
-    slack: {
-        token: undefined,       //'get one from https://my.slack.com/services/new/bot'
-        name: undefined
-    },
-
-    listener: {
-        username: undefined,    //'someeuser',
-        password: undefined     //'somepassword'
-    },
-
-    api: {
-        username: undefined,    //'someemail@gmail.com',
-        password: undefined     //'sompassword'
-    },
-
-    hangouts: {
-        username: undefined,    //'someemail@gmail.com',
-        password: undefined     //'sompassword'
-    },
-
-    // actions
-
-    sonos: {
-        URI: undefined          //'https://localserver.atyourhouse.com:5006';
-    },
-
-    twilio: {
-        fromNumber: '+155555551212',
-        twilioAccount: undefined,
-        twilioSecret: undefined,
-        contacts: {
-            'nate' : '+15555551212',
-            'mom' : '+15555551212'
-        }
-    }
-};
-
-module.exports = config;`;
-
-// try to load the config, if we can't make one
-try {
-  var config = require('./config');
-} catch (e) {
-  if (e instanceof Error && e.code === 'MODULE_NOT_FOUND') {
-    // config not foune, make one
-    fs.writeFile('./config.js', configTemplate, function(err) {
-      if (err) {
-        console.log('edwin: could not create config file ' + err);
-        process.exit(1);
-      }
-
-      // stop here now that we have a config file
-      console.log('edwin: new ./config.js file created in this directory, edit the config file and restart the server');
-      process.exit();
-    });
-  } else {
-    throw e;
-  }
-  config = {};
-}
-
-// if we don't have a config, then set a simple one up
-if (typeof (config.edwin) === 'undefined') {
-  config.edwin = {};
-  config.edwin.port = 8080;
-}
+const config = require('./lib/config');
 
 // bring in all our interfaces
 const Api = require('./lib/client/api');
@@ -115,25 +35,17 @@ const Listener = require('./lib/client/listener');
 // template for new config in case one isn't present
 // web server for Google Assistant and api
 const app = express();
-app.set('port', config.edwin.port);
+app.set('port', config.get('edwin.port'));
 app.use(bodyParser.json({type: 'application/json'}));
 app.use(cors());
 
 // edwin via hangouts
-if (typeof (config.hangouts) !== 'undefined' && typeof (config.hangouts.username) !== 'undefined' && typeof (config.hangouts.password) !== 'undefined') {
-  require('./lib/client/hangouts');
-} else {
-  console.log('hangouts: to use Google Hangouts add a hangouts entry to ./config.js with username and password defined');
-}
+require('./lib/client/hangouts');
 
 // edwin via Slack
-if (typeof (config.slack) !== 'undefined' && typeof (config.slack.token) !== 'undefined' && typeof (config.slack.name) !== 'undefined') {
-  require('./lib/client/slack');
-} else {
-  console.log('slack: to use Slack add a slack entry to ./config.js with token and name defined');
-}
+require('./lib/client/slack');
 
-if (typeof (config.googleAssistant) !== 'undefined' && config.googleAssistant.enabled === true) {
+if (config.get('googleAssistant').enabled) {
   console.log('googleAssistant: online');
   const googleAssistant = new GoogleAssistant(app);
   googleAssistant.addHandler();

@@ -1,26 +1,29 @@
 {
-  "versionLabel": "Edwin v0.0.2",
-  "agentInfo": {
-    "languageCode": "en-US",
-    "projectId": "edwin",
-    "invocationNames": [
-      "edwin"
+	"actions": [
+      {
+        "description": "Edwin The Assistant",
+        "name": "MAIN",
+        "fulfillment": {
+          "conversationName": "edwinTheAssistant"
+        },
+        "intent": {
+          "name": "actions.intent.MAIN",
+          "trigger": {
+            "queryPatterns": [
+              "talk to Edwin",
+              "tell Edwin",
+              "can you have Edwin",
+              "say to Edwin"
+            ]
+          }
+        }
+      }
     ],
-    "voiceName": "female_1"
-  },
-  "actions": [
-    {
-      "description": "Have an Edwin conversation",
-      "initialTrigger": {
-        "intent": "assistant.intent.action.MAIN"
-      },
-      "httpExecution": {
-        "url": "https://[YOUR HOSTED URL HERE]"
+    "conversations": {
+      "edwinTheAssistant": {
+        "name": "edwinTheAssistant",
+        "url": "https://edwin.localtunnel.me"
       }
     }
-  ],
-  "deploymentStatus": {
-    "state": "NEW"
-  },
-  "versionId": "1"
+
 }

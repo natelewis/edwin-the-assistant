@@ -1,9 +1,12 @@
-const edwinConfig = require('../config');
+const appConfig = require('../lib/config');
+let sonosConfig = appConfig.get('sonos');
 let Promise = require('promise');
 let request = require('request');
 
+
 module.exports = {
   run: function(state, config, callback, debug) {
+
     debug && console.log('music: ' + state.statement);
     let sonosCommand;
     let sonosFinal;
@@ -70,16 +73,19 @@ module.exports = {
         sonosFinal = 'done';
       } else if (state.action.match(/(skip|next)/i)) {
         if (zone === '') {
-          state.reply = 'I didn\'t catch what room. Choose from ' + roomsPlaying.join(' or ');
+          state.reply = 'I didn\'t catch what room. Choose from '
+            + roomsPlaying.join(' or ');
           state.query = 'room';
           return callback(state);
         } else {
           sonosCommand = '/' + zone + '/next';
           sonosFinal = 'uh-huh';
         }
-      } else if (state.statement.match(/(up|down)/i) || state.sonosAction.match(/(up|down)/i)) {
+      } else if (state.statement.match(/(up|down)/i) ||
+                 state.sonosAction.match(/(up|down)/i)) {
         if (zone === '') {
-          state.reply = 'I didn\'t catch what room. You can choose ' + rooms.toString();
+          state.reply = 'I didn\'t catch what room. You can choose '
+            + rooms.toString();
           state.query = 'room';
           return callback(state);
         } else {
@@ -98,13 +104,15 @@ module.exports = {
       // we have a command lets do it!
       if (typeof (sonosCommand) !== 'undefined') {
         if (state.fulfillmentType !== 'dry-run') {
-          debug && console.log('sonos: Sending ' + edwinConfig.sonos.URI + sonosCommand);
+          debug && console.log('sonos: Sending ' + sonosConfig.URI
+            + sonosCommand);
           let options = {
             rejectUnauthorized: false,
             method: 'GET',
-            uri: edwinConfig.sonos.URI + sonosCommand,
+            uri: sonosConfig.URI + sonosCommand,
             headers: {
-              'Authorization': 'Basic ' + new Buffer('admin:password').toString('base64'),
+              'Authorization': 'Basic '
+                + new Buffer('admin:password').toString('base64'),
             },
           };
 
@@ -114,7 +122,8 @@ module.exports = {
         }
         state.final = sonosFinal;
       } else {
-        state.reply = 'I don\'t know how to have sonos do that yet, try another way of saying it?';
+        state.reply = 'I don\'t know how to have sonos do that yet,'
+          + ' try another way of saying it?';
       }
       return callback(state);
     }).catch(function(err) {
@@ -134,20 +143,20 @@ module.exports = {
     return state;
   },
   getZones: function(debug) {
-    let options = {
-      rejectUnauthorized: false,
-      method: 'GET',
-      uri: edwinConfig.sonos.URI + '/zones',
-      headers: {
-        'Authorization': 'Basic ' + new Buffer('admin:password').toString('base64'),
-      },
-    };
-
     return new Promise(function(resolve, reject) {
-      if (edwinConfig.sonos.URI === undefined) {
+      if (sonosConfig.URI === undefined) {
         return resolve( '{}' );
       }
 
+      let options = {
+        rejectUnauthorized: false,
+        method: 'GET',
+        uri: sonosConfig.URI + '/zones',
+        headers: {
+          'Authorization': 'Basic ' +
+            new Buffer('admin:password').toString('base64'),
+        },
+      };
       request(options, function(err, res, body) {
         if (err) {
           console.log(err);

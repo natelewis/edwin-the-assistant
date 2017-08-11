@@ -54,10 +54,10 @@ Each person you want to talk to Edwin has to respond to him from within your bro
 Google Assistant is a much larger task than Slack or Hangouts.  I suggest setting up Slack, or Google Hangouts first before attempting this integration.  When talking to Edwin with your Google Home, you can invoke him like, "Ok Google, talk to Edwin".  You can also give him your intent in the invocation such as, "Ok Google, tell Edwin to pause the music".   Before attempting this, you should have successfully followed the Actions API tutorials and have been able to deploy a custom action you have tested with the simulator.  See the developer guide and release notes at [https://developers.google.com/actions/](https://developers.google.com/actions/) for more details.
 
 #### Install to Google Assistant
- 1. Deploy this app to somewhere and run it ( Anything that can host a node.js server )
+ 1. Deploy this app to somewhere and run it ( Anything that can host a node.js server ) or use localtunnel.me or ngrok.  For simplicity I use localtunnel because it lets you set a subdomain ( ex. lt --port 8080 --subdomain edwin )
  1. Update the config file and set the googleAssistant port to whatever it should be ( 8080 usually ).
  1. Update the edwin.json with your URL your hosting your app at
- 1. Preview the action using the gactions CLI: ./gactions preview --action_package edwin.json --invocation_name "edwin" --preview_mins 1234
+ 1. Preview the action using the gactions CLI: ./gactions test --action_package edwin.json --project <your project id>
  1. Use the gactions simulator to test the action: ./gactions simulate
 
 ### Single Use Action With Google Assistant
