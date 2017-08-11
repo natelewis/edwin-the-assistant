@@ -1,3 +1,5 @@
+'use strict';
+
 let test = require('../lib/test');
 let vows = require('vows');
 

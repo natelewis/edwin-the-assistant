@@ -1,3 +1,5 @@
+'use strict';
+
 let vows = require('vows');
 let assert = require('assert');
 let music = require('../module/music.js');
