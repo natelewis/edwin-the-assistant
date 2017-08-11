@@ -23,13 +23,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-
 const config = require('./lib/config');
 
 // bring in all our interfaces
 
-const GoogleAssistant = require('./lib/client/googleAssistant');
-const Listener = require('./lib/client/listener');
 
 // template for new config in case one isn't present
 // web server for Google Assistant and api
@@ -47,23 +44,11 @@ require('./lib/client/slack');
 // edwin via api ( configuration client )
 require('./lib/client/api')(app);
 
+// edwin via google assistant
+require('./lib/client/googleAssistant')(app);
 
-if (config.get('googleAssistant').enabled) {
-  console.log('googleAssistant: online');
-  const googleAssistant = new GoogleAssistant(app);
-  googleAssistant.addHandler();
-} else {
-  console.log('googleAssistant: to use Google Assistant add a googleAssistant entry to ./config.js with port defined');
-}
-
-if (typeof (config.listener) !== 'undefined' && typeof (config.listener.username) !== 'undefined' && typeof (config.listener.password) !== 'undefined') {
-  console.log('listener: online');
-  const listener = new Listener(app);
-  listener.addHandler();
-} else {
-  console.log('listener: to use Remote Listner add a listener entry to ./config.js with username and password defined');
-}
-
+// edwin via remote listener device
+require('./lib/client/listener')(app);
 
 // Start the server for Google Actions & API
 const server = app.listen(app.get('port'), () => {
