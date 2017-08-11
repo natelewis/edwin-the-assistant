@@ -21,7 +21,6 @@
 'use strict';
 
 const express = require('express');
-const basicAuth = require('basic-auth');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
@@ -45,6 +44,10 @@ require('./lib/client/hangouts');
 // edwin via Slack
 require('./lib/client/slack');
 
+// edwin via api ( configuration client )
+require('./lib/client/api')(app);
+
+
 if (config.get('googleAssistant').enabled) {
   console.log('googleAssistant: online');
   const googleAssistant = new GoogleAssistant(app);
@@ -61,44 +64,8 @@ if (typeof (config.listener) !== 'undefined' && typeof (config.listener.username
   console.log('listener: to use Remote Listner add a listener entry to ./config.js with username and password defined');
 }
 
-const Api = require('./lib/client/api');
-// api handler
-if (config.get('api').enabled) {
-  console.log('api: online');
 
-  const api = new Api();
-
-  // Synchronous auth
-
-  let auth = function(req, res, next) {
-    let user = basicAuth(req);
-    if (!user || !user.name || !user.pass) {
-      res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
-      res.sendStatus(401);
-      return;
-    }
-    let configAPI = config.get('api');
-    if (user.name === configAPI.username && user.pass === configAPI.password) {
-      next();
-    } else {
-      res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
-      res.sendStatus(401);
-      return;
-    }
-  };
-
-  app.get('/api/*', auth, function(req, res) {
-    api.handler(req, res);
-  });
-
-  app.post('/api/*', auth, function(req, res) {
-    api.handler(req, res);
-  });
-} else {
-  console.log('api: to use remote API adminstration add api entry to ./config.js with a username and password');
-}
-
-// Start the server for Google Actions
+// Start the server for Google Actions & API
 const server = app.listen(app.get('port'), () => {
   console.log('edwin: listening on port %s', server.address().port);
 });
