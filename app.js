@@ -42,15 +42,18 @@ require('./lib/client/hangouts');
 require('./lib/client/slack');
 
 // edwin via api ( configuration client )
-require('./lib/client/api')(app);
+let api = require('./lib/client/api');
+app.use('/api', api);
 
 // edwin via google assistant
-require('./lib/client/googleAssistant')(app);
+let ga = require('./lib/client/googleAssistant');
+ga.use('/', api);
 
 // edwin via remote listener device
-require('./lib/client/listener')(app);
+let listener = require('./lib/client/listener');
+app.use('/listener', listener);
 
-// Start the server for Google Actions & API
+// Start the server for Google Actions / API / Listner
 const server = app.listen(app.get('port'), () => {
   console.log('edwin: listening on port %s', server.address().port);
 });
