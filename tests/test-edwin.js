@@ -13,7 +13,7 @@ vows.describe('text'
     context: 'hey',
     action: 'hey',
     payload: undefined,
-    debug: true,
+    debug: false,
   })
 
 /*

@@ -13,7 +13,7 @@
     "start": "node app.js",
     "monitor": "nodemon --trace-warnings --ignore 'config.json' app.js",
     "sim": "/bin/bash ./gactions simulate",
-    "test": "vows \"tests/test-*.js\"",
+    "test": "node --trace-warnings node_modules/vows/bin/vows \"tests/test-*.js\"",
     "coverage": "nyc --reporter=lcov vows \"tests/test-*.js\"; nyc report"
   },
   "dependencies": {
