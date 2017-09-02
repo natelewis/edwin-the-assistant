@@ -10,8 +10,8 @@ vows.describe('text'
       'hey',
       'quit',
     ],
-    context: undefined,
-    action: undefined,
+    context: 'hey',
+    action: 'hey',
     payload: undefined,
     debug: true,
   })
