@@ -7,14 +7,17 @@ vows.describe('text'
 ).addBatch(
   test.assertStatement({
     flow: [
-      'Describe statement yo momma',
+      'hey',
+      'quit',
     ],
-    context: 'sentence',
-    action: 'describe',
-    payload: 'yo momma',
-    debug: false,
+    context: undefined,
+    action: undefined,
+    payload: undefined,
+    debug: true,
   })
-).addBatch(/*
+
+/*
+).addBatch(
   test.assertStatement({
     flow: [
       'describe statement',
@@ -25,7 +28,7 @@ vows.describe('text'
     payload: 'yo momma',
     debug: false,
   })
-).addBatch(*/
+).addBatch(
   test.assertStatement({
     flow: [
       'describe sentence yo momma',
@@ -55,5 +58,5 @@ vows.describe('text'
     action: 'describe',
     payload: 'How long am I',
     debug: false,
-  })
+  })*/
 ).export(module);

@@ -13,7 +13,8 @@
     "start": "node app.js",
     "monitor": "nodemon --ignore 'config.json' app.js",
     "sim": "/bin/bash ./gactions simulate",
-    "test": "nyc --reporter=lcov vows \"tests/test-*.js\"; nyc report"
+    "test": "vows \"tests/test-*.js\"",
+    "coverage": "nyc --reporter=lcov vows \"tests/test-*.js\"; nyc report"
   },
   "dependencies": {
     "actions-on-google": "1.0.4",
