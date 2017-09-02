@@ -10,13 +10,14 @@ function lookupTextNumber(name) {
   if (typeof (name) === 'undefined') {
     return undefined;
   }
+
   // return if we have a config match
   return edwinConfig.get('twilio').contacts[name.toLowerCase()];
 }
 
 module.exports = {
-  run: function(state, config, callback, debug) {
-    debug && console.log('textNumberLookup: ' + state.statement);
+  run: function(dialog, config, callback, debug) {
+    debug && console.log('textNumberLookup: ' + dialog.state.statement);
 
     if (typeof (config) === 'undefined') {
       config = {};
@@ -27,10 +28,8 @@ module.exports = {
     }
 
     // textNumber
-    if (typeof (state.textNumber) === 'undefined') {
-      state.textNumber = lookupTextNumber(state[config.field]);
+    if (typeof (dialog.state.textNumber) === 'undefined') {
+      dialog.state.textNumber = lookupTextNumber(dialog.state[config.field]);
     }
-
-    return state;
   },
 };

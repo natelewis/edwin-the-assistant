@@ -1,14 +1,20 @@
 const Statement = require('../lib/statement');
 
 module.exports = {
-  run: function(state, config, callback, debug) {
-    debug && console.log('describe-sentence: ' + state.sentence);
+  run: function(dialog, config, callback, debug) {
+
+    debug && console.log('describe-sentence: ' + dialog.state.sentence);
+
+    // we need this to continue
+    if (dialog.state.payload === undefined) {
+      return;
+    }
 
     let confirmation = 'Sure thing!';
-    let numberOfWords = state.payload.split(' ').length;
+    let numberOfWords = dialog.state.payload.split(' ').length;
 
     // process the statement
-    let statement = new Statement(state.payload, false);
+    let statement = new Statement(dialog.state.payload, false);
 
     // get the action
     let actionStatement = 'The actionable intent word is ' + statement.action + '.\n';
@@ -38,8 +44,7 @@ module.exports = {
       }
     }
 
-    state.final = confirmation + ' There is ' + numberOfWords + ' words in the sentence.\n' + actionStatement + contextStatement + wordTypes;
-
-    return callback(state);
+    dialog.setFinal(confirmation + ' There is ' + numberOfWords + ' words in the sentence.\n' + actionStatement + contextStatement + wordTypes);
+    dialog.finish();
   },
 };

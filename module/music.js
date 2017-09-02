@@ -5,23 +5,23 @@ let request = require('request');
 
 
 module.exports = {
-  run: function(state, config, callback, debug) {
-    debug && console.log('music: ' + state.statement);
+  run: function(dialog, config, callback, debug) {
+    debug && console.log('music: ' + dialog.state.statement);
     let sonosCommand;
     let sonosFinal;
     let zone = '';
 
     // normalize things to resume
-    state.statement = state.statement.replace(/play music/i, 'resume');
+    dialog.state.statement = dialog.state.statement.replace(/play music/i, 'resume');
 
     // if we are not talking about playing anything change back on for resume
-    if (state.statement.match(/play/i) === null) {
-      state.statement = state.statement.replace(/back on/i, 'resume');
+    if (dialog.state.statement.match(/play/i) === null) {
+      dialog.state.statement = dialog.state.statement.replace(/back on/i, 'resume');
     }
 
     // if there is a follow up question, this was the original intent to sonos
-    if (typeof (state.sonosAction) === 'undefined') {
-      state.sonosAction = state.statement;
+    if (typeof (dialog.state.sonosAction) === 'undefined') {
+      dialog.state.sonosAction = dialog.state.statement;
     }
     debug && console.log('music: getting zones');
     // get the zones and run command logic
@@ -35,13 +35,13 @@ module.exports = {
         rooms.push(roomName);
 
         // list only rooms that are playing
-        if (coordinator.state.playbackState === 'PLAYING') {
+        if (coordinator.dialog.state.playbackState === 'PLAYING') {
           roomsPlaying.push(roomName);
         }
 
         // check for match regex
         let re = new RegExp(roomName, 'gi');
-        if (state.statement.match(re)) {
+        if (dialog.state.statement.match(re)) {
           zone = roomName;
         }
       }
@@ -54,39 +54,39 @@ module.exports = {
       debug && console.log('sonos: roomsPlaying: ' + roomsPlaying.toString());
       debug && console.log('sonos: zone: ' + zone);
 
-      if (state.statement.match(/pause/i) && zone === '') {
+      if (dialog.state.statement.match(/pause/i) && zone === '') {
         debug && console.log('sonos: pausing all');
         sonosCommand = '/pauseall';
         sonosFinal = 'done';
-      } else if (state.statement.match(/resume/i) && zone === '') {
+      } else if (dialog.state.statement.match(/resume/i) && zone === '') {
         debug && console.log('sonos: resume paused');
         sonosCommand = '/resumeall';
         sonosFinal = 'done';
-      } else if (state.statement.match(/resume/i)) {
+      } else if (dialog.state.statement.match(/resume/i)) {
         debug && console.log('sonos: playing in ' + zone);
         sonosCommand = '/' + zone + '/play';
         sonosFinal = 'done';
-      } else if (state.statement.match(/pause/i)) {
+      } else if (dialog.state.statement.match(/pause/i)) {
         debug && console.log('sonos: pausing in ' + zone);
         sonosCommand = '/' + zone + '/pause';
         sonosFinal = 'done';
-      } else if (state.action.match(/(skip|next)/i)) {
+      } else if (dialog.state.action.match(/(skip|next)/i)) {
         if (zone === '') {
-          state.reply = 'I didn\'t catch what room. Choose from '
+          dialog.state.reply = 'I didn\'t catch what room. Choose from '
             + roomsPlaying.join(' or ');
-          state.query = 'room';
-          return callback(state);
+          dialog.state.query = 'room';
+          return dialog.finish();
         } else {
           sonosCommand = '/' + zone + '/next';
           sonosFinal = 'uh-huh';
         }
-      } else if (state.statement.match(/(up|down)/i) ||
-                 state.sonosAction.match(/(up|down)/i)) {
+      } else if (dialog.state.statement.match(/(up|down)/i) ||
+                 dialog.state.sonosAction.match(/(up|down)/i)) {
         if (zone === '') {
-          state.reply = 'I didn\'t catch what room. You can choose '
+          dialog.state.reply = 'I didn\'t catch what room. You can choose '
             + rooms.toString();
-          state.query = 'room';
-          return callback(state);
+          dialog.state.query = 'room';
+          return dialog.finish();
         } else {
           debug && console.log('sonos: up/down');
           let volumeDirection = '-';
@@ -102,7 +102,7 @@ module.exports = {
 
       // we have a command lets do it!
       if (typeof (sonosCommand) !== 'undefined') {
-        if (state.fulfillmentType !== 'dry-run') {
+        if (dialog.fulfillmentType !== 'dry-run') {
           debug && console.log('sonos: Sending ' + sonosConfig.URI
             + sonosCommand);
           let options = {
@@ -119,27 +119,27 @@ module.exports = {
             console.log(error);
           });
         }
-        state.final = sonosFinal;
+        dialog.state.final = sonosFinal;
       } else {
-        state.reply = 'I don\'t know how to have sonos do that yet,'
+        dialog.state.reply = 'I don\'t know how to have sonos do that yet,'
           + ' try another way of saying it?';
       }
-      return callback(state);
+      return dialog.finish();
     }).catch(function(err) {
       console.log(err);
-      state.final = 'Something is wrong, sorry have to try again later';
-      return callback(state);
+      dialog.state.final = 'Something is wrong, sorry have to try again later';
+      return dialog.finish();
     });
 
     // bail if we are doing dry-run
-    if (state.fulfillmentType === 'dry-run') {
-      state.final = 'No sonos commands sent, dry run only';
-      return callback(state);
+    if (dialog.fulfillmentType === 'dry-run') {
+      dialog.state.final = 'No sonos commands sent, dry run only';
+      return dialog.finish();
     }
 
     // final will be handled in the callback, but we are done here
-    state.final = '';
-    return state;
+    dialog.setFinal(undefined);
+    return;
   },
   getZones: function(debug) {
     return new Promise(function(resolve, reject) {

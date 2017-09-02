@@ -14,7 +14,7 @@ vows.describe('text'
     payload: 'yo momma',
     debug: false,
   })
-).addBatch(/*
+).addBatch(
   test.assertStatement({
     flow: [
       'describe statement',
@@ -25,7 +25,7 @@ vows.describe('text'
     payload: 'yo momma',
     debug: false,
   })
-).addBatch(*/
+).addBatch(
   test.assertStatement({
     flow: [
       'describe sentence yo momma',
