@@ -8,10 +8,10 @@
             "target": "text"
         }
     ],
-    "conversationMap": [
+    "topicMap": [
         {
             "context": "text",
-            "conversation": "texting"
+            "topic": "texting"
         }
     ]
 }

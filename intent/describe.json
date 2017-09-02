@@ -8,10 +8,10 @@
             "target": "sentence"
         }
     ],
-    "conversationMap": [
+    "topicMap": [
         {
             "context": "sentence",
-            "conversation": "describe-sentence"
+            "topic": "describe-sentence"
         }
     ]
 }

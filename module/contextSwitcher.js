@@ -22,21 +22,21 @@ module.exports = {
         testState.context = dialog.state.contextSwitcherRetry;
       }
 
-      // update the context & conversation based on intent
+      // update the context & topic based on intent
       const intent = new Intent(testState.action);
       testState.context = intent.updateContext(
         testState.context,
         testState.statement
       );
-      testState.conversation = intent.updateConversation(testState.context);
+      testState.topic = intent.updateTopic(testState.context);
 
       console.log(testState);
-      if (typeof (testState.conversation) !== 'undefined') {
+      if (typeof (testState.topic) !== 'undefined') {
         dialog.state.query = undefined;
         dialog.state.reply = undefined;
         dialog.state.exit = true;
         dialog.state.context = testState.context;
-        dialog.state.conversation = testState.conversation;
+        dialog.state.topic = testState.topic;
       }
     }
 

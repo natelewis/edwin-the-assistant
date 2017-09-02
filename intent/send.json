@@ -2,14 +2,14 @@
     "intent": "send",
     "failReply": "I don't know how to do that.",
     "contextModifiers": [],
-    "conversationMap": [
+    "topicMap": [
         {
             "context": "text",
-            "conversation": "texting"
+            "topic": "texting"
         },
         {
             "context": "message",
-            "conversation": "send-message"
+            "topic": "send-message"
         }
     ]
 }

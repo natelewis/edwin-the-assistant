@@ -16,10 +16,10 @@
             "type": "map"
         }
     ],
-    "conversationMap": [
+    "topicMap": [
         {
             "context": "mood",
-            "conversation": "mood"
+            "topic": "mood"
         }
     ]
 }

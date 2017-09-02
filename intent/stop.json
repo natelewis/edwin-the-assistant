@@ -18,10 +18,10 @@
             "target": "music"
         }
     ],
-    "conversationMap": [
+    "topicMap": [
         {
             "context": "music",
-            "conversation": "music"
+            "topic": "music"
         }
     ]
 }

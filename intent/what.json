@@ -18,10 +18,10 @@
             "target": "response"
         }
     ],
-    "conversationMap": [
+    "topicMap": [
         {
             "context": "response",
-            "conversation": "response"
+            "topic": "response"
         }
     ]
 }
