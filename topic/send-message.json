@@ -1,5 +1,5 @@
 {
-    "conversation": "send-message",
+    "topic": "send-message",
     "steps": [
         {
             "query": "contextSwitcher",

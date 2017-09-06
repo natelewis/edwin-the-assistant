@@ -1,5 +1,5 @@
 {
-    "conversation": "response",
+    "topic": "response",
     "steps": [
         {
             "query": "final",

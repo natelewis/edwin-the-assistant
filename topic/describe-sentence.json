@@ -1,5 +1,5 @@
 {
-    "conversation": "describe-sentence",
+    "topic": "describe-sentence",
     "steps": [
         {
             "query": "payload",
