@@ -4,16 +4,16 @@
     "contextModifiers": [
         {
             "context": "are you",
-            "type": "map",
+            "type": "phrase",
             "target": "mood"
         },
         {
             "context": "you doing",
-            "type": "map",
+            "type": "phrase",
             "target": "mood"
         },
         {
-            "type": "map",
+            "type": "phrase",
             "context": "you feeling",
             "target": "mood"
         }
