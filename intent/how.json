@@ -4,7 +4,7 @@
     "contextModifiers": [
         {
             "context": "are you",
-            "type": "phrase",
+            "type": "map",
             "target": "mood"
         },
         {
@@ -13,7 +13,9 @@
             "target": "mood"
         },
         {
-            "type": "map"
+            "type": "map",
+            "context": "you feeling",
+            "target": "mood"
         }
     ],
     "topicMap": [
