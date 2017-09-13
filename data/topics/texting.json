@@ -1,5 +1,39 @@
 {
     "topic": "texting",
+    "annotation": [
+        {
+            "field": "contact",
+            "type": "nextWordOfType",
+            "startWord": "text",
+            "wordType": "NNP",
+            "groom": "",
+            "requirement": []
+        },
+        {
+            "field": "contact",
+            "type": "nextWordOfType",
+            "startWord": "text",
+            "wordType": "NN",
+            "groom": "",
+            "requirement": []
+        },
+        {
+            "field": "payload",
+            "type": "everythingAfterWord",
+            "startWord": "[contact]",
+            "wordType": "NN",
+            "groom": "messagePayload",
+            "requirement": [
+                {
+                    "type": "typeof",
+                    "field": "contact",
+                    "operator": "!==",
+                    "value": "undefined"
+                }
+            ],
+            "word": "text"
+        }
+    ],
     "steps": [
         {
             "query": "",
@@ -91,9 +125,7 @@
         },
         {
             "module": "texting",
-            "groom": "confirm",
-            "reply": [],
-            "requirement": []
+            "reply": []
         }
     ]
 }

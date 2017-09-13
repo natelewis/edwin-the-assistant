@@ -1,5 +1,6 @@
 {
     "topic": "send-message",
+    "annotation": [],
     "steps": [
         {
             "query": "contextSwitcher",

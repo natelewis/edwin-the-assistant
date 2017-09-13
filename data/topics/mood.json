@@ -1,5 +1,6 @@
 {
     "topic": "mood",
+    "annotation": [],
     "steps": [
         {
             "query": "mood",

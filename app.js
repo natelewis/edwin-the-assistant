@@ -53,13 +53,6 @@ ga.use('/', api);
 let listener = require('./lib/client/listener');
 app.use('/listener', listener);
 
-/*
-app.get('*', function(req, res) {
-  console.log('edwin: 404 page not found');
-  res.status(404).send('Page Not found');
-});
-*/
-
 // Start the server for Google Actions / API / Listner
 const server = app.listen(app.get('port'), () => {
   console.log('edwin: listening on port %s', server.address().port);
