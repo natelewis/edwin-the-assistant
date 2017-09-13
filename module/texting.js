@@ -1,7 +1,8 @@
 const edwinConfig = require('../config');
 
 module.exports = {
-  run: function(dialog, config, callback, debug) {
+  run: function(dialog, config) {
+    const debug = dialog.debug;
     debug && console.log('texting: ' + dialog.state.statement);
 
     // bail if I don't have these things
