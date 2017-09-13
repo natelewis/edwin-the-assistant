@@ -4,18 +4,12 @@ module.exports = {
   run: function(dialog, config) {
     const debug = dialog.debug;
     debug && console.log('texting: ' + dialog.state.statement);
-/*
-    // this needs to be cleaned up still
 
-    // bail if I don't have these things
-    if (dialog.state.confirm !== 'true') {
-      dialog.state.contact = undefined;
-      dialog.state.payload = undefined;
-      dialog.state.textNumber = undefined;
-      dialog.state.confirm = undefined;
-      return dialog.state;
+    console.log(edwinConfig.twilio.enabled, edwinConfig.twilio);
+    if ( !edwinConfig.twilio.enabled ) {
+      dialog.setFinal('I don\'t have a twilio set up, i can\'t send texts without it.');
+      return dialog.finish();
     }
-    */
 
     if (dialog.fulfillmentType !== 'dry-run') {
       // if we are here, that means we are gtg to send the message!
