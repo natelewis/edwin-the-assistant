@@ -4,6 +4,8 @@ module.exports = {
   run: function(dialog, config) {
     const debug = dialog.debug;
     debug && console.log('texting: ' + dialog.state.statement);
+/*
+    // this needs to be cleaned up still
 
     // bail if I don't have these things
     if (dialog.state.confirm !== 'true') {
@@ -11,8 +13,9 @@ module.exports = {
       dialog.state.payload = undefined;
       dialog.state.textNumber = undefined;
       dialog.state.confirm = undefined;
-      return;
+      return dialog.state;
     }
+    */
 
     if (dialog.fulfillmentType !== 'dry-run') {
       // if we are here, that means we are gtg to send the message!
@@ -29,13 +32,11 @@ module.exports = {
         to: dialog.state.textNumber,
         from: edwinConfig.twilio.fromNumber,
         body: dialog.state.payload,
-      }, function(err) {
-        if (err) { // 'err' is an error received during the request, if any
-          console.log('texting: sending error');
-          console.log(err);
-        } else {
-          debug && console.log('texting: sent text');
-        }
+      }).then( () => {
+        debug && console.log('texting: sent text');
+      }).catch( (err) => {
+        console.log('texting: sending error');
+        console.log(err);
       });
     }
 
