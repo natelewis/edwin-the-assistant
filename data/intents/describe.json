@@ -1,4 +1,5 @@
 {
+    "id": "describe",
     "intent": "describe",
     "failReply": "Not sure how to describe that yet.",
     "contextModifiers": [

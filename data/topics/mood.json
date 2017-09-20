@@ -28,8 +28,10 @@
                 "good.",
                 "glad to hear it.",
                 "fantastic.",
-                "Some days are like that."
+                "Some days are like that.",
+                "I see."
             ]
         }
-    ]
+    ],
+    "id": "mood"
 }

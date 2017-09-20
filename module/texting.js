@@ -7,7 +7,8 @@ module.exports = {
 
     console.log(edwinConfig.twilio.enabled, edwinConfig.twilio);
     if ( !edwinConfig.twilio.enabled ) {
-      dialog.setFinal('I don\'t have a twilio set up, i can\'t send texts without it.');
+      dialog.setFinal('I don\'t have a twilio set up,'
+        + ' I can\'t send texts without it.');
       return dialog.finish();
     }
 
