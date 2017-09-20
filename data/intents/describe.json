@@ -1,6 +1,5 @@
 {
     "id": "describe",
-    "intent": "describe",
     "failReply": "Not sure how to describe that yet.",
     "contextModifiers": [
         {
@@ -14,5 +13,6 @@
             "context": "sentence",
             "topic": "describe-sentence"
         }
-    ]
+    ],
+    "intent": "describe"
 }

@@ -1,5 +1,5 @@
 {
-    "topic": "response",
+    "id": "response",
     "steps": [
         {
             "query": "final",
@@ -11,5 +11,6 @@
                 "Just hangin' in there."
             ]
         }
-    ]
+    ],
+    "topic": "response"
 }

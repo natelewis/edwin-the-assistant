@@ -1,5 +1,5 @@
 {
-    "intent": "next",
+    "id": "next",
     "failReply": "I don't know how to do that.",
     "contextModifiers": [
         {
@@ -23,5 +23,6 @@
             "context": "music",
             "topic": "music"
         }
-    ]
+    ],
+    "intent": "next"
 }

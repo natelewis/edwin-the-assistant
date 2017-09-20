@@ -1,5 +1,5 @@
 {
-    "topic": "texting",
+    "id": "texting",
     "annotation": [
         {
             "field": "contact",
@@ -127,5 +127,6 @@
             "module": "texting",
             "reply": []
         }
-    ]
+    ],
+    "topic": "texting"
 }

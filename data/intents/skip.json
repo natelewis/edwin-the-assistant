@@ -1,5 +1,5 @@
 {
-    "intent": "skip",
+    "id": "skip",
     "failReply": "I don't know how to skip that yet.",
     "contextModifiers": [
         {
@@ -23,5 +23,6 @@
             "context": "music",
             "topic": "music"
         }
-    ]
+    ],
+    "intent": "skip"
 }

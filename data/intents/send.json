@@ -1,5 +1,5 @@
 {
-    "intent": "send",
+    "id": "send",
     "failReply": "I don't know how to do that.",
     "contextModifiers": [],
     "topicMap": [
@@ -11,5 +11,6 @@
             "context": "message",
             "topic": "send-message"
         }
-    ]
+    ],
+    "intent": "send"
 }

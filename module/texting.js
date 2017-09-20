@@ -5,7 +5,6 @@ module.exports = {
     const debug = dialog.debug;
     debug && console.log('texting: ' + dialog.state.statement);
 
-    console.log(edwinConfig.twilio.enabled, edwinConfig.twilio);
     if ( !edwinConfig.twilio.enabled ) {
       dialog.setFinal('I don\'t have a twilio set up,'
         + ' I can\'t send texts without it.');

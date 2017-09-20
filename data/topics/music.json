@@ -1,9 +1,10 @@
 {
-    "topic": "music",
+    "id": "music",
     "steps": [
         {
             "module": "music",
             "groom": ""
         }
-    ]
+    ],
+    "topic": "music"
 }

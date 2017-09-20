@@ -1,5 +1,5 @@
 {
-    "topic": "send-message",
+    "id": "send-message",
     "annotation": [],
     "steps": [
         {
@@ -28,5 +28,6 @@
             ],
             "requirement": []
         }
-    ]
+    ],
+    "topic": "send-message"
 }

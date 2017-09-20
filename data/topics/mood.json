@@ -1,5 +1,5 @@
 {
-    "topic": "mood",
+    "id": "mood",
     "annotation": [],
     "steps": [
         {
@@ -33,5 +33,5 @@
             ]
         }
     ],
-    "id": "mood"
+    "topic": "mood"
 }

@@ -1,5 +1,5 @@
 {
-    "topic": "describe-sentence",
+    "id": "describe-sentence",
     "annotation": [
         {
             "field": "payload",
@@ -37,5 +37,6 @@
             "module": "describe-sentence",
             "groom": ""
         }
-    ]
+    ],
+    "topic": "describe-sentence"
 }
