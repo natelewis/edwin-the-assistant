@@ -16,12 +16,21 @@
             "context": "up",
             "type": "phrase",
             "target": "response"
+        },
+        {
+            "context": "my name",
+            "type": "phrase",
+            "target": "name"
         }
     ],
     "topicMap": [
         {
             "context": "response",
             "topic": "response"
+        },
+        {
+            "context": "name",
+            "topic": "name"
         }
     ],
     "intent": "what"
