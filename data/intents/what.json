@@ -18,7 +18,7 @@
             "target": "response"
         },
         {
-            "context": "my name",
+            "context": "your name",
             "type": "phrase",
             "target": "name"
         }

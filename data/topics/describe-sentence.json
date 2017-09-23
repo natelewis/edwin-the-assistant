@@ -35,7 +35,8 @@
         },
         {
             "module": "describe-sentence",
-            "groom": ""
+            "query": "payload",
+            "groom": "messagePayload"
         }
     ],
     "topic": "describe-sentence"
