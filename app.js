@@ -45,13 +45,13 @@ require('./lib/client/slack');
 let api = require('./lib/client/api');
 app.use('/api', api);
 
-// edwin via google assistant
-let ga = require('./lib/client/googleAssistant');
-ga.use('/', api);
-
 // edwin via remote listener device
 let listener = require('./lib/client/listener');
 app.use('/listener', listener);
+
+// edwin via google assistant
+let ga = require('./lib/client/googleAssistant');
+ga.use('/', api);
 
 // Start the server for Google Actions / API / Listner
 const server = app.listen(app.get('port'), () => {
