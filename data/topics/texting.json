@@ -36,7 +36,6 @@
     ],
     "steps": [
         {
-            "query": "conact",
             "module": "textNumberLookup",
             "groom": "",
             "requirement": [
