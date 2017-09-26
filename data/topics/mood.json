@@ -3,7 +3,7 @@
     "annotation": [],
     "steps": [
         {
-            "query": "mood",
+            "query": "your-mood",
             "groom": "",
             "reply": [
                 "I'm ok, how are you?",
@@ -14,7 +14,7 @@
             "requirement": [
                 {
                     "type": "typeof",
-                    "field": "mood",
+                    "field": "your-mood",
                     "operator": "===",
                     "value": "undefined"
                 }
