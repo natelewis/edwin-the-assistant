@@ -90,7 +90,7 @@ module.exports = {
         } else {
           debug && console.log('sonos: up/down');
           let volumeDirection = '-';
-          if (state.statement.match(/(up)/i)) {
+          if (dialog.state.statement.match(/(up)/i)) {
             volumeDirection = '+';
           }
           sonosCommand = '/' + zone + '/volume/' + volumeDirection + '10';

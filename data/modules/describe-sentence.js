@@ -2,7 +2,6 @@ const Statement = require('./../../lib/statement');
 
 module.exports = {
   run: function(dialog, config, callback, debug) {
-
     debug && console.log('describe-sentence: ' + dialog.state.sentence);
 
     // we need this to continue
