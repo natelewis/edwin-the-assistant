@@ -1,4 +1,4 @@
-const edwinConfig = require('../config');
+const edwinConfig = require('../../config');
 
 module.exports = {
   run: function(dialog, config) {

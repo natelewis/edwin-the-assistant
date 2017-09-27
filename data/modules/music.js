@@ -1,4 +1,4 @@
-const appConfig = require('../lib/config');
+const appConfig = require('../../lib/config');
 let sonosConfig = appConfig.get('sonos');
 let Promise = require('promise');
 let request = require('request');

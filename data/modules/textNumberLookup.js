@@ -1,4 +1,4 @@
-const edwinConfig = require('../lib/config');
+const edwinConfig = require('../../lib/config');
 
 /**
  * Look up a contact phone number by name

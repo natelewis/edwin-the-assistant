@@ -1,4 +1,4 @@
-const Statement = require('../lib/statement');
+const Statement = require('./../../lib/statement');
 
 module.exports = {
   run: function(dialog, config, callback, debug) {

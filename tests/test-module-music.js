@@ -2,7 +2,7 @@
 
 let vows = require('vows');
 let assert = require('assert');
-let music = require('../module/music.js');
+let music = require('../data/modules/music.js');
 
 vows.describe('music').addBatch({
   'asking for zones': {
