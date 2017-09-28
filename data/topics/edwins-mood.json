@@ -1,0 +1,37 @@
+{
+    "id": "mood",
+    "annotation": [],
+    "steps": [
+        {
+            "query": "your-mood",
+            "groom": "",
+            "reply": [
+                "I'm ok, how are you?",
+                "I feel pretty good today, yourself?",
+                "Pretty awesome, how about you?",
+                "I'm great, yourself?"
+            ],
+            "requirement": [
+                {
+                    "type": "typeof",
+                    "field": "your-mood",
+                    "operator": "===",
+                    "value": "undefined"
+                }
+            ]
+        },
+        {
+            "query": "final",
+            "groom": "",
+            "reply": [
+                "cool.",
+                "good.",
+                "glad to hear it.",
+                "fantastic.",
+                "Some days are like that.",
+                "I see."
+            ]
+        }
+    ],
+    "topic": "mood"
+}

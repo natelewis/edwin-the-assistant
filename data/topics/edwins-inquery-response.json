@@ -1,0 +1,17 @@
+{
+    "id": "response",
+    "steps": [
+        {
+            "query": "final",
+            "groom": "",
+            "reply": [
+                "Not much.",
+                "Nothing much, just doing robot things.",
+                "Being me, is cool.",
+                "Just hangin' in there.",
+                "Thinking about the meaning of life."
+            ]
+        }
+    ],
+    "topic": "response"
+}
