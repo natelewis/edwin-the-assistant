@@ -23,20 +23,12 @@
             "startWord": "[contact]",
             "wordType": "NN",
             "groom": "messagePayload",
-            "requirement": [
-                {
-                    "type": "typeof",
-                    "field": "contact",
-                    "operator": "!==",
-                    "value": "undefined"
-                }
-            ],
+            "requirement": [],
             "word": "text"
         }
     ],
     "steps": [
         {
-            "module": "textNumberLookup",
             "groom": "",
             "requirement": [
                 {
@@ -54,7 +46,8 @@
             ],
             "config": {
                 "field": "contact"
-            }
+            },
+            "module": "textNumberLookup"
         },
         {
             "requirement": [
@@ -71,7 +64,7 @@
             "query": "contact"
         },
         {
-            "query": "contact",
+            "query": "contactRetry",
             "groom": "",
             "reply": [
                 "Not sure who [contact] is, try another name?"
@@ -124,7 +117,8 @@
         },
         {
             "module": "texting",
-            "reply": []
+            "reply": [],
+            "query": "final"
         }
     ],
     "topic": "texting"

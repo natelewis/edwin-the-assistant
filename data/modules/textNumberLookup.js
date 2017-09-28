@@ -19,17 +19,17 @@ module.exports = {
   run: function(dialog, config, callback, debug) {
     debug && console.log('textNumberLookup: ' + dialog.state.statement);
 
-    if (typeof (config) === 'undefined') {
-      config = {};
-    }
-
-    if (typeof (config.field) === 'undefined') {
-      config.field = 'contact';
+    // if we have retried, bump that to correct field
+    if (dialog.state.contactRetry !== undefined) {
+      dialog.state.contact = dialog.state.contactRetry;
     }
 
     // textNumber
     if (typeof (dialog.state.textNumber) === 'undefined') {
-      dialog.state.textNumber = lookupTextNumber(dialog.state[config.field]);
+      dialog.state.textNumber = lookupTextNumber(dialog.state.contact);
+
+      // set Retry field to the number, if we are done, it will not be undef
+      dialog.state.contactRetry = dialog.state.textNumber;
     }
   },
 };

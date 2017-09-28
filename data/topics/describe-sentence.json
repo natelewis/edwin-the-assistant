@@ -7,14 +7,7 @@
             "startWord": "[originalContext]",
             "wordType": "",
             "groom": "messagePayload",
-            "requirement": [
-                {
-                    "type": "typeof",
-                    "field": "payload",
-                    "operator": "===",
-                    "value": "undefined"
-                }
-            ]
+            "requirement": []
         }
     ],
     "steps": [
@@ -35,7 +28,8 @@
         },
         {
             "module": "describe-sentence",
-            "groom": "messagePayload"
+            "groom": "messagePayload",
+            "query": "final"
         }
     ],
     "topic": "describe-sentence"
