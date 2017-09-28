@@ -5,32 +5,32 @@
         {
             "context": "going on",
             "type": "phrase",
-            "target": "response"
+            "target": "edwins-inquery-response"
         },
         {
             "context": "happening",
             "type": "phrase",
-            "target": "response"
+            "target": "edwins-inquery-response"
         },
         {
             "context": "up",
             "type": "phrase",
-            "target": "response"
+            "target": "edwins-inquery-response"
         },
         {
             "context": "your name",
             "type": "phrase",
-            "target": "name"
+            "target": "edwins-name"
         }
     ],
     "topicMap": [
         {
-            "context": "response",
-            "topic": "response"
+            "context": "edwins-inquery-response",
+            "topic": "edwins-inquery-response"
         },
         {
-            "context": "name",
-            "topic": "name"
+            "context": "edwins-name",
+            "topic": "edwins-name"
         }
     ],
     "intent": "what"

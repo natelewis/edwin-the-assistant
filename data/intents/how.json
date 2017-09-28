@@ -5,23 +5,23 @@
         {
             "context": "are you",
             "type": "phrase",
-            "target": "mood"
+            "target": "edwins-mood"
         },
         {
             "context": "you doing",
             "type": "phrase",
-            "target": "mood"
+            "target": "edwins-mood"
         },
         {
             "type": "phrase",
             "context": "you feeling",
-            "target": "mood"
+            "target": "edwins-mood"
         }
     ],
     "topicMap": [
         {
-            "context": "mood",
-            "topic": "mood"
+            "context": "edwins-mood",
+            "topic": "edwins-mood"
         }
     ],
     "intent": "how"
