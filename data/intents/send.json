@@ -1,16 +1,18 @@
 {
     "id": "send",
     "failReply": "I don't know how to do that.",
-    "contextModifiers": [],
-    "topicMap": [
+    "contextModifiers": [
         {
             "context": "text",
-            "topic": "texting"
+            "target": "texting",
+            "type": "map"
         },
         {
             "context": "message",
-            "topic": "send-message"
+            "target": "send-message",
+            "type": "map"
         }
     ],
+    "topicMap": [],
     "intent": "send"
 }

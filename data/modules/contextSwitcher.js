@@ -1,48 +1,32 @@
-const path = require('path');
-const fs = require('fs');
-const Intent = require('../lib/intent');
+const Intent = require('./../../lib/intent');
+const log = require('./../../lib/logger');
 
 module.exports = {
   run: function(dialog, config, callback, debug) {
     debug && console.log('contextSwitcherModule: ' + dialog.state.statement);
 
-    let intentJSONFile = path.join(
-      __dirname,
-      '..',
-      'intent',
-      dialog.state.action + '.json'
-    );
-
-    // check if json version is present
-    if (fs.existsSync(intentJSONFile)) {
-      // deep clone state using JSON parse
-      let testState = {};
-      testState.context = dialog.state.contextSwitcher;
-      if (typeof (dialog.state.contextSwitcherRetry) !== 'undefined') {
-        testState.context = dialog.state.contextSwitcherRetry;
-      }
-
-      // update the context & topic based on intent
-      const intent = new Intent(testState.action);
-      testState.context = intent.updateContext(
-        testState.context,
-        testState.statement
-      );
-      testState.topic = intent.updateTopic(testState.context);
-
-      console.log(testState);
-      if (typeof (testState.topic) !== 'undefined') {
-        dialog.state.query = undefined;
-        dialog.state.reply = undefined;
-        dialog.state.exit = true;
-        dialog.state.context = testState.context;
-        dialog.state.topic = testState.topic;
-      }
+    let testState = {};
+    testState.action = dialog.state.contextSwitcher;
+    if (dialog.state.contextSwitcherRetry !== undefined) {
+      testState.action = dialog.state.contextSwitcherRetry;
     }
 
-    console.log('leaving contextswitch');
-    console.log(dialog.state);
+    // update the context & topic based on intent
+    const intent = new Intent(testState.action);
+
+    testState = intent.updateContextAndTopic(testState);
+
+    if (testState.topic !== undefined) {
+      log.info('contextSwitch:  New Toipc from switcher!');
+      dialog.state.query = undefined;
+      dialog.state.reply = undefined;
+      dialog.state.exit = true;
+      dialog.state.context = testState.action;
+      dialog.state.topic = testState.topic;
+      log.state(dialog.state);
+    }
+
     dialog.state.contextSwitcherRetry = undefined;
-    return dialog.state;
+    dialog.state.contextSwitcher = undefined;
   },
 };

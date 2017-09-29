@@ -1,5 +1,5 @@
 {
-    "id": "mood",
+    "id": "edwins-mood",
     "annotation": [],
     "steps": [
         {
@@ -24,10 +24,10 @@
             "query": "final",
             "groom": "",
             "reply": [
-                "cool.",
-                "good.",
-                "glad to hear it.",
-                "fantastic.",
+                "Cool.",
+                "Good.",
+                "Glad to hear it.",
+                "Fantastic.",
                 "Some days are like that.",
                 "I see."
             ]

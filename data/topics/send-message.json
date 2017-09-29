@@ -25,7 +25,8 @@
             "reply": [
                 "What, not sure what you mean,  email or text?"
             ],
-            "requirement": []
+            "requirement": [],
+            "query": "contextSwitcherRetry"
         }
     ],
     "topic": "send-message"

@@ -5,7 +5,7 @@
         {
             "context": "*",
             "type": "map",
-            "target": "text"
+            "target": "texting"
         }
     ],
     "topicMap": [

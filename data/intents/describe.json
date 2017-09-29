@@ -5,12 +5,17 @@
         {
             "context": "statement",
             "type": "map",
-            "target": "sentence"
+            "target": "describe-sentence"
+        },
+        {
+            "context": "sentence",
+            "type": "map",
+            "target": "describe-sentence"
         }
     ],
     "topicMap": [
         {
-            "context": "sentence",
+            "context": "describe-sentence",
             "topic": "describe-sentence"
         }
     ],
