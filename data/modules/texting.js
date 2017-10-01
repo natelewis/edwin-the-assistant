@@ -8,7 +8,7 @@ module.exports = {
     if ( !edwinConfig.twilio.enabled ) {
       dialog.setFinal('I don\'t have a twilio set up,'
         + ' I can\'t send texts without it.');
-      return dialog.finish();
+      return;
     }
 
     if (dialog.fulfillmentType !== 'dry-run') {
@@ -33,8 +33,7 @@ module.exports = {
         console.log(err);
       });
     }
-
+    
     dialog.setFinal('Message was sent');
-    return dialog.finish();
   },
 };

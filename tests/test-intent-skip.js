@@ -9,7 +9,7 @@ vows.describe('intent-skip'
     flow: [
       'skip the song',
     ],
-    context: 'music',
+    context: 'song',
     action: 'skip',
     debug: false,
   })
@@ -18,7 +18,7 @@ vows.describe('intent-skip'
     flow: [
       'skip to the next track',
     ],
-    context: 'music',
+    context: 'track',
     action: 'skip',
     debug: false,
   })

@@ -7,7 +7,7 @@ const edwinConfig = require('../../lib/config');
  */
 function lookupTextNumber(name) {
   // make sure we have some stuff, just bail if not
-  if (typeof (name) === 'undefined') {
+  if (name === undefined) {
     return undefined;
   }
 
@@ -17,19 +17,15 @@ function lookupTextNumber(name) {
 
 module.exports = {
   run: function(dialog, config, callback, debug) {
-    debug && console.log('textNumberLookup: ' + dialog.state.statement);
+    console.log('textNumberLookup: ' + dialog.statement());
 
-    // if we have retried, bump that to correct field
-    if (dialog.state.contactRetry !== undefined) {
-      dialog.state.contact = dialog.state.contactRetry;
+    if (dialog.query() === 'textNumber') {
+      dialog.setField('contact', dialog.field('textNumber'));
+      dialog.setField('textNumber', lookupTextNumber(dialog.statement()));
     }
 
-    // textNumber
-    if (typeof (dialog.state.textNumber) === 'undefined') {
-      dialog.state.textNumber = lookupTextNumber(dialog.state.contact);
-
-      // set Retry field to the number, if we are done, it will not be undef
-      dialog.state.contactRetry = dialog.state.textNumber;
+    if (dialog.query() === 'contact') {
+      dialog.setField('textNumber', lookupTextNumber(dialog.statement()));
     }
   },
 };

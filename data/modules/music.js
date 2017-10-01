@@ -1,11 +1,11 @@
-const appConfig = require('../../lib/config');
+const appConfig = require('./../../lib/config');
 let sonosConfig = appConfig.get('sonos');
-let Promise = require('promise');
 let request = require('request');
 
 
 module.exports = {
   run: function(dialog, config, callback, debug) {
+
     debug && console.log('music: ' + dialog.state.statement);
     let sonosCommand;
     let sonosFinal;
@@ -72,10 +72,12 @@ module.exports = {
         sonosFinal = 'done';
       } else if (dialog.state.action.match(/(skip|next)/i)) {
         if (zone === '') {
-          dialog.state.reply = 'I didn\'t catch what room. Choose from '
-            + roomsPlaying.join(' or ');
+          dialog.setReply('I didn\'t catch what room. Choose from '
+            + roomsPlaying.join(' or ')
+          );
           dialog.state.query = 'room';
-          return dialog.finish();
+          dialog.finish();
+          return;
         } else {
           sonosCommand = '/' + zone + '/next';
           sonosFinal = 'uh-huh';
@@ -83,10 +85,11 @@ module.exports = {
       } else if (dialog.state.statement.match(/(up|down)/i) ||
                  dialog.state.sonosAction.match(/(up|down)/i)) {
         if (zone === '') {
-          dialog.state.reply = 'I didn\'t catch what room. You can choose '
-            + rooms.toString();
+          dialog.setReply('I didn\'t catch what room. You can choose '
+            + rooms.toString());
           dialog.state.query = 'room';
-          return dialog.finish();
+          dialog.finish();
+          return;
         } else {
           debug && console.log('sonos: up/down');
           let volumeDirection = '-';
@@ -119,27 +122,31 @@ module.exports = {
             console.log(error);
           });
         }
-        dialog.state.final = sonosFinal;
+        dialog.setFinal(sonosFinal);
+        dialog.finish();
       } else {
-        dialog.state.reply = 'I don\'t know how to have sonos do that yet,'
-          + ' try another way of saying it?';
+        dialog.setReply('I don\'t know how to have sonos do that yet,'
+          + ' try another way of saying it?');
+        dialog.finish();
       }
-      return dialog.finish();
+      return;
     }).catch(function(err) {
       console.log(err);
-      dialog.state.final = 'Something is wrong, sorry have to try again later';
-      return dialog.finish();
+      dialog.setFinal('Something is wrong, sorry have to try again later');
+      dialog.finish();
+      return;
     });
 
     // bail if we are doing dry-run
     if (dialog.fulfillmentType === 'dry-run') {
-      dialog.state.final = 'No sonos commands sent, dry run only';
-      return dialog.finish();
+      dialog.setFinal('No sonos commands sent, dry run only');
+      dialog.finish();
+      return;
     }
 
     // final will be handled in the callback, but we are done here
-    dialog.setFinal(undefined);
-    return;
+    dialog.setFinal(' ');
+    dialog.finish();
   },
   getZones: function(debug) {
     return new Promise(function(resolve, reject) {

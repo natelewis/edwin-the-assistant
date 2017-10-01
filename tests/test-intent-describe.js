@@ -9,7 +9,7 @@ vows.describe('text'
     flow: [
       'Describe statement yo momma',
     ],
-    context: 'sentence',
+    context: 'statement',
     action: 'describe',
     payload: 'yo momma',
     debug: false,
@@ -20,7 +20,7 @@ vows.describe('text'
       'describe statement',
       'yo momma',
     ],
-    context: 'sentence',
+    context: 'statement',
     action: 'describe',
     payload: 'yo momma',
     debug: false,

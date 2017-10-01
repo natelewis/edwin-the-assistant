@@ -64,7 +64,7 @@
             "query": "contact"
         },
         {
-            "query": "contactRetry",
+            "query": "textNumber",
             "groom": "",
             "reply": [
                 "Not sure who [contact] is, try another name?"

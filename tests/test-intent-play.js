@@ -3,7 +3,7 @@
 let test = require('../lib/test');
 let vows = require('vows');
 
-vows.describe('text'
+vows.describe('play'
 ).addBatch(
   test.assertStatement({
     flow: [

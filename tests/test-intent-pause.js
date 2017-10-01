@@ -10,7 +10,7 @@ vows.describe('generic intent'
       'pause song',
     ],
     action: 'pause',
-    context: 'music',
+    context: 'song',
     debug: false,
   })
 ).addBatch(

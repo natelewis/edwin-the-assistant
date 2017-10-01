@@ -27,9 +27,7 @@
             ]
         },
         {
-            "module": "describe-sentence",
-            "groom": "messagePayload",
-            "query": "final"
+            "module": "describe-sentence"
         }
     ],
     "topic": "describe-sentence"

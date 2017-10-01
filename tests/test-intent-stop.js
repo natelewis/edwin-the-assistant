@@ -18,7 +18,7 @@ vows.describe('text'
     flow: [
       'stop playin this song',
     ],
-    context: 'music',
+    context: 'song',
     action: 'stop',
     debug: false,
   })

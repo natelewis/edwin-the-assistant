@@ -19,7 +19,7 @@ vows.describe('resume intent'
       'resume track',
     ],
     action: 'resume',
-    context: 'music',
+    context: 'track',
     debug: false,
   })
 ).addBatch(
@@ -28,7 +28,7 @@ vows.describe('resume intent'
       'resume song',
     ],
     action: 'resume',
-    context: 'music',
+    context: 'song',
     debug: false,
   })
 ).export(module);

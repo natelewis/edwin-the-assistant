@@ -3,6 +3,11 @@
 let test = require('../lib/test');
 let vows = require('vows');
 
+/* TODO
+
+Have to enable a better way to work with these with mock 3rd party response
+
+
 vows.describe('text'
 ).addBatch(
   test.assertStatement({
@@ -11,10 +16,10 @@ vows.describe('text'
       'yes',
     ],
     action: 'text',
-    context: 'text',
+    context: 'nate',
     contact: 'nate',
     payload: 'I\'m on my way home',
-    debug: false,
+    debug: true,
   })
 ).addBatch(
   test.assertStatement({
@@ -23,9 +28,10 @@ vows.describe('text'
       'yes',
     ],
     action: 'text',
-    context: 'text',
+    context: 'nate',
     contact: 'nate',
     payload: 'pick up milk on your way home',
     debug: false,
   })
 ).export(module);
+*/

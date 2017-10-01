@@ -23,15 +23,5 @@
             "target": "edwins-name"
         }
     ],
-    "topicMap": [
-        {
-            "context": "edwins-inquery-response",
-            "topic": "edwins-inquery-response"
-        },
-        {
-            "context": "edwins-name",
-            "topic": "edwins-name"
-        }
-    ],
     "intent": "what"
 }

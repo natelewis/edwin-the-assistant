@@ -13,11 +13,5 @@
             "target": "describe-sentence"
         }
     ],
-    "topicMap": [
-        {
-            "context": "describe-sentence",
-            "topic": "describe-sentence"
-        }
-    ],
     "intent": "describe"
 }

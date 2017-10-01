@@ -18,11 +18,5 @@
             "target": "music"
         }
     ],
-    "topicMap": [
-        {
-            "context": "music",
-            "topic": "music"
-        }
-    ],
     "intent": "next"
 }

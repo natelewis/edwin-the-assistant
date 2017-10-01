@@ -9,7 +9,7 @@ vows.describe('intent-next'
     flow: [
       'next song please',
     ],
-    context: 'music',
+    context: 'song',
     action: 'next',
     debug: false,
   })
@@ -18,7 +18,7 @@ vows.describe('intent-next'
     flow: [
       'play the next song',
     ],
-    context: 'music',
+    context: 'song',
     action: 'play',
     debug: false,
   })
