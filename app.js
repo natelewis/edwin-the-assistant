@@ -40,6 +40,9 @@ require('./lib/client/hangouts');
 // edwin via Slack
 require('./lib/client/slack');
 
+// edwin via standalone Mic/Speaker
+require('./lib/client/standalone');
+
 // edwin via api ( configuration client & listener)
 const api = require('./lib/client/api');
 app.use('/api', api);
