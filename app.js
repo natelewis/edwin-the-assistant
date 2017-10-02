@@ -27,7 +27,6 @@ const config = require('./lib/config');
 
 // bring in all our interfaces
 
-
 // template for new config in case one isn't present
 // web server for Google Assistant and api
 const app = express();
@@ -41,19 +40,15 @@ require('./lib/client/hangouts');
 // edwin via Slack
 require('./lib/client/slack');
 
-// edwin via api ( configuration client )
-let api = require('./lib/client/api');
+// edwin via api ( configuration client & listener)
+const api = require('./lib/client/api');
 app.use('/api', api);
 
-// edwin via remote listener device
-let listener = require('./lib/client/listener');
-app.use('/listener', listener);
-
 // edwin via google assistant
-let ga = require('./lib/client/googleAssistant');
+const ga = require('./lib/client/googleAssistant');
 ga.use('/', api);
 
-// Start the server for Google Actions / API / Listner
+// start the server for Google Actions / API / Listner
 const server = app.listen(app.get('port'), () => {
   console.log('edwin: listening on port %s', server.address().port);
 });
