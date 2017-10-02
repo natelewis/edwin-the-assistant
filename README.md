@@ -17,14 +17,16 @@ The quick start guide and configuration tool is located here:
 
 http://www.edwintheassistant.com/
 
+You will be able to talk to your Edwin quickly with zero configuration.  Then once you feel out what is going on, how you want to interact with him, you can set up a client.  If you want to skip the tool completely and work with the modules and json structures manually you can do this basic install:
+
 ``` sh
 git clone https://github.com/natelewis/edwin-the-assistant.git
 cd edwin-the-assistant
 npm install
 npm start
 ```
-You can then configure one of the clients, or just just the online tool to
-immediately start talking to your Edwin.
+
+After that update the config file for what client you want to use and restart Edwin.
 
 ## Slack Setup
 From your Slack account get a token for your bot named edwin here: [https://my.slack.com/services/new/bot](https://my.slack.com/services/new/bot)
