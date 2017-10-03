@@ -1,7 +1,9 @@
 const Statement = require('./../../lib/statement');
+const State = require('./../../lib/State');
 
 module.exports = {
   run: function(dialog, config, callback, debug) {
+    const state = new State();
     debug && console.log('describe-sentence: ' + dialog.state.sentence);
 
     // we need this to continue
@@ -43,7 +45,7 @@ module.exports = {
       }
     }
 
-    dialog.setFinal(confirmation + ' There is ' + numberOfWords + ' words in the sentence.\n' + actionStatement + contextStatement + wordTypes);
+    state.setFinal(confirmation + ' There is ' + numberOfWords + ' words in the sentence.\n' + actionStatement + contextStatement + wordTypes);
     dialog.finish();
   },
 };

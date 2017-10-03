@@ -1,8 +1,11 @@
 const Intent = require('./../../lib/intent');
 const log = require('./../../lib/logger');
+const State = require('./../../lib/State');
 
 module.exports = {
   run: function(dialog, config, callback, debug) {
+    const state = new State();
+
     debug && console.log('contextSwitcherModule: ' + dialog.state.statement);
 
     let testState = {};
@@ -22,7 +25,7 @@ module.exports = {
       dialog.state.reply = undefined;
       dialog.state.exit = true;
       dialog.state.context = testState.action;
-      dialog.state.topic = testState.topic;
+      state.setTopic(testState.topic);
       log.state(dialog.state);
     }
 

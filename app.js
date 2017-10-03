@@ -25,6 +25,9 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const config = require('./lib/config');
 
+const State = require('./lib/State');
+const sss=new State();
+
 // bring in all our interfaces
 
 // template for new config in case one isn't present
