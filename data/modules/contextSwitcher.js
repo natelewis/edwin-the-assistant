@@ -4,9 +4,9 @@ const State = require('./../../lib/State');
 
 module.exports = {
   run: function(dialog, config, callback, debug) {
-    const state = new State();
+    const sss = new State();
 
-    debug && console.log('contextSwitcherModule: ' + state.getStatement());
+    debug && console.log('contextSwitcherModule: ' + sss.getStatement());
 
     let testState = {};
     testState.action = dialog.state.contextSwitcher;
@@ -22,10 +22,9 @@ module.exports = {
     if (testState.topic !== undefined) {
       log.info('contextSwitch:  New Toipc from switcher!');
       dialog.state.query = undefined;
-      dialog.state.reply = undefined;
-      dialog.state.exit = true;
-      dialog.state.context = testState.action;
-      state.setTopic(testState.topic);
+      sss.setReply(undefined);
+      sss.setContext(testState.action);
+      sss.setTopic(testState.topic);
       log.state(dialog.state);
     }
 
