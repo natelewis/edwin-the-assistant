@@ -6,7 +6,7 @@ module.exports = {
   run: function(dialog, config, callback, debug) {
     const state = new State();
 
-    debug && console.log('contextSwitcherModule: ' + dialog.state.statement);
+    debug && console.log('contextSwitcherModule: ' + state.getStatement());
 
     let testState = {};
     testState.action = dialog.state.contextSwitcher;

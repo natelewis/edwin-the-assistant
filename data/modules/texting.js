@@ -1,9 +1,11 @@
 const edwinConfig = require('../../config');
+const State = require('./../../lib/State');
 
 module.exports = {
   run: function(dialog, config) {
+    const state = new State();
     const debug = dialog.debug;
-    debug && console.log('texting: ' + dialog.state.statement);
+    debug && console.log('texting: ' + state.getStatement());
 
     if ( !edwinConfig.twilio.enabled ) {
       dialog.setFinal('I don\'t have a twilio set up,'
@@ -33,7 +35,7 @@ module.exports = {
         console.log(err);
       });
     }
-    
+
     dialog.setFinal('Message was sent');
   },
 };
