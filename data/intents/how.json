@@ -16,6 +16,11 @@
             "type": "phrase",
             "context": "you feeling",
             "target": "edwins-mood"
+        },
+        {
+            "context": "you been",
+            "type": "phrase",
+            "target": "edwins-mood"
         }
     ],
     "intent": "how"

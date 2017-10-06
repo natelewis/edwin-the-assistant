@@ -77,7 +77,7 @@ module.exports = {
           state.setReply('I didn\'t catch what room. Choose from '
             + roomsPlaying.join(' or ')
           );
-          dialog.state.query = 'room';
+          state.setQuery('room');
           dialog.finish();
           return;
         } else {
@@ -89,7 +89,7 @@ module.exports = {
         if (zone === '') {
           state.setReply('I didn\'t catch what room. You can choose '
             + rooms.toString());
-          dialog.state.query = 'room';
+          state.setQuery('room');
           dialog.finish();
           return;
         } else {

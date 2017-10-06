@@ -1,4 +1,5 @@
 const edwinConfig = require('../../lib/config');
+const State = require('./../../lib/State');
 
 /**
  * Look up a contact phone number by name
@@ -17,15 +18,16 @@ function lookupTextNumber(name) {
 
 module.exports = {
   run: function(dialog, config, callback, debug) {
-    console.log('textNumberLookup: ' + dialog.statement());
+    const sss = new State();
+    console.log('textNumberLookup: ' + sss.getStatement());
 
-    if (dialog.query() === 'textNumber') {
-      dialog.setField('contact', dialog.field('textNumber'));
-      dialog.setField('textNumber', lookupTextNumber(dialog.statement()));
+    if (sss.getQuery() === 'textNumber') {
+      sss.setField('contact', sss.getField('textNumber'));
+      sss.setField('textNumber', lookupTextNumber(sss.getStatement()));
     }
 
-    if (dialog.query() === 'contact') {
-      dialog.setField('textNumber', lookupTextNumber(dialog.statement()));
+    if (sss.getQuery() === 'contact') {
+      sss.setField('textNumber', lookupTextNumber(sss.getStatement()));
     }
   },
 };

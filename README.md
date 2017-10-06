@@ -244,7 +244,7 @@ Set the final response to a conversation.  After a reply is set no other steps w
 
 Execute the reply and send the client a the set reply or final response.
 
-* dialog.field(fieldName)
+* dialog.getField(fieldName)
 
 Return the value of a queried field.
 

@@ -7,7 +7,6 @@
             "module": "contextSwitcher",
             "groom": "",
             "reply": [
-                "Would you like to send a text or an email?",
                 "Got it,  would you like to send a text or email?"
             ],
             "requirement": [
@@ -20,13 +19,12 @@
             ]
         },
         {
-            "module": "contextSwitcher",
             "groom": "",
             "reply": [
-                "What, not sure what you mean,  email or text?"
+                "Didn't catch that.  If you want to send an email or text you can say: Edwin send a text, or Edwin send an email."
             ],
             "requirement": [],
-            "query": "contextSwitcherRetry"
+            "query": "final"
         }
     ],
     "topic": "send-message"
