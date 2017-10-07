@@ -16,6 +16,11 @@
             "context": "sonos",
             "type": "map",
             "target": "music"
+        },
+        {
+            "context": "music",
+            "target": "music",
+            "type": "map"
         }
     ],
     "topicMap": [

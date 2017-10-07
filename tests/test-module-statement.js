@@ -1,5 +1,7 @@
 'use strict';
 
+/* TODO need rewrite for mocha
+
 let vows = require('vows');
 let assert = require('assert');
 let Statement = require('../lib/statement');
@@ -15,3 +17,5 @@ vows.describe('statement').addBatch({
     },
   },
 }).export(module);
+
+*/

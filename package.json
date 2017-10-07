@@ -13,7 +13,7 @@
     "start": "node app.js",
     "monitor": "nodemon --trace-warnings --ignore 'config.json' app.js",
     "sim": "/bin/bash ./gactions simulate",
-    "test": "node --trace-warnings node_modules/vows/bin/vows \"tests/test-*.js\"",
+    "test": "node --trace-warnings node_modules/mocha/bin/mocha \"tests/test-*.js\"",
     "coverage": "nyc --reporter=lcov vows \"tests/test-*.js\"; nyc report"
   },
   "dependencies": {
@@ -26,7 +26,6 @@
     "express": "^4.13.4",
     "google-speech-from-buffer": "0.0.2",
     "hangouts-bot": "^0.2.1",
-    "i": "^0.3.5",
     "jsonfile": "^2.4.0",
     "mic-to-speech": "0.0.1",
     "nodemailer": "^2.7.0",
@@ -36,12 +35,12 @@
     "say": "^0.13.1",
     "slackbots": "^1.0.2",
     "time-stamp": "^2.0.0",
-    "twilio": "^2.11.1",
-    "vows": "^0.8.1"
+    "twilio": "^2.11.1"
   },
   "devDependencies": {
     "eslint": "^4.4.1",
     "eslint-config-google": "^0.9.1",
+    "mocha": "^4.0.1",
     "nodemon": "^1.11.0",
     "nyc": "^11.1.0"
   }

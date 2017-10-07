@@ -22,8 +22,8 @@ module.exports = {
     }
 
     // if there is a follow up question, this was the original intent to sonos
-    if (typeof (dialog.state.sonosAction) === 'undefined') {
-      dialog.state.sonosAction = statement;
+    if (state.getField('sonosAction') === undefined) {
+      state.setField('sonosAction', 'statement');
     }
     debug && console.log('music: getting zones');
     // get the zones and run command logic
@@ -85,7 +85,7 @@ module.exports = {
           sonosFinal = 'uh-huh';
         }
       } else if (statement.match(/(up|down)/i) ||
-                 dialog.state.sonosAction.match(/(up|down)/i)) {
+          state.getField('sonosAction').match(/(up|down)/i)) {
         if (zone === '') {
           state.setReply('I didn\'t catch what room. You can choose '
             + rooms.toString());

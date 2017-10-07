@@ -4,7 +4,7 @@
         {
             "field": "payload",
             "type": "everythingAfterWord",
-            "startWord": "[originalContext]",
+            "startWord": "[initialContext]",
             "wordType": "",
             "groom": "messagePayload",
             "requirement": []

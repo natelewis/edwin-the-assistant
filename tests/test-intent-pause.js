@@ -1,34 +1,31 @@
 'use strict';
 
 let test = require('../lib/test');
-let vows = require('vows');
 
-vows.describe('generic intent'
-).addBatch(
-  test.assertStatement({
-    flow: [
-      'pause song',
-    ],
-    action: 'pause',
-    context: 'song',
-    debug: false,
-  })
-).addBatch(
-  test.assertStatement({
-    flow: [
-      'pause music',
-    ],
-    action: 'pause',
-    context: 'music',
-    debug: false,
-  })
-).addBatch(
-  test.assertStatement({
-    flow: [
-      'pause the music',
-    ],
-    action: 'pause',
-    context: 'music',
-    debug: false,
-  })
-).export(module);
+test.conversation({
+  flow: [
+    'pause song',
+  ],
+  topic: 'music',
+  action: 'pause',
+  context: 'song',
+  debug: false,
+});
+
+test.conversation({
+  flow: [
+    'pause music',
+  ],
+  action: 'pause',
+  context: 'music',
+  debug: false,
+});
+
+test.conversation({
+  flow: [
+    'pause the music',
+  ],
+  action: 'pause',
+  context: 'music',
+  debug: false,
+});

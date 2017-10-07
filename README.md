@@ -138,7 +138,7 @@ You can use the tool under http://www.edwintheassistant.com or manually update t
         {
             "field": "payload",
             "type": "everythingAfterWord",
-            "startWord": "[originalContext]",
+            "startWord": "[initialContext]",
             "wordType": "",
             "groom": "messagePayload",
         }

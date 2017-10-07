@@ -1,5 +1,7 @@
 'use strict';
 
+/* TODO need rewrite for mocha
+
 let vows = require('vows');
 let assert = require('assert');
 let load = require('../lib/load');
@@ -15,3 +17,5 @@ vows.describe('load').addBatch({
     assert.equal(load.module('./README.md', false), undefined);
   },
 }).export(module);
+
+*/

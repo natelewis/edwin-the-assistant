@@ -27,7 +27,6 @@ module.exports = {
         sss.setReply(undefined);
         sss.setContext(action);
         sss.setTopic(newTopic);
-        log.state(dialog.state);
       }
     }
   },

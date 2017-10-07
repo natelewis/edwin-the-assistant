@@ -1,6 +1,5 @@
 'use strict';
 
-let vows = require('vows');
 let assert = require('assert');
 let Edwin = require('../lib/edwin');
 /*

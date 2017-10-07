@@ -1,5 +1,6 @@
 'use strict';
 
+/* TODO need rewrite for mocha
 let vows = require('vows');
 let assert = require('assert');
 let music = require('../data/modules/music.js');
@@ -20,5 +21,7 @@ vows.describe('music').addBatch({
                 assert.notEqual(json, undefined);
             });
         }
-    } */
+    }
 }).export(module);
+
+*/

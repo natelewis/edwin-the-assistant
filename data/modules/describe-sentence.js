@@ -4,18 +4,18 @@ const State = require('./../../lib/State');
 module.exports = {
   run: function(dialog, config, callback, debug) {
     const state = new State();
-    debug && console.log('describe-sentence: ' + dialog.state.sentence);
+    debug && console.log('describe-sentence: ' + state.getStatement());
 
     // we need this to continue
-    if (dialog.state.payload === undefined) {
+    if (state.getField('payload') === undefined) {
       return;
     }
 
     let confirmation = 'Sure thing!';
-    let numberOfWords = dialog.state.payload.split(' ').length;
+    let numberOfWords = state.getField('payload').split(' ').length;
 
     // process the statement
-    let statement = new Statement(dialog.state.payload, false);
+    let statement = new Statement(state.getField('payload'), false);
 
     // get the action
     let actionStatement = 'The actionable intent word is ' + statement.action + '.\n';

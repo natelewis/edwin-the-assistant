@@ -8,8 +8,9 @@ module.exports = {
     debug && console.log('texting: ' + state.getStatement());
 
     if ( !edwinConfig.twilio.enabled ) {
-      dialog.setFinal('I don\'t have a twilio set up,'
+      state.setFinal('I don\'t have a twilio set up,'
         + ' I can\'t send texts without it.');
+      dialog.finish();
       return;
     }
 
@@ -25,9 +26,9 @@ module.exports = {
 
       // if we are not in a testPlan, do the actual text
       client.messages.create({
-        to: dialog.state.textNumber,
+        to: state.getField('textNumber'),
         from: edwinConfig.twilio.fromNumber,
-        body: dialog.state.payload,
+        body: state.getField('payload'),
       }).then( () => {
         debug && console.log('texting: sent text');
       }).catch( (err) => {
@@ -36,6 +37,7 @@ module.exports = {
       });
     }
 
-    dialog.setFinal('Message was sent');
+    state.setFinal('Message was sent');
+    dialog.finish();
   },
 };
