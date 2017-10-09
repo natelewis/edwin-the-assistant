@@ -7,7 +7,7 @@ test.conversation({
     'skip the song',
   ],
   context: 'song',
-  action: 'skip',
+  intent: 'skip',
   topic: 'music',
   debug: false,
 });
@@ -17,7 +17,7 @@ test.conversation({
     'skip to the next track',
   ],
   context: 'track',
-  action: 'skip',
+  intent: 'skip',
   topic: 'music',
   debug: false,
 });

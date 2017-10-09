@@ -7,7 +7,7 @@ test.conversation({
     'stop the music',
   ],
   context: 'music',
-  action: 'stop',
+  intent: 'stop',
   topic: 'music',
   debug: false,
 });
@@ -17,7 +17,7 @@ test.conversation({
     'stop playin this song',
   ],
   context: 'song',
-  action: 'stop',
+  intent: 'stop',
   topic: 'music',
   debug: false,
 });

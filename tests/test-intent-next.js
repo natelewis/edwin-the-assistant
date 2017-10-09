@@ -7,7 +7,7 @@ test.conversation({
     'next song please',
   ],
   context: 'song',
-  action: 'next',
+  intent: 'next',
   topic: 'music',
   debug: false,
 });
@@ -17,7 +17,7 @@ test.conversation({
     'play the next song',
   ],
   context: 'song',
-  action: 'play',
+  intent: 'play',
   topic: 'music',
   debug: false,
 });

@@ -6,7 +6,7 @@ test.conversation({
   flow: [
     'resume music',
   ],
-  action: 'resume',
+  intent: 'resume',
   context: 'music',
   topic: 'music',
   debug: false,
@@ -16,7 +16,7 @@ test.conversation({
   flow: [
     'resume track',
   ],
-  action: 'resume',
+  intent: 'resume',
   context: 'track',
   topic: 'music',
   debug: false,
@@ -26,7 +26,7 @@ test.conversation({
   flow: [
     'resume song',
   ],
-  action: 'resume',
+  intent: 'resume',
   topic: 'music',
   context: 'song',
   debug: false,

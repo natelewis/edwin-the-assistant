@@ -60,7 +60,7 @@ Each person you want to talk to Edwin has to respond to him from within your bro
  1. Update the config file and set the googleAssistant port to whatever it should be ( 8080 usually ).
  1. Update the edwin.json with your URL your hosting your app at
  1. Preview the action using the gactions CLI: ./gactions test --action_package edwin.json --project <your project id>
- 1. Use the gactions simulator to test the action: ./gactions simulate
+ 1. Use the gactions simulator to test: ./gactions simulate
 
 ### Single Use Action With Google Assistant
 If you only want to use Edwin for a specific function on your Google Home, you can do this with a simple change.  An example of this would be to have him control a Sonos device with an invocation name of 'Sonos'.   In this case you can change the invocation_name while generating a preview to 'Sonos'.  Then address your Google Home in the context of "Ok Google, tell Sonos to turn down the music".   He is full featured Edwin, but it will feel like he is designed just for your Sonos.
@@ -258,7 +258,16 @@ Return the current statement that is being processed.
 
 * state.query()
 
-Return the  current query that was asked.
+Return the current query that was asked.
+
+* state.notResponded()
+
+Returns true if final or reply have not been set yet
+
+* state.isNewConversation()
+
+Returns true if this is the initial processing of a new conversation
+
 
 
 ## License

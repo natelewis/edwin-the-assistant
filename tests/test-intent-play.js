@@ -7,7 +7,7 @@ test.conversation({
     'play music in the kitchen',
   ],
   context: 'music',
-  action: 'play',
+  intent: 'play',
   topic: 'music',
   debug: false,
 });
@@ -18,6 +18,6 @@ test.conversation({
   ],
   context: 'music',
   topic: 'music',
-  action: 'play',
+  intent: 'play',
   debug: false,
 });

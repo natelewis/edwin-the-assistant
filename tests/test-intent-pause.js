@@ -7,7 +7,7 @@ test.conversation({
     'pause song',
   ],
   topic: 'music',
-  action: 'pause',
+  intent: 'pause',
   context: 'song',
   debug: false,
 });
@@ -16,7 +16,7 @@ test.conversation({
   flow: [
     'pause music',
   ],
-  action: 'pause',
+  intent: 'pause',
   context: 'music',
   debug: false,
 });
@@ -25,7 +25,7 @@ test.conversation({
   flow: [
     'pause the music',
   ],
-  action: 'pause',
+  intent: 'pause',
   context: 'music',
   debug: false,
 });

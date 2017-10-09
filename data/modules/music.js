@@ -72,7 +72,7 @@ module.exports = {
         debug && console.log('sonos: pausing in ' + zone);
         sonosCommand = '/' + zone + '/pause';
         sonosFinal = 'done';
-      } else if (state.getAction().match(/(skip|next)/i)) {
+      } else if (state.getIntent().match(/(skip|next)/i)) {
         if (zone === '') {
           state.setReply('I didn\'t catch what room. Choose from '
             + roomsPlaying.join(' or ')

@@ -18,8 +18,8 @@ module.exports = {
     let statement = new Statement(state.getField('payload'), false);
 
     // get the action
-    let actionStatement = 'The actionable intent word is ' + statement.action + '.\n';
-    if (typeof (statement.action) === 'undefined') {
+    let actionStatement = 'The actionable intent word is ' + statement.intent + '.\n';
+    if (typeof (statement.intent) === 'undefined') {
       actionStatement = 'The sentence has no actionable intent.\n';
     }
 
