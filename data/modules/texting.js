@@ -10,7 +10,7 @@ module.exports = {
     if ( !edwinConfig.twilio.enabled ) {
       state.setFinal('I don\'t have a twilio set up,'
         + ' I can\'t send texts without it.');
-      dialog.finish();
+      state.finish();
       return;
     }
 
@@ -38,6 +38,6 @@ module.exports = {
     }
 
     state.setFinal('Message was sent');
-    dialog.finish();
+    state.finish();
   },
 };

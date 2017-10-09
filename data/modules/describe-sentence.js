@@ -46,6 +46,6 @@ module.exports = {
     }
 
     state.setFinal(confirmation + ' There is ' + numberOfWords + ' words in the sentence.\n' + actionStatement + contextStatement + wordTypes);
-    dialog.finish();
+    state.finish();
   },
 };

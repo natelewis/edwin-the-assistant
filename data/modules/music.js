@@ -78,7 +78,7 @@ module.exports = {
             + roomsPlaying.join(' or ')
           );
           state.setQuery('room');
-          dialog.finish();
+          state.finish();
           return;
         } else {
           sonosCommand = '/' + zone + '/next';
@@ -90,7 +90,7 @@ module.exports = {
           state.setReply('I didn\'t catch what room. You can choose '
             + rooms.toString());
           state.setQuery('room');
-          dialog.finish();
+          state.finish();
           return;
         } else {
           debug && console.log('sonos: up/down');
@@ -125,30 +125,30 @@ module.exports = {
           });
         }
         state.setFinal(sonosFinal);
-        dialog.finish();
+        state.finish();
       } else {
         state.setReply('I don\'t know how to have sonos do that yet,'
           + ' try another way of saying it?');
-        dialog.finish();
+        state.finish();
       }
       return;
     }).catch(function(err) {
       console.log(err);
       state.setFinal('Something is wrong, sorry have to try again later');
-      dialog.finish();
+      state.finish();
       return;
     });
 
     // bail if we are doing dry-run
     if (dialog.fulfillmentType === 'dry-run') {
       state.setFinal('No sonos commands sent, dry run only');
-      dialog.finish();
+      state.finish();
       return;
     }
 
     // final will be handled in the callback, but we are done here
     state.setFinal(' ');
-    dialog.finish();
+    state.finish();
   },
   getZones: function(debug) {
     return new Promise(function(resolve, reject) {
