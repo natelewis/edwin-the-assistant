@@ -1,12 +1,59 @@
-const appConfig = require('./../../lib/config');
-const sonosConfig = appConfig.get('sonos');
-const request = require('request');
-const State = require('./../../lib/State');
+'use strict';
 
-module.exports = {
-  run: function(dialog, config, callback, debug) {
-    const state = new State();
+const getZones = (sonosConfig) => {
+  return new Promise(function(resolve, reject) {
+    if (sonosConfig.URI === undefined) {
+      return resolve( '{}' );
+    }
+
+    let options = {
+      rejectUnauthorized: false,
+      method: 'GET',
+      uri: sonosConfig.URI + '/zones',
+      headers: {
+        'Authorization': 'Basic ' +
+          new Buffer('admin:password').toString('base64'),
+      },
+    };
+    request(options, function(err, res, body) {
+      if (err) {
+        console.log(err);
+        return reject(err);
+      } else if (res.statusCode !== 200) {
+        console.log(res);
+        err = new Error('Unexpected status code: ' + res.statusCode);
+        err.res = res;
+        return reject(err);
+      }
+      return resolve(body);
+    });
+  });
+};
+
+const getRooms = (sonosConfig) => {
+  debug && console.log('sonos: getRooms');
+
+  return getZones(sonosConfig).then(function(json) {
+    let rooms = [];
+    json = JSON.parse(json);
+    for (let i = 0; i < json.length; i++) {
+      rooms.push(json[i].coordinator.roomName);
+    }
+    return rooms;
+  });
+};
+
+module.exports = {run: function(state, config) {
+  return new Promise(function(resolve, reject) {
+    const appConfig = require('./../../lib/config');
+    const sonosConfig = appConfig.get('sonos');
+    const request = require('request');
+
+    const debug = false;
     let statement = state.getStatement();
+    let dialog = {};
+    dialog.fulfillmentType = 'dry-run';
+
 
     debug && console.log('music: ' + statement);
     let sonosCommand;
@@ -27,7 +74,7 @@ module.exports = {
     }
     debug && console.log('music: getting zones');
     // get the zones and run command logic
-    this.getZones(debug).then(function(json) {
+    getZones(sonosConfig).then(function(json) {
       let roomsPlaying = [];
       let rooms = [];
       json = JSON.parse(json);
@@ -35,11 +82,12 @@ module.exports = {
         let coordinator = json[i].coordinator;
         let roomName = coordinator.roomName;
         rooms.push(roomName);
-
+/*
         // list only rooms that are playing
         if (coordinator.dialog.state.playbackState === 'PLAYING') {
           roomsPlaying.push(roomName);
         }
+        */
 
         // check for match regex
         let re = new RegExp(roomName, 'gi');
@@ -149,46 +197,5 @@ module.exports = {
     // final will be handled in the callback, but we are done here
     state.setFinal(' ');
     state.finish();
-  },
-  getZones: function(debug) {
-    return new Promise(function(resolve, reject) {
-      if (sonosConfig.URI === undefined) {
-        return resolve( '{}' );
-      }
-
-      let options = {
-        rejectUnauthorized: false,
-        method: 'GET',
-        uri: sonosConfig.URI + '/zones',
-        headers: {
-          'Authorization': 'Basic ' +
-            new Buffer('admin:password').toString('base64'),
-        },
-      };
-      request(options, function(err, res, body) {
-        if (err) {
-          console.log(err);
-          return reject(err);
-        } else if (res.statusCode !== 200) {
-          console.log(res);
-          err = new Error('Unexpected status code: ' + res.statusCode);
-          err.res = res;
-          return reject(err);
-        }
-        return resolve(body);
-      });
-    });
-  },
-  getRooms: function(debug) {
-    debug && console.log('sonos: getRooms');
-
-    return this.getZones(debug).then(function(json) {
-      let rooms = [];
-      json = JSON.parse(json);
-      for (let i = 0; i < json.length; i++) {
-        rooms.push(json[i].coordinator.roomName);
-      }
-      return rooms;
-    });
-  },
-};
+  });
+}};

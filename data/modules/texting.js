@@ -2,8 +2,10 @@ const edwinConfig = require('../../config');
 const State = require('./../../lib/State');
 
 module.exports = {
-  run: function(dialog, config) {
-    const state = new State();
+  run: function(state, config) {
+    let dialog = {};
+    dialog.fulfillmentType !== 'dry-run'
+
     const debug = dialog.debug;
     debug && console.log('texting: ' + state.getStatement());
 

@@ -1,9 +1,7 @@
-const Statement = require('./../../lib/statement');
-const State = require('./../../lib/State');
-
-module.exports = {
-  run: function(dialog, config, callback, debug) {
-    const state = new State();
+module.exports = {run: function(state, config) {
+  return new Promise(function(resolve, reject) {
+    const Statement = require('./../../lib/statement');
+    const debug = false;
     debug && console.log('describe-sentence: ' + state.getStatement());
 
     // we need this to continue
@@ -47,5 +45,6 @@ module.exports = {
 
     state.setFinal(confirmation + ' There is ' + numberOfWords + ' words in the sentence.\n' + actionStatement + contextStatement + wordTypes);
     state.finish();
-  },
-};
+    setTimeout(resolve, 10000);
+  });
+}};

@@ -17,8 +17,7 @@ function lookupTextNumber(name) {
 }
 
 module.exports = {
-  run: function(dialog, config, callback, debug) {
-    const sss = new State();
+  run: function(sss, config) {
     console.log('textNumberLookup: ' + sss.getStatement());
 
     if (sss.getQuery() === 'textNumber') {
