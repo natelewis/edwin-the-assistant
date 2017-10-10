@@ -26,6 +26,6 @@ module.exports = {run: function(state, config) {
         state.setTopic(newTopic);
       }
     }
-    resolve();
+    return resolve(state);
   });
 }};

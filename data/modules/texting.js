@@ -1,10 +1,8 @@
-const edwinConfig = require('../../config');
-const State = require('./../../lib/State');
-
-module.exports = {
-  run: function(state, config) {
+module.exports = {run: function(state, config) {
+  return new Promise(function(resolve, reject) {
+    const edwinConfig = config;
     let dialog = {};
-    dialog.fulfillmentType !== 'dry-run'
+    dialog.fulfillmentType !== 'dry-run';
 
     const debug = dialog.debug;
     debug && console.log('texting: ' + state.getStatement());
@@ -37,9 +35,13 @@ module.exports = {
         console.log('texting: sending error');
         console.log(err);
       });
+      state.setFinal('Message sent.');
+      state.finish();
+      resolve(state);
+    } else {
+      state.setFinal('Dry run of sending.');
+      state.finish();
+      resolve(state);
     }
-
-    state.setFinal('Message was sent');
-    state.finish();
-  },
-};
+  });
+}};

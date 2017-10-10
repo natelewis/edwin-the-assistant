@@ -54,6 +54,12 @@ module.exports = {run: function(state, config) {
     let dialog = {};
     dialog.fulfillmentType = 'dry-run';
 
+    // turned off for now
+    state.setFinal(' ');
+    state.finish();
+    return resolve(state);
+
+
 
     debug && console.log('music: ' + statement);
     let sonosCommand;
@@ -127,7 +133,7 @@ module.exports = {run: function(state, config) {
           );
           state.setQuery('room');
           state.finish();
-          return;
+          return resolve(state);
         } else {
           sonosCommand = '/' + zone + '/next';
           sonosFinal = 'uh-huh';
@@ -139,7 +145,7 @@ module.exports = {run: function(state, config) {
             + rooms.toString());
           state.setQuery('room');
           state.finish();
-          return;
+          return resolve(state);
         } else {
           debug && console.log('sonos: up/down');
           let volumeDirection = '-';
@@ -174,28 +180,30 @@ module.exports = {run: function(state, config) {
         }
         state.setFinal(sonosFinal);
         state.finish();
+        return resolve(state);
       } else {
         state.setReply('I don\'t know how to have sonos do that yet,'
           + ' try another way of saying it?');
         state.finish();
+        return resolve(state);
       }
-      return;
     }).catch(function(err) {
       console.log(err);
       state.setFinal('Something is wrong, sorry have to try again later');
       state.finish();
-      return;
+      return resolve(state);
     });
 
     // bail if we are doing dry-run
     if (dialog.fulfillmentType === 'dry-run') {
       state.setFinal('No sonos commands sent, dry run only');
       state.finish();
-      return;
+      return resolve(state);
     }
 
     // final will be handled in the callback, but we are done here
     state.setFinal(' ');
     state.finish();
+    return resolve(state);
   });
 }};

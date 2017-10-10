@@ -45,6 +45,6 @@ module.exports = {run: function(state, config) {
 
     state.setFinal(confirmation + ' There is ' + numberOfWords + ' words in the sentence.\n' + actionStatement + contextStatement + wordTypes);
     state.finish();
-    setTimeout(resolve, 10000);
+    setTimeout(resolve(state), 10000);
   });
 }};
