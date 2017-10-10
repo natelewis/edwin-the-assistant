@@ -2,8 +2,8 @@ const edwinConfig = require('../../lib/config');
 
 /**
  * Look up a contact phone number by name
- * @param  {String} name Phone number to look up
- * @return {String}      Contact phone number or undefined if not found
+ * @param  {string} name Phone number to look up
+ * @return {string}      Contact phone number or undefined if not found
  */
 function lookupTextNumber(name) {
   // make sure we have some stuff, just bail if not
