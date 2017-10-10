@@ -1,5 +1,4 @@
 const edwinConfig = require('../../lib/config');
-const State = require('./../../lib/State');
 
 /**
  * Look up a contact phone number by name
@@ -16,17 +15,18 @@ function lookupTextNumber(name) {
   return edwinConfig.get('twilio').contacts[name.toLowerCase()];
 }
 
-module.exports = {
-  run: function(sss, config) {
-    console.log('textNumberLookup: ' + sss.getStatement());
+module.exports = {run: function(state, config) {
+  return new Promise(function(resolve, reject) {
+    console.log('textNumberLookup: ' + state.getStatement());
 
-    if (sss.getQuery() === 'textNumber') {
-      sss.setField('contact', sss.getField('textNumber'));
-      sss.setField('textNumber', lookupTextNumber(sss.getStatement()));
+    if (state.getQuery() === 'textNumber') {
+      state.setField('contact', state.getField('textNumber'));
+      state.setField('textNumber', lookupTextNumber(state.getStatement()));
     }
 
-    if (sss.getQuery() === 'contact') {
-      sss.setField('textNumber', lookupTextNumber(sss.getStatement()));
+    if (state.getQuery() === 'contact') {
+      state.setField('textNumber', lookupTextNumber(state.getStatement()));
     }
-  },
-};
+    return resolve(state);
+  });
+}};

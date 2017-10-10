@@ -11,7 +11,7 @@ module.exports = {run: function(state, config) {
       state.setFinal('I don\'t have a twilio set up,'
         + ' I can\'t send texts without it.');
       state.finish();
-      return;
+      return resolve(state);
     }
 
     if (dialog.fulfillmentType !== 'dry-run') {
@@ -37,11 +37,11 @@ module.exports = {run: function(state, config) {
       });
       state.setFinal('Message sent.');
       state.finish();
-      resolve(state);
+      return resolve(state);
     } else {
       state.setFinal('Dry run of sending.');
       state.finish();
-      resolve(state);
+      return resolve(state);
     }
   });
 }};
