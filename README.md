@@ -227,8 +227,8 @@ The core concept of the functions is to get data from the state, and change the 
 1. Module starts
 1. Gets statement and query info
 1. Does stuff with that info
-1. Either setReply() setFinal() is set
-1. Calls finish()
+1. Either setReply() setFinal()
+1. The callback will fire and respond
 
 ###### state functions
 
@@ -239,10 +239,6 @@ Set the response to a conversation, but continue the conversation.  After a repl
 * state.setFinal(string)
 
 Set the final response to a conversation.  After a reply is set no other steps will be ran, and no other responses will be expected.  You have finished the conversation.
-
-* state.finish()
-
-Execute the reply and send the client a the set reply or final response.
 
 * state.getField(fieldName)
 

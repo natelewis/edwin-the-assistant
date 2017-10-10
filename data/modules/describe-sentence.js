@@ -6,7 +6,7 @@ module.exports = {run: function(state, config) {
 
     // we need this to continue
     if (state.getField('payload') === undefined) {
-      return;
+      return resolve(state);
     }
 
     let confirmation = 'Sure thing!';
