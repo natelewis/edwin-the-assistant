@@ -14,8 +14,8 @@ module.exports = {run: function(state, config) {
 
     // process the statement
     const statement = new Statement(state.getField('payload'), false);
-    const intent = statement.impliedIntent();
-    const context = statement.impliedContext();
+    const intent = statement.getImpliedIntent();
+    const context = statement.getImpliedContext();
     // get the action
     let actionStatement = 'The actionable intent word is ' + intent + '.\n';
     if (intent === undefined) {
