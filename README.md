@@ -31,7 +31,7 @@ After that update the config file for what client you want to use and restart Ed
 ## Slack Setup
 From your Slack account get a token for your bot named edwin here: [https://my.slack.com/services/new/bot](https://my.slack.com/services/new/bot)
 
-Update your config.js in and update the token to your bot, and update the name with 'edwin'.
+Update your config.js in and update the token to your bot.
 
 ``` javascript
     slack: {
