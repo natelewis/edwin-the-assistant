@@ -30,13 +30,13 @@ module.exports = {run: function(state, config) {
 
     // break down each word in the sentence
     let wordTypes = '';
-    for (let i = 0; i < statement.wordsLC.length; i++) {
-      if (statement.wordsLC[i] === '\'') {
+    for (let i = 0; i < statement.wordListLC.length; i++) {
+      if (statement.wordListLC[i] === '\'') {
         wordTypes += 'Then an apostrophe.\n';
-      } else if (statement.wordsLC[i].length === 1) {
-        wordTypes += 'Then the letter "' + statement.wordsLC[i] + '".\n';
+      } else if (statement.wordListLC[i].length === 1) {
+        wordTypes += 'Then the letter "' + statement.wordListLC[i] + '".\n';
       } else {
-        wordTypes += 'The word "' + statement.wordsLC[i];
+        wordTypes += 'The word "' + statement.wordListLC[i];
         wordTypes += '" is a ' + statement.wordTypeNames[i] + '.\n';
       }
     }
