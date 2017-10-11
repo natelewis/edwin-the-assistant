@@ -1,6 +1,6 @@
 module.exports = {run: function(state, config) {
   return new Promise(function(resolve, reject) {
-    const Statement = require('./../../lib/statement');
+    const Statement = require('./../../lib/Statement');
     const debug = false;
     debug && console.log('describe-sentence: ' + state.getStatement());
 
@@ -13,20 +13,19 @@ module.exports = {run: function(state, config) {
     let numberOfWords = state.getField('payload').split(' ').length;
 
     // process the statement
-    let statement = new Statement(state.getField('payload'), false);
-
+    const statement = new Statement(state.getField('payload'), false);
+    const intent = statement.impliedIntent();
+    const context = statement.impliedContext();
     // get the action
-    let actionStatement = 'The actionable intent word is '
-      + statement.intent + '.\n';
-    if (typeof (statement.intent) === 'undefined') {
-      actionStatement = 'The sentence has no actionable intent.\n';
+    let actionStatement = 'The actionable intent word is ' + intent + '.\n';
+    if (intent === undefined) {
+      actionStatement = 'The statement has no actionable intent.\n';
     }
 
     // get the context
-    let contextStatement = 'The action has the implied context of '
-      + statement.context + '.\n';
-    if (typeof (statement.context) === 'undefined') {
-      contextStatement = 'The sentence has no implied context.\n';
+    let contextStatement = 'It has an implied context of ' + context + '.\n';
+    if (typeof (context) === 'undefined') {
+      contextStatement = 'The statement has no implied context.\n';
     }
 
     // break down each word in the sentence
