@@ -75,8 +75,8 @@ module.exports = {
     debug && console.log(Array(46).join('-'));
     debug && console.log('* USER INVOCATION : ' + testPlan.flow[0]);
     debug && console.log(Array(46).join('-'));
-    debug && console.log('* ACTION: ' + statement.intent);
-    debug && console.log('* CONTEXT: ' + statement.context);
+    debug && console.log('* ACTION: ' + statement.getImpliedIntent());
+    debug && console.log('* CONTEXT: ' + statement.getImpliedContext());
     debug && console.log(Array(20).join('-') + ' plan ' + Array(20).join('-'));
     debug && console.log(testPlan);
 
