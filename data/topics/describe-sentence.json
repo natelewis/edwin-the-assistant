@@ -13,7 +13,6 @@
     "steps": [
         {
             "query": "payload",
-            "groom": "messagePayload",
             "reply": [
                 "What sentence do you want me to describe?"
             ],
