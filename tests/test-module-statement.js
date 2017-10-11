@@ -4,7 +4,7 @@
 
 let vows = require('vows');
 let assert = require('assert');
-let Statement = require('../lib/statement');
+let Statement = require('../lib/Statement');
 
 vows.describe('statement').addBatch({
   'the statement "Tell Nate dinner is ready"': {

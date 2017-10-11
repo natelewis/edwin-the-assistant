@@ -21,7 +21,7 @@
 'use strict';
 
 const assert = require('assert');
-const Statement = require('../lib/statement');
+const Statement = require('../lib/Statement');
 
 const Edwin = require('../lib/Edwin');
 
