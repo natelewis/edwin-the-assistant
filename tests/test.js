@@ -21,9 +21,9 @@
 'use strict';
 
 const assert = require('assert');
-const Statement = require('./statement');
+const Statement = require('../lib/statement');
 
-const Edwin = require('./Edwin');
+const Edwin = require('../lib/Edwin');
 
 // process an automated conversation
 const processStatement = (sessionId, testPlan, callback) => {

@@ -1,6 +1,6 @@
 'use strict';
 
-let test = require('../lib/test');
+let test = require('./test');
 
 /* TODO: need a better way to test these
 test.conversation({

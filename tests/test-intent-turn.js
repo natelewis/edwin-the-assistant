@@ -1,6 +1,6 @@
 'use strict';
 
-let test = require('../lib/test');
+let test = require('./test');
 
 test.conversation({
   flow: [
