@@ -1,7 +1,7 @@
 'use strict';
 
 let assert = require('assert');
-let Edwin = require('../lib/edwin');
+let Edwin = require('../lib/Edwin');
 /*
 vows.describe('edwin').addBatch({
   'An Edwin instance': {
