@@ -17,9 +17,9 @@ module.exports = {run: function(state, config) {
     const intent = statement.getImpliedIntent();
     const context = statement.getImpliedContext();
     // get the action
-    let actionStatement = 'The actionable intent word is ' + intent + '.\n';
+    let actionStatement = 'The implied intent is ' + intent + '.\n';
     if (intent === undefined) {
-      actionStatement = 'The statement has no actionable intent.\n';
+      actionStatement = 'The statement has no implied intent.\n';
     }
 
     // get the context
