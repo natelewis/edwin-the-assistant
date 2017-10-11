@@ -35,8 +35,9 @@ Update your config.js in and update the token to your bot, and update the name w
 
 ``` javascript
     slack: {
-        token: 'long-tokeny-thing',
-        name: 'edwin'
+        "enabled": true,
+        "token": "long-tokeny-thing",
+        "name": "Edwin"
     }
 ```
 
@@ -45,12 +46,13 @@ Create a new GMail account that will serve as your Edwin.  Update your config fi
 
 ``` javascript
     hangouts: {
-        username: 'someedwinname@gmail.com',
-        password: 'yourpassword'
+        "enabled": true,
+        "username": "someedwinname@gmail.com",
+        "password": "yourpassword"
     }
 ```
 
-Each person you want to talk to Edwin has to respond to him from within your browser.  For example, send edwin's GMail an instant message from your gmail account, then from your Edwin browser respond to yourself.   This will enable the conversation between you and Edwin.  Edwin will not respond to your IM's until you respond by hand first.
+Each person you want to talk to Edwin has to respond to him from within your browser.  For example, send Edwin's GMail an instant message from your gmail account, then from your Edwin browser respond to yourself.   This will authorize conversation between you and Edwin.  Edwin will not respond to your IM's until you respond by hand first.
 
 ## Google Assistant with Google Home
  When talking to Edwin with your Google Home, you can invoke him like, "Ok Google, talk to Edwin".  You can also give him your intent in the invocation such as, "Ok Google, tell Edwin to pause the music".   Before attempting this, you should have successfully followed the Actions API tutorials and have been able to deploy a custom action you have tested with the simulator.  See the developer guide and release notes at [https://developers.google.com/actions/](https://developers.google.com/actions/) for more details.
