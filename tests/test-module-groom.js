@@ -4,7 +4,7 @@
 
 let vows = require('vows');
 let assert = require('assert');
-let Groom = require('../lib/groom');
+let Groom = require('../lib/Groom');
 
 vows.describe('groom').addBatch({
   'a messagePayload with "Tell Nate dinner is ready"': {
