@@ -14,7 +14,7 @@
     "monitor": "nodemon --trace-warnings --ignore 'config.json' app.js",
     "sim": "/bin/bash ./gactions simulate",
     "test": "node --trace-warnings node_modules/mocha/bin/mocha \"tests/test-*.js\"",
-    "coverage": "nyc --reporter=lcov vows \"tests/test-*.js\"; nyc report"
+    "coverage": "nyc --reporter=lcov node_modules/mocha/bin/mocha \"tests/test-*.js\"; nyc report"
   },
   "dependencies": {
     "actions-on-google": "1.0.4",
@@ -28,9 +28,7 @@
     "hangouts-bot": "^0.2.1",
     "jsonfile": "^2.4.0",
     "mic-to-speech": "0.0.1",
-    "nodemailer": "^2.7.0",
     "pos": "^0.4.2",
-    "promise": "^7.1.1",
     "request": "^2.79.0",
     "say": "^0.13.1",
     "slackbots": "^1.0.2",
