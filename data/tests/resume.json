@@ -1,0 +1,8 @@
+{
+	"id": "resume",
+	"conversations": [
+    {"flow":["resume music"],"intent":"resume","context":"music","topic":"music","debug":false},
+    {"flow":["resume track"],"intent":"resume","context":"track","topic":"music","debug":false},
+    {"flow":["resume song"],"intent":"resume","topic":"music","context":"song","debug":false}
+   ]
+}

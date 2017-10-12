@@ -17,7 +17,7 @@ The quick start guide and configuration tool is located here:
 
 http://www.edwintheassistant.com/
 
-You will be able to talk to your Edwin quickly with zero configuration.  Then once you feel out what is going on, how you want to interact with him, you can set up a client.  If you want to skip the tool completely and work with the modules and json structures manually you can do this basic install:
+You will be able to talk to your Edwin quickly with zero configuration.  Then once you feel for what is going on, you can set up a client for long term use.  If you want to skip the tool completely and work with the modules and json structures manually you can do this basic install:
 
 ``` sh
 git clone https://github.com/natelewis/edwin-the-assistant.git
@@ -26,10 +26,47 @@ npm install
 npm start
 ```
 
-After that update the config file for what client you want to use and restart Edwin.
+After that, update the config file for what client you want to use and restart Edwin.
+
+## Standalone Mic And Speaker
+
+Talk to Edwin like a Google Home or Amazon Alexa.
+
+#### Requirements
+
+- GCP account with Google Speech API turned on
+- Mac or Raspberry Pi compatible
+
+#### Environment setup for Mac
+
+1. Have homebrew installed: https://brew.sh/
+2. Audio recorder: `brew install sox`
+
+#### Environment setup for Linux/Raspberry Pi
+
+1. sudo apt-get install sox libsox-fmt-all
+
+#### Environment setup for Google Speech API
+
+1. Your API key can be created here with your GCP project here:
+https://console.cloud.google.com/apis/credentials
+2. Export your service account key json file before running Edwin
+
+```sh
+export GOOGLE_APPLICATION_CREDENTIALS=[Path to service account key json file]
+```
+
+#### Notes
+
+* This is the coolest way to talk to to Edwin, but is dependant on hardware being in setup.  If you have a pretty standard system, it should "just work".
+
+* Google Home and Alexa use array microphones to know your voice over background noise. If your serious about using Edwin for more than just tinkering, I would recommend the investment.
+
+* Google Speech API has a free tier of 60 minutes a month billed in 15 second increments.  Thats quite a bit, but still possible to exceede.  Even after, it's really inexpensive if you go over:
+https://cloud.google.com/speech/pricing
 
 ## Slack Setup
-From your Slack account get a token for your bot named edwin here: [https://my.slack.com/services/new/bot](https://my.slack.com/services/new/bot)
+From your Slack account get a token for your bot named Edwin here: [https://my.slack.com/services/new/bot](https://my.slack.com/services/new/bot)
 
 Update your config.js in and update the token to your bot.
 
@@ -42,7 +79,7 @@ Update your config.js in and update the token to your bot.
 ```
 
 ## Google Hangouts
-Create a new GMail account that will serve as your Edwin.  Update your config file in your root directory with your GMail credentials:
+Create a new Gmail account that will serve as your Edwin.  Update your config file in your root directory with your Gmail credentials:
 
 ``` javascript
     hangouts: {
@@ -52,7 +89,7 @@ Create a new GMail account that will serve as your Edwin.  Update your config fi
     }
 ```
 
-Each person you want to talk to Edwin has to respond to him from within your browser.  For example, send Edwin's GMail an instant message from your gmail account, then from your Edwin browser respond to yourself.   This will authorize conversation between you and Edwin.  Edwin will not respond to your IM's until you respond by hand first.
+Each person you want to talk to Edwin has to respond to him first within your browser.  For example, send Edwin's Gmail an instant message from your Gmail account, then from a browser logged in as Edwin, respond to yourself.   This will authorize conversation between you and Edwin.  Edwin will not respond to your IM's until you respond by hand first.
 
 ## Google Assistant with Google Home
  When talking to Edwin with your Google Home, you can invoke him like, "Ok Google, talk to Edwin".  You can also give him your intent in the invocation such as, "Ok Google, tell Edwin to pause the music".   Before attempting this, you should have successfully followed the Actions API tutorials and have been able to deploy a custom action you have tested with the simulator.  See the developer guide and release notes at [https://developers.google.com/actions/](https://developers.google.com/actions/) for more details.
@@ -96,8 +133,7 @@ You can use the tool under http://www.edwintheassistant.com or manually update t
             "type": "phrase",
             "target": "edwins-name"
         }
-    ],
-    "intent": "what"
+    ]
 }
 ````
 * id:
@@ -218,13 +254,13 @@ Rules that groom responses can have the following grooming methods:
 
 * messagePayload: Take a way repeated context.  If payload was "tell him to bring home milk" the groom payload would be "bring home milk"
 
-* confirm: Take anything that was given and convert it into true, or false based on the sentiment.  If queried response was "sure" the result would be "true"
+* confirm: Take anything that was given and convert it into the string "true", or "false" based on the sentiment.  If queried response was "sure" the result would be "true"
 
 ### Custom Modules
 
-Custom modules are a module that exports a "run" function.   The run function is passed the dialog object that contains everything it needs to update or change the state of the conversation.
+Custom modules are a module that exports a "run" function.   The run function is passed to the dialog object that contains everything it needs to update or change the state of the conversation.
 
-The core concept of the functions is to get data from the state, and change the state based on what the module is trying to accomplish.   A normal work flow is as follows:
+The core concept of the promise based functions is to get data from the state, and change the state based on what the module is trying to accomplish.   A normal work flow is as follows:
 
 1. Module starts
 1. Gets statement and query info

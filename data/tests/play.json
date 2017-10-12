@@ -1,0 +1,8 @@
+{
+	"id": "play",
+	"conversations": [
+    {"flow":["play the next song"],"context":"song","intent":"play","topic":"music","debug":false},
+    {"flow":["play music in the kitchen"],"context":"music","intent":"play","topic":"music","debug":false},
+		{"flow":["play some music in the kitchen"],"context":"music","topic":"music","intent":"play","debug":false}
+  ]
+}

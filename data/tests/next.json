@@ -1,0 +1,6 @@
+{
+	"id": "next",
+	"conversations": [
+    {"flow":["next song please"],"context":"song","intent":"next","topic":"music","debug":false}
+  ]
+}

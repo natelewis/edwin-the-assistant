@@ -1,0 +1,7 @@
+{
+	"id": "skip",
+	"conversations": [
+    {"flow":["skip the song"],"context":"song","intent":"skip","topic":"music","debug":false},
+    {"flow":["skip to the next track"],"context":"track","intent":"skip","topic":"music","debug":false}
+  ]
+}

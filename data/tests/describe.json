@@ -1,0 +1,66 @@
+{
+	"id": "describe",
+	"conversations": [{
+			"flow": [
+				"Describe statement yo momma"
+			],
+			"context": "statement",
+			"intent": "describe",
+			"payload": "yo momma",
+			"topic": "describe-sentence",
+			"debug": false
+		},
+		{
+			"flow": [
+				"Describe statement yo momma"
+			],
+			"context": "statement",
+			"intent": "describe",
+			"payload": "yo momma",
+			"topic": "describe-sentence",
+			"debug": false
+		},
+		{
+			"flow": [
+				"describe statement",
+				"yo momma"
+			],
+			"context": "statement",
+			"intent": "describe",
+			"payload": "yo momma",
+			"topic": "describe-sentence",
+			"debug": false
+		},
+		{
+			"flow": [
+				"describe sentence yo momma"
+			],
+			"context": "sentence",
+			"intent": "describe",
+			"payload": "yo momma",
+			"topic": "describe-sentence",
+			"debug": false
+		},
+		{
+			"flow": [
+				"describe a sentence",
+				"yo momma"
+			],
+			"context": "sentence",
+			"intent": "describe",
+			"payload": "yo momma",
+			"topic": "describe-sentence",
+			"debug": false
+		},
+		{
+			"flow": [
+				"describe sentence How long am I"
+			],
+			"context": "sentence",
+			"intent": "describe",
+			"payload": "How long am I",
+			"topic": "describe-sentence",
+			"debug": false
+		}
+	]
+}

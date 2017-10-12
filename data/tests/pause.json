@@ -1,0 +1,7 @@
+{
+	"id": "pause",
+	"conversations": [
+    {"flow":["pause song"],"topic":"music","intent":"pause","context":"song","debug":false},
+		{"flow":["pause music"],"intent":"pause","context":"music","debug":false},
+		{"flow":["pause the music"],"intent":"pause","context":"music","debug":false}  ]
+}
