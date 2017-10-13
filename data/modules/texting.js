@@ -1,32 +1,30 @@
+
+
 module.exports = {run: function(state, config) {
   return new Promise(function(resolve, reject) {
-    const edwinConfig = config;
-    let dialog = {};
-    dialog.fulfillmentType !== 'dry-run';
-
-    const debug = dialog.debug;
+    const debug = state.debug;
     debug && console.log('texting: ' + state.getStatement());
 
-    if ( !edwinConfig.twilio.enabled ) {
+    if ( !config.twilio.enabled ) {
       state.setFinal('I don\'t have a twilio set up,'
         + ' I can\'t send texts without it.');
       return resolve(state);
     }
 
-    if (dialog.fulfillmentType !== 'dry-run') {
+    if (state.fulfillmentType !== 'dry-run') {
       // if we are here, that means we are gtg to send the message!
       let client = require('twilio')(
-        edwinConfig.twilio.account,
-        edwinConfig.twilio.secret
+        config.twilio.account,
+        config.twilio.secret
       );
 
       debug && console.log('texting: Texting number ' + state.textNumber
-        + ' from ' + edwinConfig.twilio.fromNumber + ' ' + state.payload);
+        + ' from ' + config.twilio.fromNumber + ' ' + state.payload);
 
       // if we are not in a testPlan, do the actual text
       client.messages.create({
         to: state.getField('textNumber'),
-        from: edwinConfig.twilio.fromNumber,
+        from: config.twilio.fromNumber,
         body: state.getField('payload'),
       }).then( () => {
         debug && console.log('texting: sent text');

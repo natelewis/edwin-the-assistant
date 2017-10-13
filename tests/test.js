@@ -24,6 +24,7 @@ const assert = require('assert');
 const Statement = require('../lib/Statement');
 
 const Edwin = require('../lib/Edwin');
+const log = require('../lib/logger');
 
 // process an automated conversation
 const processStatement = (sessionId, testPlan, callback) => {

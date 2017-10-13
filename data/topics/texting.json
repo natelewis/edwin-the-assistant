@@ -117,8 +117,7 @@
         },
         {
             "module": "texting",
-            "reply": [],
-            "query": "final"
+            "reply": []
         }
     ],
     "topic": "texting"
