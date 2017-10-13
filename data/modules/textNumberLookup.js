@@ -4,14 +4,19 @@ const lookupTextNumber = (name, config) => {
     return undefined;
   }
 
-  // return if we have a config match
-  return config.twilio.contacts[name.toLowerCase()];
+  // make it lc so it is normalized
+  const lcName = name.toLowerCase();
+
+  if (config.has('twilio.contacts.' + lcName)) {
+    return config.get('twilio.contacts.' + lcName);
+  }
+
+  // nope, no person
+  return undefined;
 };
 
 module.exports = {run: function(state, config) {
   return new Promise(function(resolve, reject) {
-    console.log('textNumberLookup: ' + state.getStatement());
-
     // process incomming text number from annotation
     if (state.getQuery() === undefined) {
       state.setField('textNumber',
