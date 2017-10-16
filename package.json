@@ -40,6 +40,7 @@
     "eslint-config-google": "^0.9.1",
     "mocha": "^4.0.1",
     "nodemon": "^1.11.0",
-    "nyc": "^11.1.0"
+    "nyc": "^11.1.0",
+    "sinon": "^4.0.1"
   }
 }
