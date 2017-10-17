@@ -3,8 +3,16 @@ module.exports = {
     "ecmaVersion": 6,
     "sourceType": "module"
   },
+  "env": {
+    "node": true
+  },
   "extends": "google",
   "rules": {
+    'no-var': 'error',
+    'prefer-const': ['error', {
+      destructuring: 'any',
+      ignoreReadBeforeAssign: true,
+    }],
     indent: [
       'error',
       2, {

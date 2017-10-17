@@ -32,7 +32,7 @@ const Test = function() {
   };
 
   const processStatement = function(sessionId, testPlan, callback) {
-    let debug = testPlan.debug;
+    const debug = testPlan.debug;
     // each statement is shifted from the flow until they are all gone
     if (testPlan.flow && testPlan.flow.length > 0) {
       const statement = testPlan.flow.shift();
@@ -71,7 +71,7 @@ const Test = function() {
       replyTo: 'testing',
     };
 
-    let title = 'Edwin';
+    let title = 'Conversation';
     testPlan.flow.forEach(function(statement) {
       // build the flow text for the vows topic
       title += ' -> ' + statement;

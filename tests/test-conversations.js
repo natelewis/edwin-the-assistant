@@ -12,7 +12,7 @@ const testRule = {
   in: {
     replyTo: 'test',
   },
-  flow: ['hello how are you', 'quit'],
+  flow: ['quit'],
   context: undefined,
   intent: undefined,
   payload: undefined,
@@ -38,10 +38,24 @@ files.forEach((file) => {
   });
 });
 
-describe('Test conversation in debug mode', function() {
+describe('Test one word, one step conversation in debug mode', function() {
   it('should have user quit in output', function(done) {
-    let unmute = mute(process.stdout);
-    let spy = sinon.spy(console, 'log');
+    const unmute = mute(process.stdout);
+    const spy = sinon.spy(console, 'log');
+    test.processStatement('Debug Mode', testRule, function(state) {
+      assert(spy.calledWith('* USER : quit'));
+      unmute();
+      spy.restore();
+      done();
+    });
+  });
+});
+
+describe('Test two step conversation in debug mode', function() {
+  it('should have user quit in output', function(done) {
+    const unmute = mute(process.stdout);
+    const spy = sinon.spy(console, 'log');
+    testRule.flow = ['how are you', 'quit'];
     test.processStatement('Debug Mode', testRule, function(state) {
       assert(spy.calledWith('* USER : quit'));
       unmute();
