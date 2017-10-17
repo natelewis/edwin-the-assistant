@@ -28,6 +28,10 @@ npm start
 
 After that, update the config file for what client you want to use and restart Edwin.
 
+## The Config File
+
+Upon running Edwin the first time a default config file will be placed in the root directory of the application.  You then can change the config json and restart your server at any point.  To use a different config file you can specify EDWIN_CONFIG environment variable to point at the new config file.
+
 ## Standalone Mic And Speaker
 
 Talk to Edwin like a Google Home or Amazon Alexa.

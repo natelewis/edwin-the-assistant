@@ -21,66 +21,51 @@
 'use strict';
 
 const assert = require('assert');
-const Statement = require('../lib/Statement');
 
 const Edwin = require('../lib/Edwin');
 const log = require('../lib/logger');
 
-// process an automated conversation
-const processStatement = (sessionId, testPlan, callback) => {
-  let debug = testPlan.debug;
-  // each statement is shifted from the flow until they are all gone
-  if (testPlan.flow && testPlan.flow.length > 0) {
-    const statement = testPlan.flow.shift();
+const Test = function() {
+  // shorthand helper for test assert description
+  const testExplained = (field, value) => {
+    return `-- Should have ${field} of "${value}"`;
+  };
 
-    testPlan.in.replyTo = 'testing';
-    testPlan.debug && log.statement(statement);
+  const processStatement = function(sessionId, testPlan, callback) {
+    let debug = testPlan.debug;
+    // each statement is shifted from the flow until they are all gone
+    if (testPlan.flow && testPlan.flow.length > 0) {
+      const statement = testPlan.flow.shift();
 
-    debug && console.log('\n' + Array(46).join('='));
-    if (typeof testPlan.in.reply !== 'undefined') {
-      debug && console.log('* EDWIN : ' + testPlan.in.reply);
+      testPlan.in.replyTo = 'testing';
+      testPlan.debug && log.statement(statement);
+
+      debug && console.log('\n' + Array(46).join('='));
+      if (typeof testPlan.in.reply !== 'undefined') {
+        debug && console.log('* EDWIN : ' + testPlan.in.reply);
+        debug && console.log(Array(46).join('='));
+      }
+      debug && console.log('* USER : ' + statement);
       debug && console.log(Array(46).join('='));
+
+      let edwin = new Edwin({
+        sessionId: sessionId,
+        callback: function(state) {
+          testPlan.in = state;
+          debug && log.state(state);
+          return processStatement(sessionId, testPlan, callback);
+        },
+      });
+      edwin.fulfillmentType = 'dry-run';
+
+      // pass the results back into the in obj via the test callback
+      edwin.converse(statement);
+    } else {
+      return callback(testPlan.in);
     }
-    debug && console.log('* USER : ' + statement);
-    debug && console.log(Array(46).join('='));
+  };
 
-    let edwin = new Edwin({
-      sessionId: sessionId,
-      callback: function(state) {
-        testPlan.in = state;
-        debug && log.state(state);
-        return processStatement(sessionId, testPlan, callback);
-      },
-    });
-    edwin.fulfillmentType = 'dry-run';
-
-    // pass the results back into the in obj via the test callback
-    edwin.converse(statement);
-  } else {
-    return callback(testPlan.in);
-  }
-};
-
-// shorthand helper for test assert description
-const testExplained = (field, value) => {
-  return `-- Should have ${field} of "${value}"`;
-};
-
-module.exports = {
-  // assert the statement chain with no fulfillment
-  conversation: function(testPlan) {
-    const debug = testPlan.debug;
-
-    const statement = new Statement(testPlan.flow[0]);
-    debug && console.log(Array(46).join('*'));
-    debug && console.log(Array(46).join('-'));
-    debug && console.log('* USER INVOCATION : ' + testPlan.flow[0]);
-    debug && console.log(Array(46).join('-'));
-    debug && console.log('* ACTION: ' + statement.getImpliedIntent());
-    debug && console.log('* CONTEXT: ' + statement.getImpliedContext());
-    debug && console.log(Array(20).join('-') + ' plan ' + Array(20).join('-'));
-    debug && console.log(testPlan);
-
+  const conversation = function(testPlan) {
     // our vars that will float through the convo
     testPlan.in = {
       replyTo: 'testing',
@@ -128,5 +113,12 @@ module.exports = {
         });
       });
     });
-  },
-};
+  };
+
+  return {
+    processStatement: processStatement,
+    conversation: conversation,
+  };
+}();
+
+module.exports = Test;
