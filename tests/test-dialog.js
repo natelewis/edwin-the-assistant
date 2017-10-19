@@ -1,9 +1,20 @@
 'use strict';
 
 const assert = require('assert');
+const mute = require('mute');
+const sinon = require('sinon');
 
 const Dialog = require('../lib/Dialog');
 const State = require('../lib/State');
+
+let sandbox;
+beforeEach(function() {
+  sandbox = sinon.sandbox.create();
+});
+
+afterEach(function() {
+  sandbox.restore();
+});
 
 const state = new State();
 const dialog = new Dialog();
@@ -69,5 +80,23 @@ describe('Dialog.respondIfTrivialResponseRequired()', function() {
     state.setStatement('yo');
     dialog.respondIfTrivialResponseRequired(state);
     assert.notEqual(state.getFinal(), undefined);
+  });
+});
+
+describe('Dialog.loadModule', function() {
+  it('should throw error on module that has errors in it', () => {
+    assert.throws(function() {
+      dialog.loadModule('../../LICENSE');
+    }, Error);
+  });
+
+  it('should log not found if the module is missing in debug mode', () => {
+    const debugDialog = new Dialog({debug: true});
+    const unmute = mute(process.stdout);
+    const spy = sandbox.spy(console, 'log');
+    debugDialog.loadModule('asdf');
+    unmute();
+    assert(spy.called);
+    spy.restore();
   });
 });
