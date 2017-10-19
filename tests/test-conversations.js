@@ -5,7 +5,7 @@ const sinon = require('sinon');
 const assert = require('assert');
 const mute = require('mute');
 
-const test = require('./test');
+const test = require('../lib/test');
 const testDir = './data/tests';
 
 const testRule = {
@@ -41,7 +41,7 @@ files.forEach((file) => {
 describe('Test one word, one step conversation in debug mode', function() {
   it('should have user quit in output', function(done) {
     const unmute = mute(process.stdout);
-    const spy = sinon.spy(console, 'log');
+    const spy = sandbox.spy(console, 'log');
     test.processStatement('Debug Mode', testRule, function(state) {
       assert(spy.calledWith('* USER : quit'));
       unmute();
@@ -54,7 +54,7 @@ describe('Test one word, one step conversation in debug mode', function() {
 describe('Test two step conversation in debug mode', function() {
   it('should have user quit in output', function(done) {
     const unmute = mute(process.stdout);
-    const spy = sinon.spy(console, 'log');
+    const spy = sandbox.spy(console, 'log');
     testRule.flow = ['how are you', 'quit'];
     test.processStatement('Debug Mode', testRule, function(state) {
       assert(spy.calledWith('* USER : quit'));

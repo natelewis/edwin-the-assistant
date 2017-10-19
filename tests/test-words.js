@@ -1,4 +1,7 @@
+'use strict';
+
 const assert = require('assert');
+
 const Words = require('../lib/Words');
 
 describe('Words object', function() {

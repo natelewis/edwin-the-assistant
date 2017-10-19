@@ -1,4 +1,7 @@
+'use strict';
+
 const assert = require('assert');
+
 const State = require('../lib/State');
 
 const state = new State();
