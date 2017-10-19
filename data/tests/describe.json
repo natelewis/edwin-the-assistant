@@ -56,6 +56,17 @@
 		{
 			"flow": [
 				"Describe statement",
+				"honk horn"
+			],
+			"context": "statement",
+			"intent": "describe",
+			"payload": "honk horn",
+			"topic": "describe-sentence",
+			"debug": false
+		},
+		{
+			"flow": [
+				"Describe statement",
 				"where what which all 5 + 5 = 10 up a's eat eats eaten ate who whose"
 			],
 			"context": "statement",
