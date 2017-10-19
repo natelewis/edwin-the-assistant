@@ -1,0 +1,13 @@
+{
+	"id": "what",
+	"conversations": [{
+			"flow": [
+				"What is your name"
+			],
+			"context": "your name",
+			"intent": "what",
+			"topic": "edwins-name",
+			"debug": false
+		}
+	]
+}
