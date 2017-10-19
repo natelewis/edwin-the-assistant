@@ -1,16 +1,9 @@
 module.exports = {run: function(state, config) {
   return new Promise(function(resolve, reject) {
     const Statement = require('./../../lib/Statement');
-    const debug = false;
-    debug && console.log('describe-sentence: ' + state.getStatement());
 
-    // we need this to continue
-    if (state.getField('payload') === undefined) {
-      return resolve(state);
-    }
-
-    let confirmation = 'Sure thing!';
-    let numberOfWords = state.getField('payload').split(' ').length;
+    const confirmation = 'Sure thing!';
+    const numberOfWords = state.getField('payload').split(' ').length;
 
     // process the statement
     const statement = new Statement(state.getField('payload'), false);
@@ -33,7 +26,8 @@ module.exports = {run: function(state, config) {
     for (let i = 0; i < statement.wordListLC.length; i++) {
       if (statement.wordListLC[i] === '\'') {
         wordTypes += 'Then an apostrophe.\n';
-      } else if (statement.wordListLC[i].length === 1 && statement.wordListLC[i] !== 's') {
+      } else if (statement.wordListLC[i].length === 1
+          && statement.wordListLC[i] !== 's') {
         wordTypes += 'Then the letter "' + statement.wordListLC[i] + '".\n';
       } else {
         wordTypes += 'The word "' + statement.wordListLC[i];
