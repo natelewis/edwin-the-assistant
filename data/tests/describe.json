@@ -12,11 +12,55 @@
 		},
 		{
 			"flow": [
-				"Describe statement yo momma"
+				"Describe statement this and that , one more thing"
 			],
 			"context": "statement",
 			"intent": "describe",
-			"payload": "yo momma",
+			"payload": "this and that , one more thing",
+			"topic": "describe-sentence",
+			"debug": false
+		},
+		{
+			"flow": [
+				"Describe statement",
+				"There is One 1 mon 2 three buckle my big , bigger, biggest shoe"
+			],
+			"context": "statement",
+			"intent": "describe",
+			"payload": "There is One 1 mon 2 three buckle my big , bigger, biggest shoe",
+			"topic": "describe-sentence",
+			"debug": false
+		},
+		{
+			"flow": [
+				"Describe statement",
+				"Is it faster Edinburgh , boys , man , men , Smiths or dogs Õs ?"
+			],
+			"context": "statement",
+			"intent": "describe",
+			"payload": "Is it faster Edinburgh , boys , man , men , Smiths or dogs Õs ?",
+			"topic": "describe-sentence",
+			"debug": false
+		},
+		{
+			"flow": [
+				"Describe statement",
+				"ALL AWAY S Tenants SP-44001 Minutemen St. Patrick’s Cathedral"
+			],
+			"context": "statement",
+			"intent": "describe",
+			"payload": "ALL AWAY S Tenants SP-44001 Minutemen St. Patrick’s Cathedral",
+			"topic": "describe-sentence",
+			"debug": false
+		},
+		{
+			"flow": [
+				"Describe statement",
+				"where what which all 5 + 5 = 10 up a's eat eats eaten ate who whose"
+			],
+			"context": "statement",
+			"intent": "describe",
+			"payload": "where what which all 5 + 5 = 10 up a's eat eats eaten ate who whose",
 			"topic": "describe-sentence",
 			"debug": false
 		},
