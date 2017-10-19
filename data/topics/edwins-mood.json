@@ -10,14 +10,6 @@
                 "I feel pretty good today, yourself?",
                 "Pretty awesome, how about you?",
                 "I'm great, yourself?"
-            ],
-            "requirement": [
-                {
-                    "type": "typeof",
-                    "field": "your-mood",
-                    "operator": "===",
-                    "value": "undefined"
-                }
             ]
         },
         {

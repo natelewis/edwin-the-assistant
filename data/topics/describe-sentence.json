@@ -6,8 +6,7 @@
             "type": "everythingAfterWord",
             "startWord": "[initialContext]",
             "wordType": "",
-            "groom": "messagePayload",
-            "requirement": []
+            "groom": "messagePayload"
         }
     ],
     "steps": [
@@ -15,14 +14,6 @@
             "query": "payload",
             "reply": [
                 "What sentence do you want me to describe?"
-            ],
-            "requirement": [
-                {
-                    "type": "typeof",
-                    "field": "payload",
-                    "operator": "===",
-                    "value": "undefined"
-                }
             ]
         },
         {

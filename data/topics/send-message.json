@@ -8,14 +8,6 @@
             "groom": "",
             "reply": [
                 "Got it,  would you like to send a text or email?"
-            ],
-            "requirement": [
-                {
-                    "type": "typeof",
-                    "field": "contextSwitcher",
-                    "operator": "===",
-                    "value": "undefined"
-                }
             ]
         },
         {
@@ -23,7 +15,6 @@
             "reply": [
                 "Didn't catch that.  If you want to send an email or text you can say: Edwin send a text, or Edwin send an email."
             ],
-            "requirement": [],
             "query": "final"
         }
     ],
