@@ -33,7 +33,7 @@ module.exports = {run: function(state, config) {
     for (let i = 0; i < statement.wordListLC.length; i++) {
       if (statement.wordListLC[i] === '\'') {
         wordTypes += 'Then an apostrophe.\n';
-      } else if (statement.wordListLC[i].length === 1) {
+      } else if (statement.wordListLC[i].length === 1 && statement.wordListLC[i] !== 's') {
         wordTypes += 'Then the letter "' + statement.wordListLC[i] + '".\n';
       } else {
         wordTypes += 'The word "' + statement.wordListLC[i];
