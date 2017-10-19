@@ -1,7 +1,9 @@
 {
 	"id": "text",
   "conversations": [
+		{"flow":["Can you text Nate", "Let him know I'm on my way home","yes"],"topic":"texting","intent":"text","context":"nate","contact":"nate","payload":"I'm on my way home","debug":false},
     {"flow":["Can you text Nate I'm on my way home","yes"],"topic":"texting","intent":"text","context":"nate","contact":"nate","payload":"I'm on my way home","debug":false},
-    {"flow":["Text Nate pick up milk on your way home","yes"],"topic":"texting","intent":"text","context":"nate","contact":"nate","payload":"pick up milk on your way home","debug":false}
+    {"flow":["Text Nate pick up milk on your way home","yes"],"topic":"texting","intent":"text","context":"nate","contact":"nate","payload":"pick up milk on your way home","debug":false},
+		{"flow":["Text to Nate pick up milk on your way home","yes"],"topic":"texting","intent":"text","context":"nate","contact":"nate","payload":"pick up milk on your way home","debug":false}
   ]
 }
