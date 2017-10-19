@@ -28,6 +28,24 @@ describe('Dialog.respondIfEmptyStatement()', function() {
   });
 });
 
+describe('Dialog.setInitialIntent()', function() {
+  it('should not set intent if implied intent is undefined', function() {
+    state.reset();
+    state.setStatement('');
+    dialog.setInitialIntent(state);
+    assert.equal(state.intent, undefined);
+  });
+});
+
+describe('Dialog.setInitialImpliedContext()', function() {
+  it('should not set context if implied intent is undefined', function() {
+    state.reset();
+    state.setStatement('');
+    dialog.setInitialImpliedContext(state);
+    assert.equal(state.context, undefined);
+  });
+});
+
 describe('Dialog.respondIfTrivialResponseRequired()', function() {
   it('should set final if one word trivial statement is set', function() {
     state.reset();
