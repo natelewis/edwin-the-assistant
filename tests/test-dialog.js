@@ -46,6 +46,23 @@ describe('Dialog.setInitialImpliedContext()', function() {
   });
 });
 
+describe('Dialog.processStep()', function() {
+  it('should set final if a module is not real', function() {
+    state.reset();
+    state.setStatement('who buddy');
+    dialog.processStep([{module: 'notAThing'}], state);
+    assert.notEqual(state.getFinal(), undefined);
+  });
+});
+
+describe('Dialog.respondIfInvalidIntent()', function() {
+  it('should respond with final if intent is invalid', function() {
+    state.reset();
+    dialog.respondIfInvalidIntent(state);
+    assert.notEqual(state.getFinal(), undefined);
+  });
+});
+
 describe('Dialog.respondIfTrivialResponseRequired()', function() {
   it('should set final if one word trivial statement is set', function() {
     state.reset();
