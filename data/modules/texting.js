@@ -13,7 +13,7 @@ module.exports = {run: function(state, config) {
 
     if (state.fulfillmentType !== 'dry-run') {
       // if we are here, that means we are gtg to send the message!
-      let client = require('twilio')(
+      const client = require('twilio')(
         config.get('twilio').account,
         config.get('twilio').secret
       );
