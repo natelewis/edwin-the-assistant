@@ -9,7 +9,7 @@ Edwin is an Artificial Intelligence robot designed to be flexible, and extensibl
  * Google Hangouts Bot
 
 ##### 3rd Party Integrations
- * Sonos ( Volume, pause, resume type functionality )
+ * Sonos ( Simple volume, pause, resume type functionality )
  * Twilio ( Texting with predefined contact list )
 
 ## Setup Instructions
@@ -95,6 +95,12 @@ Create a new Gmail account that will serve as your Edwin.  Update your config fi
 
 Each person you want to talk to Edwin has to respond to him first within your browser.  For example, send Edwin's Gmail an instant message from your Gmail account, then from a browser logged in as Edwin, respond to yourself.   This will authorize conversation between you and Edwin.  Edwin will not respond to your IM's until you respond by hand first.
 
+## Sonos Implementation
+ If you have Sonos on the same local network as your Edwin it will just discover it.  There is bit more to do to expand it to be a bit smarter, but if you want basic stuff like next, pause, resume, volume up/down functionality, it should be plug and play.
+
+ For multipule zones just say the zone name with the command it will will target that zone.
+
+
 ## Google Assistant with Google Home
  When talking to Edwin with your Google Home, you can invoke him like, "Ok Google, talk to Edwin".  You can also give him your intent in the invocation such as, "Ok Google, tell Edwin to pause the music".   Before attempting this, you should have successfully followed the Actions API tutorials and have been able to deploy a custom action you have tested with the simulator.  See the developer guide and release notes at [https://developers.google.com/actions/](https://developers.google.com/actions/) for more details.
 
@@ -104,9 +110,6 @@ Each person you want to talk to Edwin has to respond to him first within your br
  1. Update the edwin.json with your URL your hosting your app at
  1. Preview the action using the gactions CLI: ./gactions test --action_package edwin.json --project <your project id>
  1. Use the gactions simulator to test: ./gactions simulate
-
-### Single Use Action With Google Assistant
-If you only want to use Edwin for a specific function on your Google Home, you can do this with a simple change.  An example of this would be to have him control a Sonos device with an invocation name of 'Sonos'.   In this case you can change the invocation_name while generating a preview to 'Sonos'.  Then address your Google Home in the context of "Ok Google, tell Sonos to turn down the music".   He is full featured Edwin, but it will feel like he is designed just for your Sonos.
 
 ### Extending Intent And Context Discovery Logic
 You can use the tool under http://www.edwintheassistant.com or manually update the files under the data directory.  Here is an example of each type of file.
@@ -238,7 +241,7 @@ You can use the tool under http://www.edwintheassistant.com or manually update t
 
 * steps.query:
 
-  The field name this step is querying.  If a the field has a value, this step will be skipped. If a field name is "final" then if it responds for this query it will be the final result of the topic converstation.
+  The field name this step is querying.  If a the field has a value, this step will be skipped. If a field name is "final" then if it responds for this query it will be the final result of the topic conversation.
 
 * steps.groom:
 

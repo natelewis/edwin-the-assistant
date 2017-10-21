@@ -25,9 +25,6 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const config = require('./lib/config');
 
-const State = require('./lib/State');
-const sss=new State();
-
 // bring in all our interfaces
 
 // template for new config in case one isn't present
@@ -45,6 +42,9 @@ require('./lib/client/slack');
 
 // edwin via standalone Mic/Speaker
 require('./lib/client/standalone');
+
+// talk to a local Sonos devices if it can find one
+require('./lib/client/sonos');
 
 // edwin via api ( configuration client & listener)
 const api = require('./lib/client/api');
