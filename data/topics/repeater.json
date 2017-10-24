@@ -1,0 +1,16 @@
+{
+    "id": "repeater",
+    "annotation": [
+        {
+            "field": "payload",
+            "type": "everythingAfterWord",
+            "startWord": "[intent]"
+        }
+    ],
+    "steps": [
+        {
+            "module": "repeater"
+        }
+    ],
+    "topic": "undefined"
+}

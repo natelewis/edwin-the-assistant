@@ -1,0 +1,12 @@
+{
+    "id": "say",
+    "failReply": "I can't say that",
+    "contextModifiers": [
+        {
+            "context": "*",
+            "type": "map",
+            "target": "repeater"
+        }
+    ],
+    "intent": "undefined"
+}

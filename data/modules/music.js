@@ -73,6 +73,8 @@ module.exports = {run: function(state, config) {
       // "turn the music back on"
       if (statement.match(/play/i) === null) {
         statement = statement.replace(/back on/i, 'resume');
+        statement = statement.replace(/music on/i, 'resume');
+        statement = statement.replace(/on the /i, 'resume');
       }
 
       // if there is a follow up question, this was the original intent to sonos
