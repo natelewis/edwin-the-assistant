@@ -9,7 +9,8 @@
     ],
     "steps": [
         {
-            "module": "repeater"
+            "module": "repeater",
+            "reply": []
         }
     ],
     "topic": "undefined"
