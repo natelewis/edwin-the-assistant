@@ -28,6 +28,5 @@
             "context": "music",
             "topic": "music"
         }
-    ],
-    "intent": "turn"
+    ]
 }

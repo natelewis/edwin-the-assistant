@@ -27,7 +27,7 @@
     "google-speech-from-buffer": "0.0.2",
     "hangouts-bot": "^0.2.1",
     "jsonfile": "^2.4.0",
-    "mic-to-speech": "0.0.1",
+    "mic-to-speech": "1.0.1",
     "mute": "^2.0.6",
     "pos": "^0.4.2",
     "request": "^2.79.0",

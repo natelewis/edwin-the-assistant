@@ -10,7 +10,7 @@ Edwin is an Artificial Intelligence robot designed to be flexible, and extensibl
 
 ##### 3rd Party Integrations
  * Sonos ( Simple volume, pause, resume type functionality )
- * Twilio ( Texting with predefined contact list )
+ * Twilio ( Texting with predefined contact list ) -- EXPEREMENTAL
 
 ## Setup Instructions
 The quick start guide and configuration tool is located here:
@@ -40,6 +40,7 @@ Talk to Edwin like a Google Home or Amazon Alexa.
 
 - GCP account with Google Speech API turned on
 - Mac or Raspberry Pi compatible
+- A speaker plugged into the Pi.
 
 #### Environment setup for Mac
 
@@ -48,7 +49,13 @@ Talk to Edwin like a Google Home or Amazon Alexa.
 
 #### Environment setup for Linux/Raspberry Pi
 
-1. sudo apt-get install sox libsox-fmt-all
+1. sudo apt-get install sox libsox-fmt-all festival festvox-kallpc16k
+
+Headphone jack audio:
+amixer cset numid=3 1
+
+or HDMI audio:
+amixer cset numid=3 2
 
 #### Environment setup for Google Speech API
 
@@ -60,9 +67,13 @@ https://console.cloud.google.com/apis/credentials
 export GOOGLE_APPLICATION_CREDENTIALS=[Path to service account key json file]
 ```
 
+#### Finish
+1. Update the config.json and set "standalone": { "enabled": true }
+2. Restart Edwin.
+
 #### Notes
 
-* This is the coolest way to talk to to Edwin, but is dependant on hardware being in setup.  If you have a pretty standard system, it should "just work".
+* This is the fun way to talk to to Edwin, but is dependant on hardware being in setup.  If you have a pretty standard system, it should "just work".
 
 * Google Home and Alexa use array microphones to know your voice over background noise. If your serious about using Edwin for more than just tinkering, I would recommend the investment.
 
@@ -293,11 +304,11 @@ Return the value of a queried field.
 
 Set the value of field, that normaly is set from a query.
 
-* state.statement()
+* state.getStatement()
 
 Return the current statement that is being processed.
 
-* state.query()
+* state.getQuery()
 
 Return the current query that was asked.
 

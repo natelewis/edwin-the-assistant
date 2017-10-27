@@ -1,7 +1,6 @@
-
-
 module.exports = {run: function(state, config) {
   return new Promise(function(resolve, reject) {
+    // EXPEREMENTAL!!!!
     const debug = state.debug;
     debug && console.log('texting: ' + state.getStatement());
 

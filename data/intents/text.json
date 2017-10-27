@@ -13,6 +13,5 @@
             "context": "text",
             "topic": "texting"
         }
-    ],
-    "intent": "text"
+    ]
 }

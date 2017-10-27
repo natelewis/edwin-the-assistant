@@ -12,6 +12,5 @@
             "type": "map",
             "target": "describe-sentence"
         }
-    ],
-    "intent": "describe"
+    ]
 }

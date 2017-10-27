@@ -22,6 +22,5 @@
             "type": "phrase",
             "target": "edwins-name"
         }
-    ],
-    "intent": "what"
+    ]
 }

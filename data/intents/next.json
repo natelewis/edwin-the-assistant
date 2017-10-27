@@ -17,6 +17,5 @@
             "type": "map",
             "target": "music"
         }
-    ],
-    "intent": "next"
+    ]
 }

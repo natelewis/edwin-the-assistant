@@ -1,5 +1,5 @@
 {
-    "id": "response",
+    "id": "edwins-inquery-response",
     "steps": [
         {
             "query": "final",
@@ -12,6 +12,5 @@
                 "Thinking about the meaning of life."
             ]
         }
-    ],
-    "topic": "response"
+    ]
 }

@@ -1,5 +1,5 @@
 {
-    "id": "name",
+    "id": "edwins-name",
     "annotation": [],
     "steps": [
         {
@@ -8,6 +8,5 @@
             ],
             "query": "final"
         }
-    ],
-    "topic": "undefined"
+    ]
 }
