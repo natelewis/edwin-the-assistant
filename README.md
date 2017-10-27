@@ -52,9 +52,11 @@ Talk to Edwin like a Google Home or Amazon Alexa.
 1. sudo apt-get install sox libsox-fmt-all festival festvox-kallpc16k
 
 Headphone jack audio:
+
 amixer cset numid=3 1
 
-or HDMI audio:
+HDMI audio:
+
 amixer cset numid=3 2
 
 #### Environment setup for Google Speech API
