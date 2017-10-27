@@ -49,15 +49,15 @@ Talk to Edwin like a Google Home or Amazon Alexa.
 
 #### Environment setup for Linux/Raspberry Pi
 
-1. sudo apt-get install sox libsox-fmt-all festival festvox-kallpc16k
+`sudo apt-get install sox libsox-fmt-all festival festvox-kallpc16k`
 
 Headphone jack audio:
 
-amixer cset numid=3 1
+`amixer cset numid=3 1`
 
-HDMI audio:
+or HDMI audio:
 
-amixer cset numid=3 2
+`amixer cset numid=3 2`
 
 #### Environment setup for Google Speech API
 
