@@ -58,7 +58,6 @@ const next = (sonos) => {
 module.exports = {run: function(state, config) {
   return new Promise(function(resolve, reject) {
     const zones = state.getSonosZoneList();
-    console.log(zones);
 
     if (zones.length < 1) {
       state.setFinal('I can\'t find any Sonos devices on your network, sorry!');
@@ -67,7 +66,10 @@ module.exports = {run: function(state, config) {
       let statement = state.getStatement();
 
       // normalize things to resume
-      statement = statement.replace(/play music/i, 'resume');
+      if (statement.replace(/play music/i)) {
+        statement = statement.replace(/play music/i, 'resume');
+        state.setIntent('resume');
+      }
 
       // if we are not talking about playing anything change back on for resume
       // "turn the music back on"
@@ -108,7 +110,6 @@ module.exports = {run: function(state, config) {
         }
 
         // turn volume up default 20 percent
-        console.log(statement);
         if (statement.match(/(down|lower)/i)) {
           return setVolume(sonos, DOWN).then(() => {
             resolve(state.setFinal(''));
