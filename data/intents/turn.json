@@ -21,6 +21,11 @@
             "context": "music",
             "type": "map",
             "target": "music"
+        },
+        {
+            "context": "volume",
+            "type": "map",
+            "target": "music"
         }
     ],
     "topicMap": [
