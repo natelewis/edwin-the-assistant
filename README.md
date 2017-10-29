@@ -59,14 +59,23 @@ or HDMI audio:
 
 `amixer cset numid=3 2`
 
+You also need to upgrade to the latest version of Node.js.  First remove the current version:
+
+`sudo apt-get remove nodered -y`
+`sudo apt-get remove nodejs nodejs-legacy npm -y`
+
+Now install the latest version via Node.js Version Manager:
+`curl -L https://git.io/n-install | bash`
+
 #### Environment setup for Google Speech API
 
-1. Your API key can be created here with your GCP project here:
-https://console.cloud.google.com/apis/credentials
-2. Export your service account key json file before running Edwin
+1. Enable Google Speech API here: https://console.cloud.google.com/apis/library/speech.googleapis.com/
+2. Your service account key can be created from your GCP project here:
+https://console.cloud.google.com/apis/credentials ( Create a new one with "Project -> Owner" )
+2. Export your service account key as a JSON file
 
 ```sh
-export GOOGLE_APPLICATION_CREDENTIALS=[Path to service account key json file]
+export GOOGLE_APPLICATION_CREDENTIALS=[Service account key json file with full path]
 ```
 
 #### Finish
