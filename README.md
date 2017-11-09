@@ -122,18 +122,43 @@ Each person you want to talk to Edwin has to respond to him first within your br
 
  For multipule zones just say the zone name with the command it will will target that zone.
 
-
 ## Google Assistant with Google Home
- When talking to Edwin with your Google Home, you can invoke him like, "Ok Google, talk to Edwin".  You can also give him your intent in the invocation such as, "Ok Google, tell Edwin to pause the music".   Before attempting this, you should have successfully followed the Actions API tutorials and have been able to deploy a custom action you have tested with the simulator.  See the developer guide and release notes at [https://developers.google.com/actions/](https://developers.google.com/actions/) for more details.
+ When talking to Edwin with your Google Home, you can invoke him like, "Ok Google, talk to Edwin".  You can also give him your annotation in the invocation such as, "Ok Google, tell Edwin to pause the music".
 
-#### Install to Google Assistant
- 1. Deploy this app to somewhere and run it ( Anything that can host a node.js server ) or use localtunnel.me or ngrok.  For simplicity I use localtunnel because it lets you set a subdomain ( ex. lt --port 8080 --subdomain edwin )
- 1. Update the config file and set the googleAssistant port to whatever it should be ( 8080 usually ).
- 1. Update the edwin.json with your URL your hosting your app at
- 1. Preview the action using the gactions CLI: ./gactions test --action_package edwin.json --project <your project id>
- 1. Use the gactions simulator to test: ./gactions simulate
+#### Create Action project
+ From the Google Actions console create a new project [https://console.actions.google.com] (https://console.actions.google.com).
 
-### Extending Intent And Context Discovery Logic
+#### Turn On Google Assistant Support and Add Your Project ID
+
+ In the config.json set enabled to true and insert the project ID.  The project ID can be found url after you created the project, or under the project settings.
+``` javascript
+    googleAssistant: {
+        "enabled": true
+        "project": "edwin-123456"
+    }
+```
+
+#### Turn On Ngrok Support
+
+ Ngrok will create a tunnel for the Google fulfillment to work against your local version of Edwin
+``` javascript
+    ngrok: {
+        "enabled": true
+    }
+```
+
+#### Download the gactions CLI
+
+Download the gactions binary and save it in the root directory of your project: [https://developers.google.com/actions/tools/gactions-cli](https://developers.google.com/actions/tools/gactions-cli)
+
+Then make it executable:
+`chmod +x ./gactions`
+
+#### Test It Out
+
+From here you can go the simulator page in the Google Actions console, your Google Home, or your Google Assistant and say "Talk to My Test App".  This will respond, and start the conversation.   If you want it to say "Talk to Edwin", then you have to update your App Information under the Google Actions console for your project.
+
+## Extending Intent and Context Discovery Logic
 You can use the tool under http://www.edwintheassistant.com or manually update the files under the data directory.  Here is an example of each type of file.
 
 ##### JSON Intent Example 'data/intents/what.json'

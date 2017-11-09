@@ -35,6 +35,9 @@ app.use(bodyParser.json({type: 'application/json'}));
 app.use(cors());
 
 // edwin via hangouts
+require('./lib/client/ngrok');
+
+// edwin via hangouts
 require('./lib/client/hangouts');
 
 // edwin via Slack
@@ -52,7 +55,7 @@ app.use('/api', api);
 
 // edwin via google assistant
 const ga = require('./lib/client/googleAssistant');
-ga.use('/', api);
+app.use('/', ga);
 
 // start the server for Google Actions / API / Listner
 const server = app.listen(app.get('port'), () => {

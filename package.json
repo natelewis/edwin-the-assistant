@@ -11,13 +11,13 @@
   "scripts": {
     "lint": "eslint \"**/*.js\" --fix; true",
     "start": "node app.js",
-    "monitor": "nodemon --trace-warnings --ignore 'config.json' app.js",
+    "monitor": "nodemon --trace-warnings --ignore 'action.json' --ignore 'config.json' app.js",
     "sim": "/bin/bash ./gactions simulate",
     "test": "node node_modules/mocha/bin/mocha \"tests/test-*.js\"",
     "coverage": "nyc --reporter=html --reporter=lcov node_modules/mocha/bin/mocha \"tests/test-*.js\"; nyc report"
   },
   "dependencies": {
-    "actions-on-google": "1.0.4",
+    "actions-on-google": "^1.5.1",
     "basic-auth": "^1.1.0",
     "body-parser": "^1.15.2",
     "chalk": "^2.1.0",
@@ -43,6 +43,7 @@
     "eslint": "^4.4.1",
     "eslint-config-google": "^0.9.1",
     "mocha": "^4.0.1",
+    "ngrok": "^2.2.23",
     "nodemon": "^1.11.0",
     "nyc": "^11.1.0",
     "sinon": "^4.0.1"

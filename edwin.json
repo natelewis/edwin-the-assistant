@@ -4,7 +4,7 @@
         "description": "Edwin The Assistant",
         "name": "MAIN",
         "fulfillment": {
-          "conversationName": "edwinTheAssistant"
+          "conversationName": "edwin"
         },
         "intent": {
           "name": "actions.intent.MAIN",
@@ -20,9 +20,9 @@
       }
     ],
     "conversations": {
-      "edwinTheAssistant": {
-        "name": "edwinTheAssistant",
-        "url": "<your edwin url https://something.something.com"
+      "edwin": {
+        "name": "edwin",
+        "url": ""
       }
     }
 }
