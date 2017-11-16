@@ -59,5 +59,5 @@ app.use('/', ga);
 
 // start the server for Google Actions / API / Listner
 const server = app.listen(app.get('port'), () => {
-  console.log('edwin: listening on port %s', server.address().port);
+  console.log('edwin: listening on http://localhost:%s', server.address().port);
 });
