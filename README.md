@@ -126,7 +126,7 @@ Each person you want to talk to Edwin has to respond to him first within your br
  When talking to Edwin with your Google Home, you can invoke him like, "Ok Google, talk to Edwin".  You can also give him your annotation in the invocation such as, "Ok Google, tell Edwin to pause the music".
 
 #### Create Action project
- From the Google Actions console create a new project [https://console.actions.google.com] (https://console.actions.google.com).
+ From the Google Actions console create a new project [https://console.actions.google.com](https://console.actions.google.com).
 
 #### Turn On Google Assistant Support and Add Your Project ID
 
@@ -156,7 +156,7 @@ Then make it executable:
 
 #### Test It Out
 
-From here you can go the simulator page in the Google Actions console, your Google Home, or your Google Assistant and say "Talk to My Test App".  This will respond, and start the conversation.   If you want it to say "Talk to Edwin", then you have to update your App Information under the Google Actions console for your project.
+If everything is working, you will see that Edwin is connected and your configuration is pushed in the console.  Now you can go to the simulator page in the Google Actions console, your Google Home, or your Google Assistant and say "Talk to My Test App".  This will respond, and start the conversation.   If you want it to say "Talk to Edwin", then you have to update your App Information under the Google Actions console for your project.
 
 ## Extending Intent and Context Discovery Logic
 You can use the tool under http://www.edwintheassistant.com or manually update the files under the data directory.  Here is an example of each type of file.
@@ -218,7 +218,7 @@ You can use the tool under http://www.edwintheassistant.com or manually update t
     Topic to process the statement
 
 
-### Extending Topic And ConverstaionLogic
+### Extending Topic And Converstaion Logic
 You can use the tool under http://www.edwintheassistant.com or manually update the files under the data directory.  Here is an example of each type of file.
 
 
