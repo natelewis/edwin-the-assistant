@@ -52,7 +52,6 @@ module.exports = {run: function(state, config) {
         }
       }
 
-      console.log(currentGroup);
       if (!currentGroup) {
         state.setQuery('groupName');
         return resolve(state.setReply('What room?'));
