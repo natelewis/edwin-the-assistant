@@ -26,6 +26,11 @@
             "context": "volume",
             "type": "map",
             "target": "music"
+        },
+        {
+            "context": "lights",
+            "type": "phrase",
+            "target": "lights"
         }
     ],
     "topicMap": [
