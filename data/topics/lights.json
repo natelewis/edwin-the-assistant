@@ -1,0 +1,8 @@
+{
+    "id": "lights",
+    "steps": [
+        {
+            "module": "lights"
+        }
+    ]
+}
