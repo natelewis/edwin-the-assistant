@@ -3,7 +3,7 @@ const Hue = require('./../../lib/client/hue');
 const hue = new Hue();
 
 const turnBrightnessUp = (hue, id) => {
-  const brightness = hue.getGroupLightsBrightnessAsync(id);
+  let brightness = hue.getGroupLightsBrightnessAsync(id);
   brightness += 25;
   if (brightness > 100) {
     brightness = 100;
@@ -12,7 +12,7 @@ const turnBrightnessUp = (hue, id) => {
 };
 
 const turnBrightnessDown = (hue, id) => {
-  const brightness = hue.getGroupLightsBrightnessAsync(id);
+  let brightness = hue.getGroupLightsBrightnessAsync(id);
   brightness -= 25;
   if (brightness < 0) {
     brightness = 0;
