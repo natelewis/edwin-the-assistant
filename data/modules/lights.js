@@ -35,12 +35,11 @@ const setBrightness = (hue, id, brightness) => {
 module.exports = {run: function(state, config) {
   return new Promise(function(resolve, reject) {
     hue.connectToBridge().then(() => hue.getGroups()).then((groups) => {
-      const statement = state.getStatement();
-
-      // if there is a follow up question, this was the original intent to sonos
-      if (state.getField('lightsAction') === undefined) {
-        state.setField('lightsAction', statement);
-      }
+      // append a potential "What room?" response
+      state.setField('lightsAction',
+        state.getField('lightsAction') + ' ' + state.getStatement()
+      );
+      const statement = state.getField('lightsAction');
 
       // figure out what zone we are going to talk to
       let currentGroup = undefined;
@@ -53,9 +52,20 @@ module.exports = {run: function(state, config) {
         }
       }
 
-      if ( !currentGroup ) {
-        return state.setReply('What room?');
+      console.log(currentGroup);
+      if (!currentGroup) {
+        state.setQuery('groupName');
+        return resolve(state.setReply('What room?'));
       } else {
+        // check for number to switch brightness
+        if (statement.match(/\d+/g)) {
+          const percent = statement.match(/\d+/g).pop();
+          console.log(percent);
+          setBrightness(hue, currentGroup, percent).then(() => {
+            return resolve(state.setFinal(''));
+          });
+        }
+
         // turn off
         if (statement.match(/(off)/i)) {
           turnOff(hue, currentGroup).then(() => {
