@@ -34,7 +34,7 @@ const setBrightness = (hue, id, brightness) => {
 
 module.exports = {run: function(state, config) {
   return new Promise(function(resolve, reject) {
-    hue.connectToBridge().then(() => hue.getGroups()).then((groups) => {
+    hue.connectToBridge().then(() => hue.syncGroups()).then((groups) => {
       // append a potential "What room?" response
       state.setField('lightsAction',
         state.getField('lightsAction') + ' ' + state.getStatement()
@@ -66,14 +66,14 @@ module.exports = {run: function(state, config) {
         }
 
         // turn off
-        if (statement.match(/(off)/i)) {
+        if (statement.match(/(off|false)/i)) {
           turnOff(hue, currentGroup).then(() => {
             return resolve(state.setFinal(''));
           });
         }
 
         // turn on
-        if (statement.match(/(on)/i)) {
+        if (statement.match(/(on|true)/i)) {
           turnOn(hue, currentGroup).then(() => {
             state.setFinal('');
             return resolve(state.setFinal(''));
