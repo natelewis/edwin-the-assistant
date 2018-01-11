@@ -2,7 +2,13 @@
   "squares": [
     {
       "id": "1",
-      "label": "X"
+      "label": "Basement",
+      "type": "light"
+    },
+    {
+      "id": "2",
+      "label": "Bar",
+      "type": "light"
     }
   ]
 }
