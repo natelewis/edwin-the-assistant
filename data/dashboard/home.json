@@ -1,6 +1,21 @@
 {
   "squares": [
     {
+      "id": "100",
+      "type": "percipitation",
+      "x": 9,
+      "y": 11,
+      "z": 5,
+      "openWeatherMapKey": "3280677032030101c900a8c43d3ad538",
+      "mapBoxKey": "pk.eyJ1Ijoibmxld2lzIiwiYSI6ImNqY2NkZDdneDEyZHEycXA1Z2RuNTlxbmYifQ.ZQiBH15J-mlCgKWI9Uirsw"
+    },
+    {
+      "id": "0",
+      "type": "currentWeather",
+      "zip": "01730",
+      "country": "us"
+    },
+    {
       "id": "1",
       "label": "Basement",
       "type": "light"
@@ -8,6 +23,16 @@
     {
       "id": "2",
       "label": "Bar",
+      "type": "light"
+    },
+    {
+      "id": "3",
+      "label": "Outside Garage",
+      "type": "light"
+    },
+    {
+      "id": "4",
+      "label": "Backyard",
       "type": "light"
     }
   ]
