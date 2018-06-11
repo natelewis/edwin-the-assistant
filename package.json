@@ -35,6 +35,7 @@
     "pos": "^0.4.2",
     "request": "^2.79.0",
     "say": "^0.13.1",
+    "sentence-intent": "0.0.4",
     "slackbots": "^1.0.2",
     "sonos": "^0.17.0",
     "time-stamp": "^2.0.0",

@@ -54,19 +54,6 @@ describe('Statement.getNextWordOfTypeAfterWord()', function() {
   });
 });
 
-
-describe('Statement.getImpliedIntent()', function() {
-  it('should log "No intent match" when none match', () => {
-    const unmute = mute(process.stdout);
-    const spy = sandbox.spy(console, 'log');
-    const statement = new Statement('', true);
-    statement.getImpliedIntent();
-    unmute();
-    assert(spy.calledWith('statement: (No intent match) undefined'));
-    spy.restore();
-  });
-});
-
 describe('Statement.getNextWordOfTypeAfterWord()', function() {
   it('should log "found undefined" to console in debug mode', () => {
     const unmute = mute(process.stdout);
