@@ -5,13 +5,14 @@
         {
             "context": "text",
             "target": "texting",
-            "type": "map"
+            "type": "phrase"
         },
         {
             "context": "message",
             "target": "send-message",
             "type": "map"
-        }
+        },
+        {}
     ],
     "topicMap": []
 }
