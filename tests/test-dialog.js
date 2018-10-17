@@ -8,18 +8,18 @@ const Dialog = require('../lib/Dialog');
 const State = require('../lib/State');
 
 let sandbox;
-beforeEach(function() {
+beforeEach(() => {
   sandbox = sinon.sandbox.create();
 });
 
-afterEach(function() {
+afterEach(() => {
   sandbox.restore();
 });
 
 const state = new State();
 const dialog = new Dialog();
 
-describe('Dialog.startConversation()', function() {
+describe('Dialog.startConversation()', () => {
   it('should set final if no session is set', function(done) {
     state.sessionId = undefined;
 
@@ -30,8 +30,8 @@ describe('Dialog.startConversation()', function() {
   });
 });
 
-describe('Dialog.respondIfEmptyStatement()', function() {
-  it('should set final if empty statement is set', function() {
+describe('Dialog.respondIfEmptyStatement()', () => {
+  it('should set final if empty statement is set', () => {
     state.reset();
     state.setStatement('');
     dialog.respondIfEmptyStatement(state);
@@ -39,8 +39,8 @@ describe('Dialog.respondIfEmptyStatement()', function() {
   });
 });
 
-describe('Dialog.setInitialIntent()', function() {
-  it('should not set intent if implied intent is undefined', function() {
+describe('Dialog.setInitialIntent()', () => {
+  it('should not set intent if implied intent is undefined', () => {
     state.reset();
     state.setStatement('');
     dialog.setInitialIntent(state);
@@ -48,8 +48,8 @@ describe('Dialog.setInitialIntent()', function() {
   });
 });
 
-describe('Dialog.setInitialImpliedContext()', function() {
-  it('should not set context if implied intent is undefined', function() {
+describe('Dialog.setInitialImpliedContext()', () => {
+  it('should not set context if implied intent is undefined', () => {
     state.reset();
     state.setStatement('');
     dialog.setInitialImpliedContext(state);
@@ -57,8 +57,8 @@ describe('Dialog.setInitialImpliedContext()', function() {
   });
 });
 
-describe('Dialog.processStep()', function() {
-  it('should set final if a module is not real', function() {
+describe('Dialog.processStep()', () => {
+  it('should set final if a module is not real', () => {
     state.reset();
     state.setStatement('who buddy');
     dialog.processStep([{module: 'notAThing'}], state);
@@ -66,16 +66,16 @@ describe('Dialog.processStep()', function() {
   });
 });
 
-describe('Dialog.respondIfInvalidIntent()', function() {
-  it('should respond with final if intent is invalid', function() {
+describe('Dialog.respondIfInvalidIntent()', () => {
+  it('should respond with final if intent is invalid', () => {
     state.reset();
     dialog.respondIfInvalidIntent(state);
     assert.notEqual(state.getFinal(), undefined);
   });
 });
 
-describe('Dialog.respondIfTrivialResponseRequired()', function() {
-  it('should set final if one word trivial statement is set', function() {
+describe('Dialog.respondIfTrivialResponseRequired()', () => {
+  it('should set final if one word trivial statement is set', () => {
     state.reset();
     state.setStatement('yo');
     dialog.respondIfTrivialResponseRequired(state);
@@ -83,9 +83,9 @@ describe('Dialog.respondIfTrivialResponseRequired()', function() {
   });
 });
 
-describe('Dialog.loadModule', function() {
+describe('Dialog.loadModule', () => {
   it('should throw error on module that has errors in it', () => {
-    assert.throws(function() {
+    assert.throws(() => {
       dialog.loadModule('../../LICENSE');
     }, Error);
   });

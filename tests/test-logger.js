@@ -7,15 +7,15 @@ const mute = require('mute');
 const log = require('../lib/logger');
 
 let sandbox;
-beforeEach(function() {
+beforeEach(() => {
   sandbox = sinon.sandbox.create();
 });
 
-afterEach(function() {
+afterEach(() => {
   sandbox.restore();
 });
 
-describe('Logger output', function() {
+describe('Logger output', () => {
   it('should log the correct state to console', () => {
     const unmute = mute(process.stdout);
     const spy = sandbox.spy(console, 'log');

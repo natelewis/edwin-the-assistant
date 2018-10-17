@@ -4,20 +4,20 @@ const assert = require('assert');
 const fs = require('fs');
 const mute = require('mute');
 
-before(function() {
+before(() => {
   delete require.cache[require.resolve('../lib/config')];
 });
 
-after(function() {
+after(() => {
   fs.unlinkSync('./TEST_CONFIG.json');
   delete require.cache[require.resolve('../lib/config')];
   process.env.EDWIN_CONFIG = undefined;
 });
 
-describe('Loading config', function() {
+describe('Loading config', () => {
   it('should throw error on unloadable config', () => {
     process.env.EDWIN_CONFIG = '/../../notathing.json';
-    assert.throws(function() {
+    assert.throws(() => {
       // because we will throw error, we won't actually unmute
       mute(process.stdout);
       require('../lib/config');

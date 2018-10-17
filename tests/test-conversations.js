@@ -21,11 +21,11 @@ const testRule = {
 };
 
 let sandbox;
-beforeEach(function() {
+beforeEach(() => {
   sandbox = sinon.sandbox.create();
 });
 
-afterEach(function() {
+afterEach(() => {
   sandbox.restore();
 });
 
@@ -38,7 +38,7 @@ files.forEach((file) => {
   });
 });
 
-describe('Test one word, one step conversation in debug mode', function() {
+describe('Test one word, one step conversation in debug mode', () => {
   it('should have user quit in output', function(done) {
     const unmute = mute(process.stdout);
     const spy = sandbox.spy(console, 'log');
@@ -51,7 +51,7 @@ describe('Test one word, one step conversation in debug mode', function() {
   });
 });
 
-describe('Test two step conversation in debug mode', function() {
+describe('Test two step conversation in debug mode', () => {
   it('should have user quit in output', function(done) {
     const unmute = mute(process.stdout);
     const spy = sandbox.spy(console, 'log');

@@ -7,22 +7,22 @@ const mute = require('mute');
 const Statement = require('../lib/Statement');
 
 let sandbox;
-beforeEach(function() {
+beforeEach(() => {
   sandbox = sinon.sandbox.create();
 });
 
-afterEach(function() {
+afterEach(() => {
   sandbox.restore();
 });
 
-describe('Statement object', function() {
+describe('Statement object', () => {
   it('should be an empty string if not passed some words', () => {
     const statement = new Statement();
     assert.equal(statement.text, '');
   });
 });
 
-describe('Statement.logContextDebug()', function() {
+describe('Statement.logContextDebug()', () => {
   it('should log something to console in debug mode', () => {
     const unmute = mute(process.stdout);
     const spy = sandbox.spy(console, 'log');
@@ -35,14 +35,14 @@ describe('Statement.logContextDebug()', function() {
 });
 
 
-describe('Statement.getEverythingAfterWord()', function() {
+describe('Statement.getEverythingAfterWord()', () => {
   it('should return undefined if no start word is given', () => {
     const statement = new Statement('', false);
     assert.equal(statement.getEverythingAfterWord(), undefined);
   });
 });
 
-describe('Statement.getNextWordOfTypeAfterWord()', function() {
+describe('Statement.getNextWordOfTypeAfterWord()', () => {
   it('should log something to console in debug mode', () => {
     const unmute = mute(process.stdout);
     const spy = sandbox.spy(console, 'log');
@@ -54,7 +54,7 @@ describe('Statement.getNextWordOfTypeAfterWord()', function() {
   });
 });
 
-describe('Statement.getNextWordOfTypeAfterWord()', function() {
+describe('Statement.getNextWordOfTypeAfterWord()', () => {
   it('should log "found undefined" to console in debug mode', () => {
     const unmute = mute(process.stdout);
     const spy = sandbox.spy(console, 'log');
@@ -66,7 +66,7 @@ describe('Statement.getNextWordOfTypeAfterWord()', function() {
   });
 });
 
-describe('Statement.logIntentDebug()', function() {
+describe('Statement.logIntentDebug()', () => {
   it('should log something to console in debug mode', () => {
     const unmute = mute(process.stdout);
     const spy = sandbox.spy(console, 'log');

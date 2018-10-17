@@ -7,7 +7,7 @@ const mute = require('mute');
 const Edwin = require('../lib/Edwin');
 const State = require('../lib/State');
 
-describe('Edwin object', function() {
+describe('Edwin object', () => {
   it('should set responseObject when passed in', () => {
     const state = new State();
     new Edwin({responseObject: 'a thing'});
@@ -25,10 +25,10 @@ describe('Edwin object', function() {
 });
 
 
-describe('Edwin.converse()', function() {
+describe('Edwin.converse()', () => {
   it('should display error to console if promise chain is broken', (done) => {
     const edwin = new Edwin({responseObject: 'a thing'});
-    edwin.callback = function() {
+    edwin.callback = () => {
       return new Promise((resolve, reject) => {
         reject('rejected!');
       });

@@ -4,14 +4,14 @@ const assert = require('assert');
 
 const Intent = require('../lib/Intent');
 
-describe('Intent.get', function() {
+describe('Intent.get', () => {
   it('should be an undefined if the intent is not real', () => {
     const intent = new Intent('asdfasdf');
     assert.equal(intent.intentObj, undefined);
   });
 });
 
-describe('Intent.updateTopicFromModifiers', function() {
+describe('Intent.updateTopicFromModifiers', () => {
   it('should have undefined topic when phrase does not find a match', () => {
     const intent = new Intent('how');
     const topic = intent.updateTopicFromModifiers({
@@ -23,7 +23,7 @@ describe('Intent.updateTopicFromModifiers', function() {
   });
 });
 
-describe('Intent.updateContextFromModifiers', function() {
+describe('Intent.updateContextFromModifiers', () => {
   it('should have undefined topic when phrase does not find a match', () => {
     const intent = new Intent('what');
     const topic = intent.updateContextFromModifiers({
